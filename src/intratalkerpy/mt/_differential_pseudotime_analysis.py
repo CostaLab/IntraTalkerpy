@@ -9,7 +9,7 @@ import scanpy as sc
 from anndata import AnnData
 
 # Import utility functions from our package
-from ...ut import (
+from ..ut import (
     compute_pseudotime_gradient,
     calculate_grid_arrows,
     compute_differential_pseudotime,

@@ -13,407 +13,227 @@ from typing import List, Optional, Union, Dict, Any, Tuple
 import warnings
 
 
-def _subset_list(target_list: List, index_list: List[int]) -> List:
+def _subset_list(target_list, index_list):
     """
-    Subset a list based on index list.
+    Helper function to subset a list based on indices.
     
     Parameters
     ----------
-    target_list : List
+    target_list : list
         Source list to subset.
-    index_list : List[int]
-        Indices to extract.
+    index_list : list of int
+        Indices to extract from target_list.
         
     Returns
     -------
-    List
-        Subsetted list.
+    list
+        Subsetted list with elements at specified indices.
     """
-    return [target_list[i] for i in index_list]
+    return list(map(target_list.__getitem__, index_list))
 
 
-def _generate_colors(categories: List[str], seed: int = 555) -> Dict[str, str]:
+def _generate_random_colors(n_colors, seed=555):
     """
-    Generate random colors for categories.
+    Generate random hex colors.
     
     Parameters
     ----------
-    categories : List[str]
-        List of category names.
+    n_colors : int
+        Number of colors to generate.
     seed : int, default=555
         Random seed for reproducibility.
         
     Returns
     -------
-    Dict[str, str]
-        Dictionary mapping categories to hex colors.
+    list of str
+        List of hex color strings (e.g., ['#FF0000', '#00FF00']).
     """
     random.seed(seed)
-    colors = [f"#{random.randint(0, 0xFFFFFF):06x}" for _ in range(len(categories))]
-    return dict(zip(categories, colors))
+    return [f"#{random.randint(0, 0xFFFFFF):06x}" for _ in range(n_colors)]
 
 
-def _validate_anndata_inputs(anndata: Any, reduction_name: str, variable: str) -> None:
+def _validate_basic_inputs(anndata, reduction_name, variable):
     """
-    Validate AnnData object and required attributes.
+    Basic validation for anndata inputs.
     
     Parameters
     ----------
     anndata : AnnData
-        Annotated data object.
+        Annotated data object to validate.
     reduction_name : str
-        Name of the reduction in obsm.
+        Name of the reduction to check in anndata.obsm.
     variable : str
-        Variable name in obs.
+        Variable name to check in anndata.obs.
         
     Raises
     ------
     ValueError
-        If required attributes are missing.
+        If reduction_name not found in anndata.obsm or variable not found in anndata.obs.
     """
-    if not hasattr(anndata, 'obs'):
-        raise ValueError("anndata must have an 'obs' attribute")
-    
-    if not hasattr(anndata, 'obsm'):
-        raise ValueError("anndata must have an 'obsm' attribute")
-    
     if reduction_name not in anndata.obsm.keys():
         raise ValueError(f"Reduction '{reduction_name}' not found in anndata.obsm")
-    
     if variable not in anndata.obs.columns:
         raise ValueError(f"Variable '{variable}' not found in anndata.obs")
 
 
-def plot_metadata_given_ax(
-    anndata: Any,
-    ax: matplotlib.axes.Axes,
-    reduction_name: str,
-    variable: str,
-    color_dictionary: Dict[str, Dict[str, str]],
-    receptor: str,
-    remove_nan: bool = True,
-    show_label: bool = True,
-    show_legend: bool = False,
-    cmap: Union[str, matplotlib.colors.Colormap] = cm.viridis,
-    dot_size: int = 10,
-    text_size: int = 10,
-    alpha: float = 1.0,
-    seed: int = 555,
-    selected_cells: Optional[List[str]] = None,
-    title: Optional[str] = None,
-    legend_bbox: Tuple[float, float] = (1.04, 1),
-    legend_loc: str = "upper left"
-) -> matplotlib.axes.Axes:
+def plot_metadata_given_ax(anndata,
+                        ax: matplotlib.axes,
+                        reduction_name: str,
+                        variable: str,
+                        color_dictionary,
+                        receptor: str,
+                        remove_nan: Optional[bool] = True,
+                        show_label: Optional[bool] = True,
+                        show_legend: Optional[bool] = False,
+                        cmap: Optional[Union[str, 'matplotlib.cm']] = cm.viridis,
+                        dot_size: Optional[int] = 10,
+                        text_size: Optional[int] = 10,
+                        alpha: Optional[Union[float, int]] = 1,
+                        seed: Optional[int] = 555,
+                        selected_cells: Optional[List[str]] = None):
     """
-    Plot metadata on a 2D embedding with enhanced customization and error handling.
+    Plot metadata on a 2D embedding.
     
     Parameters
     ----------
     anndata : AnnData
         Annotated data object containing embedding and metadata.
-    ax : matplotlib.axes.Axes
+    ax : matplotlib.axes
         Matplotlib axes object to plot on.
     reduction_name : str
-        Name of the reduction/embedding in anndata.obsm.
+        Name of the reduction/embedding in anndata.obsm (e.g., 'X_umap', 'X_pca').
     variable : str
         Variable name to plot from anndata.obs.
-    color_dictionary : Dict[str, Dict[str, str]]
-        Nested dictionary with color mappings for variables.
+    color_dictionary : dict
+        Dictionary containing color mappings for categorical variables.
+        Expected format: {variable_name: {category: color}}.
     receptor : str
-        Name of the receptor being analyzed.
+        Name of the receptor being analyzed (used in plot title).
     remove_nan : bool, default=True
         Whether to remove NaN values from categorical data.
     show_label : bool, default=True
         Whether to show category labels on the plot.
     show_legend : bool, default=False
         Whether to display legend.
-    cmap : Union[str, matplotlib.colors.Colormap], default=cm.viridis
+    cmap : str or matplotlib.cm, default=cm.viridis
         Colormap for continuous variables.
     dot_size : int, default=10
         Size of scatter plot points.
     text_size : int, default=10
         Size of label text.
-    alpha : float, default=1.0
+    alpha : float or int, default=1
         Transparency of points (0-1).
     seed : int, default=555
         Random seed for color generation.
     selected_cells : List[str], optional
-        Subset of cells to plot.
-    title : str, optional
-        Custom title for the plot.
-    legend_bbox : Tuple[float, float], default=(1.04, 1)
-        Legend bounding box position.
-    legend_loc : str, default="upper left"
-        Legend location.
+        Subset of cell names to plot.
         
     Returns
     -------
-    matplotlib.axes.Axes
+    matplotlib.axes
         The modified axes object.
-        
-    Raises
-    ------
-    ValueError
-        If required data is missing or invalid.
     """
-    # Input validation
-    _validate_anndata_inputs(anndata, reduction_name, variable)
+    # Basic validation
+    _validate_basic_inputs(anndata, reduction_name, variable)
     
-    if not (0 <= alpha <= 1):
-        raise ValueError("Alpha must be between 0 and 1")
-    
-    if dot_size <= 0:
-        raise ValueError("Dot size must be positive")
-    
-    if text_size <= 0:
-        raise ValueError("Text size must be positive")
-    
-    try:
-        # Extract data
-        cell_names = list(anndata.obs_names.copy())
-        embeddings_dict = {
-            k: pd.DataFrame(anndata.obsm[k].copy(), index=cell_names) 
-            for k in anndata.obsm.keys()
-        }
-        
-        embedding = embeddings_dict[reduction_name]
-        data_mat = anndata.obs.copy()
-        
-        # Subset cells if specified
-        if selected_cells is not None:
-            missing_cells = set(selected_cells) - set(cell_names)
-            if missing_cells:
-                warnings.warn(f"Missing cells: {missing_cells}")
-                selected_cells = [c for c in selected_cells if c in cell_names]
-            
-            if not selected_cells:
-                raise ValueError("No valid selected cells found")
-            
-            data_mat = data_mat.loc[selected_cells]
-            embedding = embedding.loc[selected_cells]
-        
-        # Align data
-        common_index = embedding.index.intersection(data_mat.index)
-        if len(common_index) == 0:
-            raise ValueError("No common cells between embedding and metadata")
-        
-        data_mat = data_mat.loc[common_index]
-        embedding = embedding.loc[common_index]
-        
-        # Process variable data
-        var_data = data_mat[variable].copy()
-        
-        # Handle categorical vs continuous data
-        if pd.api.types.is_string_dtype(var_data) or pd.api.types.is_categorical_dtype(var_data):
-            return _plot_categorical_variable(
-                ax, embedding, var_data, variable, color_dictionary, receptor,
-                remove_nan, show_label, show_legend, dot_size, text_size, alpha,
-                seed, title, legend_bbox, legend_loc
-            )
-        else:
-            return _plot_continuous_variable(
-                ax, embedding, var_data, variable, cmap, dot_size, alpha, title
-            )
-            
-    except Exception as e:
-        warnings.warn(f"Error in plot_metadata_given_ax: {e}")
-        ax.text(0.5, 0.5, f'Error: {e}', ha='center', va='center', transform=ax.transAxes)
-        return ax
+    GEX_cell_names = anndata.obs_names.copy(deep=True)
+    GEX_cell_names = list(GEX_cell_names)
+    GEX_dr_cell = {k: pd.DataFrame(anndata.obsm[k].copy(
+    ), index=GEX_cell_names) for k in anndata.obsm.keys()}
 
+    embedding = GEX_dr_cell[reduction_name]
+    data_mat = anndata.obs.copy(deep=True)
 
-def _plot_categorical_variable(
-    ax: matplotlib.axes.Axes,
-    embedding: pd.DataFrame,
-    var_data: pd.Series,
-    variable: str,
-    color_dictionary: Dict[str, Dict[str, str]],
-    receptor: str,
-    remove_nan: bool,
-    show_label: bool,
-    show_legend: bool,
-    dot_size: int,
-    text_size: int,
-    alpha: float,
-    seed: int,
-    title: Optional[str],
-    legend_bbox: Tuple[float, float],
-    legend_loc: str
-) -> matplotlib.axes.Axes:
-    """Plot categorical variable on embedding."""
-    
-    # Handle NaN values
-    if remove_nan and var_data.isnull().any():
-        valid_mask = ~var_data.isnull()
-        var_data = var_data[valid_mask]
-        embedding = embedding.loc[valid_mask]
-        
-        if len(var_data) == 0:
-            warnings.warn("No valid data after removing NaN values")
-            ax.text(0.5, 0.5, 'No valid data', ha='center', va='center', transform=ax.transAxes)
-            return ax
-    else:
-        var_data = var_data.fillna('NA')
-    
-    # Get categories and colors
-    categories = list(set(var_data.astype(str)))
-    
-    try:
-        color_dict = color_dictionary if isinstance(color_dictionary, dict) else color_dictionary.get(variable, {})
-        missing_colors = set(categories) - set(color_dict.keys())
-        if missing_colors:
-            additional_colors = _generate_colors(list(missing_colors), seed)
-            color_dict.update(additional_colors)
-    except Exception:
-        color_dict = _generate_colors(categories, seed)
-    
-    # Create scatter plot
-    colors = var_data.astype(str).map(color_dict)
-    ax.scatter(
-        embedding.iloc[:, 0], 
-        embedding.iloc[:, 1], 
-        c=colors, 
-        s=dot_size, 
-        alpha=alpha
-    )
-    
-    # Set labels
-    ax.set_xlabel(embedding.columns[0])
-    ax.set_ylabel(embedding.columns[1])
-    
-    # Add category labels
-    if show_label:
-        _add_category_labels(ax, embedding, var_data, color_dict, text_size)
-    
-    # Set title
-    if title is None:
-        title = f"{receptor} Vector Field"
-    ax.set_title(title)
-    
-    # Add legend
-    if show_legend:
-        _add_legend(ax, color_dict, legend_bbox, legend_loc)
-    
-    return ax
+    if selected_cells is not None:
+        data_mat = data_mat.loc[selected_cells]
+        embedding = embedding.loc[selected_cells]
 
+    data_mat = data_mat.loc[embedding.index.to_list()]
 
-def _plot_continuous_variable(
-    ax: matplotlib.axes.Axes,
-    embedding: pd.DataFrame,
-    var_data: pd.Series,
-    variable: str,
-    cmap: Union[str, matplotlib.colors.Colormap],
-    dot_size: int,
-    alpha: float,
-    title: Optional[str]
-) -> matplotlib.axes.Axes:
-    """Plot continuous variable on embedding."""
-    
-    # Remove NaN values
-    valid_mask = ~var_data.isnull()
-    if not valid_mask.any():
-        warnings.warn("All values are NaN")
+    var_data = data_mat.copy().loc[:, variable].dropna().to_list()
+    if len(var_data) == 0:
+        # Handle case where all data is NaN
         ax.text(0.5, 0.5, 'No valid data', ha='center', va='center', transform=ax.transAxes)
         return ax
-    
-    if not valid_mask.all():
-        warnings.warn(f"Removing {(~valid_mask).sum()} NaN values")
-        var_data = var_data[valid_mask]
-        embedding = embedding.loc[valid_mask]
-    
-    # Sort data for better visualization
-    sort_order = np.argsort(var_data.values)
-    
-    # Create scatter plot
-    scatter = ax.scatter(
-        embedding.iloc[sort_order, 0], 
-        embedding.iloc[sort_order, 1], 
-        c=_subset_list(var_data.tolist(), sort_order), 
-        cmap=cmap, 
-        s=dot_size, 
-        alpha=alpha
-    )
-    
-    # Set labels
-    ax.set_xlabel(embedding.columns[0])
-    ax.set_ylabel(embedding.columns[1])
-    
-    # Set title
-    if title is None:
-        title = variable
-    ax.set_title(title)
-    
-    # Add colorbar
-    normalize = mcolors.Normalize(vmin=var_data.min(), vmax=var_data.max())
-    scalar_mappable = cm.ScalarMappable(norm=normalize, cmap=cmap)
-    scalar_mappable.set_array(var_data.values)
-    plt.colorbar(scalar_mappable, ax=ax)
-    
-    return ax
-
-
-def _add_category_labels(
-    ax: matplotlib.axes.Axes,
-    embedding: pd.DataFrame,
-    var_data: pd.Series,
-    color_dict: Dict[str, str],
-    text_size: int
-) -> None:
-    """Add category labels to the plot."""
-    try:
-        # Calculate label positions (centroids)
-        label_data = pd.concat([embedding, var_data], axis=1)
-        label_positions = label_data.groupby(var_data.name).agg({
-            embedding.columns[0]: 'mean',
-            embedding.columns[1]: 'mean'
-        })
         
-        # Add text labels
-        texts = []
-        for label in label_positions.index:
-            if label in color_dict:
+    if isinstance(var_data[0], str):
+        if (remove_nan) & (data_mat[variable].isnull().sum() > 0):
+            var_data = data_mat.copy().loc[:, variable].dropna().to_list()
+            emb_nan = embedding.loc[data_mat.copy(
+            ).loc[:, var_data].dropna().index.tolist()]
+            label_pd = pd.concat(
+                [emb_nan, data_mat.loc[:, [variable]].dropna()], axis=1, sort=False)
+        else:
+            var_data = data_mat.copy().astype(
+                str).fillna('NA').loc[:, variable].to_list()
+            label_pd = pd.concat([embedding, data_mat.astype(
+                str).fillna('NA').loc[:, [variable]]], axis=1, sort=False)
+
+        categories = set(var_data)
+        try:
+            color_dict = color_dictionary[variable]
+        except (KeyError, TypeError):
+            color = _generate_random_colors(len(categories), seed)
+            color_dict = dict(zip(categories, color))
+
+        if (remove_nan) & (data_mat[variable].isnull().sum() > 0):
+            ax.scatter(emb_nan.iloc[:, 0], emb_nan.iloc[:, 1], c=data_mat.loc[:, variable].dropna(
+            ).apply(lambda x: color_dict[x]), s=dot_size, alpha=alpha)
+            ax.set_xlabel(emb_nan.columns[0])
+            ax.set_ylabel(emb_nan.columns[1])
+        else:
+            ax.scatter(embedding.iloc[:, 0], embedding.iloc[:, 1], c=data_mat.astype(str).fillna(
+                'NA').loc[:, variable].apply(lambda x: color_dict[x]), s=dot_size, alpha=alpha)
+            ax.set_xlabel(embedding.columns[0])
+            ax.set_ylabel(embedding.columns[1])
+
+        if show_label:
+            label_pos = label_pd.groupby(variable).agg(
+                {label_pd.columns[0]: np.mean, label_pd.columns[1]: np.mean})
+            texts = []
+            for label in label_pos.index.tolist():
                 texts.append(
                     ax.text(
-                        label_positions.loc[label, embedding.columns[0]],
-                        label_positions.loc[label, embedding.columns[1]],
-                        str(label),
+                        label_pos.loc[label][0],
+                        label_pos.loc[label][1],
+                        label,
                         horizontalalignment='center',
                         verticalalignment='center',
                         size=text_size,
                         weight='bold',
                         color=color_dict[label],
                         path_effects=[
-                            PathEffects.withStroke(linewidth=3, foreground='w')
-                        ]
-                    )
-                )
-        
-        # Adjust text positions to avoid overlap
-        if texts:
+                            PathEffects.withStroke(
+                                linewidth=3,
+                                foreground='w')]))
             adjust_text(texts)
-            
-    except Exception as e:
-        warnings.warn(f"Error adding category labels: {e}")
 
-
-def _add_legend(
-    ax: matplotlib.axes.Axes,
-    color_dict: Dict[str, str],
-    legend_bbox: Tuple[float, float],
-    legend_loc: str
-) -> None:
-    """Add legend to the plot."""
-    try:
-        patches = [
-            mpatches.Patch(color=color, label=label)
-            for label, color in color_dict.items()
-        ]
-        ax.legend(
-            handles=patches, 
-            bbox_to_anchor=legend_bbox, 
-            loc=legend_loc
-        )
-    except Exception as e:
-        warnings.warn(f"Error adding legend: {e}")
+        ax.set_title(receptor + " Vector Field")
+        patchList = []
+        for key in color_dict:
+            data_key = mpatches.Patch(color=color_dict[key], label=key)
+            patchList.append(data_key)
+        if show_legend:
+            ax.legend(
+                handles=patchList, bbox_to_anchor=(
+                    1.04, 1), loc="upper left")
+        return ax
+    else:
+        var_data = data_mat.copy().loc[:, variable].to_list()
+        o = np.argsort(var_data)
+        ax.scatter(embedding.iloc[o, 0], embedding.iloc[o, 1], c=_subset_list(
+            var_data, o), cmap=cmap, s=dot_size, alpha=alpha)
+        ax.set_xlabel(embedding.columns[0])
+        ax.set_ylabel(embedding.columns[1])
+        ax.set_title(variable)
+        # setup the colorbar
+        normalize = mcolors.Normalize(
+            vmin=np.array(var_data).min(),
+            vmax=np.array(var_data).max())
+        scalarmappaple = cm.ScalarMappable(norm=normalize, cmap=cmap)
+        scalarmappaple.set_array(var_data)
+        plt.colorbar(scalarmappaple, ax=ax)
+        return ax
 
 def vector_field_wrapper(
     adata: Any,
@@ -440,34 +260,34 @@ def vector_field_wrapper(
     Parameters
     ----------
     adata : AnnData
-        Annotated data object.
+        Annotated data object containing embedding and metadata.
     grid : np.ndarray
-        Grid points for the vector field.
+        Grid points for the vector field of shape (n_grid_points, 2).
     vectors : np.ndarray
-        Vector field values at grid points.
+        Vector field values at grid points of shape (n_grid_points, 2).
     distances : np.ndarray
-        Distance values for coloring streamlines.
+        Distance values for coloring streamlines of shape (n_grid_points,).
     red_name : str
-        Name of the reduction/embedding.
+        Name of the reduction/embedding in adata.obsm.
     cell_anno : str
-        Cell annotation variable name.
+        Cell annotation variable name from adata.obs.
     receptor : str
-        Receptor name for labeling.
-    color_dict : Dict[str, str]
+        Receptor name for labeling (used in plot title).
+    color_dict : dict
         Color dictionary mapping cell types to colors.
-        Should be a flat dictionary like {'cell_type1': '#color1', 'cell_type2': '#color2'}
-    ax : matplotlib.axes.Axes
-        Matplotlib axes object.
+        Format: {cell_type: color_hex_string}.
+    ax : matplotlib.axes
+        Matplotlib axes object to plot on.
     stream_density : float, default=1.0
         Density of streamlines.
     zorder : int, default=10
         Z-order for streamline plotting.
     grid_dist : int, default=25
-        Grid distance parameter.
+        Grid distance parameter (grid will be grid_dist x grid_dist).
     norm_vmin : float, default=0.15
-        Minimum value for normalization.
+        Minimum value for streamline color normalization.
     norm_vmax : float, default=0.5
-        Maximum value for normalization.
+        Maximum value for streamline color normalization.
     stream_cmap : str, default='Greys'
         Colormap for streamlines.
     linewidth : float, default=1.2
@@ -477,15 +297,15 @@ def vector_field_wrapper(
         
     Returns
     -------
-    matplotlib.axes.Axes
-        The modified axes object.
+    matplotlib.axes
+        The modified axes object with vector field plot.
         
     Raises
     ------
     ValueError
-        If input arrays have incompatible shapes.
+        If grid or vectors are empty.
     """
-    # Input validation
+    # Basic validation
     if grid.size == 0 or vectors.size == 0:
         raise ValueError("Grid and vectors cannot be empty")
     

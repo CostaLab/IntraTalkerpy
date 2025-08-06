@@ -15,7 +15,7 @@ import warnings
 
 def subset_list(target_list, index_list):
     """
-    Subset a list based on index list.
+    Subset a list based on index list. Based on the CellOracle implementation.
     
     Parameters
     ----------
@@ -49,7 +49,7 @@ def plot_metadata_given_ax(anndata,
                         seed: Optional[int] = 555,
                         selected_cells: Optional[List[str]] = None):
     """
-    Plot metadata on a 2D embedding.
+    Plot metadata on a 2D embedding. Based on the CellOracle implementation.
     
     Parameters
     ----------
@@ -197,6 +197,87 @@ def vector_field_wrapper(adata, grid, vectors, distances, red_name, cell_anno, r
     ----------
     adata : AnnData
         Annotated data object containing embedding and metadata.
+    grid : np.ndarray
+        Grid points for the vector field of shape (n_grid_points, 2).
+    vectors : np.ndarray
+        Vector field values at grid points of shape (n_grid_points, 2).
+    distances : np.ndarray
+        Distance values for coloring streamlines of shape (n_grid_points,).
+    red_name : str
+        Name of the reduction/embedding in adata.obsm.
+    cell_anno : str
+        Cell annotation variable name from adata.obs.
+    receptor : str
+        Receptor name for labeling (used in plot title).
+    color_dict : dict
+        Color dictionary mapping cell types to colors.
+        Format: {variable_name: {cell_type: color_hex_string}}.
+    ax : matplotlib.axes
+        Matplotlib axes object to plot on.
+    stream_density : int, default=1
+        Density of streamlines.
+    zorder : int, default=10
+        Z-order for streamline plotting.
+    grid_dist : int, default=25
+        Grid distance parameter (grid will be grid_dist x grid_dist).
+
+    Returns
+    -------
+    matplotlib.axes
+        The modified axes object with vector field plot.
+    """
+    norm = matplotlib.colors.Normalize(vmin=0.15, vmax=0.5, clip=True)
+    scale = lambda X: [(x - min(X)) / (max(X) - min(X)) for x in X]
+    ax2 = ax
+    ax2 = plot_metadata_given_ax(
+        anndata=adata,
+        reduction_name=red_name,
+        receptor=receptor,
+        ax=ax2,
+        variable=cell_anno,
+        color_dictionary=color_dict,
+        show_label=True)
+    ax2.streamplot(
+        grid.reshape(grid_dist, grid_dist, 2)[:, :, 0],
+        grid.reshape(grid_dist, grid_dist, 2)[:, :, 1],
+        vectors.reshape(grid_dist, grid_dist, 2)[:, :, 0],
+        vectors.reshape(grid_dist, grid_dist, 2)[:, :, 1],
+        density=stream_density,
+        color=np.array(scale(distances)).reshape(grid_dist, grid_dist),
+        cmap='Greys',
+        zorder=zorder,
+        norm=norm,
+        linewidth=1.2)
+    return ax2
+
+def plot_raw_vector_field(
+    emb: np.ndarray,
+    delta_vec: np.ndarray,
+    figsize: Tuple[float, float] = (8, 6),
+    point_size: float = 5,
+    point_alpha: float = 0.5,
+    vector_color: str = "red",
+    vector_alpha: float = 0.7,
+    vector_scale: float = 1,
+    title: str = "Raw Perturbation Vector Field",
+    save_path: Optional[str] = None,
+    show_plot: bool = True,
+    dpi: int = 300
+) -> plt.Figure:
+    """
+    Plot raw vector field showing perturbation vectors.
+
+    Parameters
+    ----------
+    emb : np.ndarray
+        2D embedding coordinates of shape (n_cells, 2).
+    delta_vec : np.ndarray
+        Perturbation vectors of shape (n_cells, 2).
+    figsize : Tuple[float, float], default=(8, 6)
+        Figure size as (width, height) in inches.
+    point_size : float, default=5
+        Size of cell points.
+    point_alpha : float, default=0.5
     grid : np.ndarray
         Grid points for the vector field of shape (n_grid_points, 2).
     vectors : np.ndarray

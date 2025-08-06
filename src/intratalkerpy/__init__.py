@@ -20,17 +20,11 @@ from . import pl  # Plotting module
 from . import ut  # Utilities module
 from . import mt  # Methods module
 
-# Make key functions easily accessible at package level
-from .mt import differential_pseudotime_analysis
-
 __all__ = [
     # Submodules
     "pl", 
     "ut", 
     "mt",
-    
-    # Key functions for easy access
-    "differential_pseudotime_analysis",
     
     # Package metadata
     "__version__"
@@ -38,5 +32,5 @@ __all__ = [
 
 # Package metadata
 __author__ = "Vanessa Kloeker"
-__email__ = "vanessa.kloeker@gmail.com"  # Update with actual email
+__email__ = "vanessa.kloeker@gmail.com"
 __description__ = "A Python package for receptor analysis and visualization in single-cell data"

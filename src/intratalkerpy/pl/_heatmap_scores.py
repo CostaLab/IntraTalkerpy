@@ -49,10 +49,10 @@ def _process_heatmap_data(
             
             filtered_scores = {k: v for k, v in scores.items() if k not in exclude_cell_types}
             filtered_p_vals = {k: v for k, v in p_vals.items() if k not in exclude_cell_types}
-            
+
             scores_dict[receptor] = filtered_scores
             p_vals_dict[receptor] = filtered_p_vals
-        
+
         scores_df = pd.DataFrame(scores_dict).T
         p_values_df = pd.DataFrame(p_vals_dict).T
         
@@ -194,7 +194,7 @@ def plot_score_heatmap(
         raise ValueError("Threshold tuples must contain exactly 3 values")
     
     if exclude_cell_types is None:
-        exclude_cell_types = ['all_cluster']
+        exclude_cell_types = []
     
     if title is None:
         title = "Clustered Cohen's d by Receptor and Cell Type"

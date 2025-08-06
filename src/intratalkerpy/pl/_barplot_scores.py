@@ -159,8 +159,8 @@ def plot_score_barplots(
         ax_bar.set_ylabel("Receptor")
         ax_bar.set_xlim(x_limits)
         
-        if 'pval' in df_loop.columns:
-            _add_significance_markers(ax_bar, df_loop)
+        # if 'pval' in df_loop.columns:
+        #     _add_significance_markers(ax_bar, df_loop)
     
     plt.tight_layout()
     

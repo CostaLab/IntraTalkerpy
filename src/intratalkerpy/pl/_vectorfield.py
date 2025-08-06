@@ -14,13 +14,28 @@ import warnings
 
 
 def subset_list(target_list, index_list):
+    """
+    Subset a list based on index list.
+    
+    Parameters
+    ----------
+    target_list : list
+        Source list to subset.
+    index_list : list of int
+        Indices to extract from target_list.
+        
+    Returns
+    -------
+    list
+        Subsetted list with elements at specified indices.
+    """
     X = list(map(target_list.__getitem__, index_list))
     return X
 
 
 def plot_metadata_given_ax(anndata,
                         ax: matplotlib.axes,
-                        reduction_name:str,
+                        reduction_name: str,
                         variable: str,
                         color_dictionary,
                         receptor: str,
@@ -33,6 +48,48 @@ def plot_metadata_given_ax(anndata,
                         alpha: Optional[Union[float, int]] = 1,
                         seed: Optional[int] = 555,
                         selected_cells: Optional[List[str]] = None):
+    """
+    Plot metadata on a 2D embedding.
+    
+    Parameters
+    ----------
+    anndata : AnnData
+        Annotated data object containing embedding and metadata.
+    ax : matplotlib.axes
+        Matplotlib axes object to plot on.
+    reduction_name : str
+        Name of the reduction/embedding in anndata.obsm (e.g., 'X_umap', 'X_pca').
+    variable : str
+        Variable name to plot from anndata.obs.
+    color_dictionary : dict
+        Dictionary containing color mappings for categorical variables.
+        Expected format: {variable_name: {category: color}}.
+    receptor : str
+        Name of the receptor being analyzed (used in plot title).
+    remove_nan : bool, default=True
+        Whether to remove NaN values from categorical data.
+    show_label : bool, default=True
+        Whether to show category labels on the plot.
+    show_legend : bool, default=False
+        Whether to display legend.
+    cmap : str or matplotlib.cm, default=cm.viridis
+        Colormap for continuous variables.
+    dot_size : int, default=10
+        Size of scatter plot points.
+    text_size : int, default=10
+        Size of label text.
+    alpha : float or int, default=1
+        Transparency of points (0-1).
+    seed : int, default=555
+        Random seed for color generation.
+    selected_cells : List[str], optional
+        Subset of cell names to plot.
+        
+    Returns
+    -------
+    matplotlib.axes
+        The modified axes object.
+    """
     GEX_cell_names = anndata.obs_names.copy(deep=True)
     GEX_cell_names = list(GEX_cell_names)
     GEX_dr_cell = {k: pd.DataFrame(anndata.obsm[k].copy(
@@ -133,6 +190,42 @@ def plot_metadata_given_ax(anndata,
         return ax
 
 def vector_field_wrapper(adata, grid, vectors, distances, red_name, cell_anno, receptor, color_dict, ax, stream_density=1, zorder=10, grid_dist=25):
+    """
+    Create a vector field plot with streamlines overlay.
+    
+    Parameters
+    ----------
+    adata : AnnData
+        Annotated data object containing embedding and metadata.
+    grid : np.ndarray
+        Grid points for the vector field of shape (n_grid_points, 2).
+    vectors : np.ndarray
+        Vector field values at grid points of shape (n_grid_points, 2).
+    distances : np.ndarray
+        Distance values for coloring streamlines of shape (n_grid_points,).
+    red_name : str
+        Name of the reduction/embedding in adata.obsm.
+    cell_anno : str
+        Cell annotation variable name from adata.obs.
+    receptor : str
+        Receptor name for labeling (used in plot title).
+    color_dict : dict
+        Color dictionary mapping cell types to colors.
+        Format: {variable_name: {cell_type: color_hex_string}}.
+    ax : matplotlib.axes
+        Matplotlib axes object to plot on.
+    stream_density : int, default=1
+        Density of streamlines.
+    zorder : int, default=10
+        Z-order for streamline plotting.
+    grid_dist : int, default=25
+        Grid distance parameter (grid will be grid_dist x grid_dist).
+        
+    Returns
+    -------
+    matplotlib.axes
+        The modified axes object with vector field plot.
+    """
     norm = matplotlib.colors.Normalize(vmin=0.15, vmax=0.5, clip=True)
     scale = lambda X: [(x - min(X)) / (max(X) - min(X)) for x in X]
     ax2 = ax

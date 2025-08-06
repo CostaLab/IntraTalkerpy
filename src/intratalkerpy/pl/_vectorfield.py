@@ -258,7 +258,7 @@ def _plot_categorical_variable(
     categories = list(set(var_data.astype(str)))
     
     try:
-        color_dict = color_dictionary.get(variable, {})
+        color_dict = color_dictionary if isinstance(color_dictionary, dict) else color_dictionary.get(variable, {})
         missing_colors = set(categories) - set(color_dict.keys())
         if missing_colors:
             additional_colors = _generate_colors(list(missing_colors), seed)
@@ -423,7 +423,7 @@ def vector_field_wrapper(
     red_name: str,
     cell_anno: str,
     receptor: str,
-    color_dict: Dict[str, str],
+    color_dict: Dict[str, str],  # Changed from nested dict to simple dict
     ax: matplotlib.axes.Axes,
     stream_density: float = 1.0,
     zorder: int = 10,
@@ -454,7 +454,8 @@ def vector_field_wrapper(
     receptor : str
         Receptor name for labeling.
     color_dict : Dict[str, str]
-        Color dictionary for cell types.
+        Color dictionary mapping cell types to colors.
+        Should be a flat dictionary like {'cell_type1': '#color1', 'cell_type2': '#color2'}
     ax : matplotlib.axes.Axes
         Matplotlib axes object.
     stream_density : float, default=1.0
@@ -511,14 +512,13 @@ def vector_field_wrapper(
             return (X - X.min()) / (X.max() - X.min())
         
         # Plot the underlying scatter plot with cell annotations
-        color_dictionary = {cell_anno: color_dict}
         ax = plot_metadata_given_ax(
             anndata=adata,
             reduction_name=red_name,
             receptor=receptor,
             ax=ax,
             variable=cell_anno,
-            color_dictionary=color_dictionary,
+            color_dictionary=color_dict,  # Pass color_dict directly, don't wrap it
             show_label=show_label,
             show_legend=False  # Don't show legend to avoid clutter
         )

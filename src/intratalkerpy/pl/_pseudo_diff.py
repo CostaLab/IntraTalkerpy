@@ -96,7 +96,7 @@ def plot_differential_pseudotime(
     
     # Set default colors
     if colors is None:
-        colors = ['#3a4cc0', "#F3F3F3", '#b30326']  # Blue-White-Red
+        colors = ['#3a4cc0', "#DBDADA", '#b30326']  # Blue-White-Red
     
     if len(colors) < 2:
         raise ValueError("At least 2 colors required for colormap")

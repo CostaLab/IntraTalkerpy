@@ -13,72 +13,14 @@ from typing import List, Optional, Union, Dict, Any, Tuple
 import warnings
 
 
-def _subset_list(target_list, index_list):
-    """
-    Helper function to subset a list based on indices.
-    
-    Parameters
-    ----------
-    target_list : list
-        Source list to subset.
-    index_list : list of int
-        Indices to extract from target_list.
-        
-    Returns
-    -------
-    list
-        Subsetted list with elements at specified indices.
-    """
-    return list(map(target_list.__getitem__, index_list))
-
-
-def _generate_random_colors(n_colors, seed=555):
-    """
-    Generate random hex colors.
-    
-    Parameters
-    ----------
-    n_colors : int
-        Number of colors to generate.
-    seed : int, default=555
-        Random seed for reproducibility.
-        
-    Returns
-    -------
-    list of str
-        List of hex color strings (e.g., ['#FF0000', '#00FF00']).
-    """
-    random.seed(seed)
-    return [f"#{random.randint(0, 0xFFFFFF):06x}" for _ in range(n_colors)]
-
-
-def _validate_basic_inputs(anndata, reduction_name, variable):
-    """
-    Basic validation for anndata inputs.
-    
-    Parameters
-    ----------
-    anndata : AnnData
-        Annotated data object to validate.
-    reduction_name : str
-        Name of the reduction to check in anndata.obsm.
-    variable : str
-        Variable name to check in anndata.obs.
-        
-    Raises
-    ------
-    ValueError
-        If reduction_name not found in anndata.obsm or variable not found in anndata.obs.
-    """
-    if reduction_name not in anndata.obsm.keys():
-        raise ValueError(f"Reduction '{reduction_name}' not found in anndata.obsm")
-    if variable not in anndata.obs.columns:
-        raise ValueError(f"Variable '{variable}' not found in anndata.obs")
+def subset_list(target_list, index_list):
+    X = list(map(target_list.__getitem__, index_list))
+    return X
 
 
 def plot_metadata_given_ax(anndata,
                         ax: matplotlib.axes,
-                        reduction_name: str,
+                        reduction_name:str,
                         variable: str,
                         color_dictionary,
                         receptor: str,
@@ -91,51 +33,6 @@ def plot_metadata_given_ax(anndata,
                         alpha: Optional[Union[float, int]] = 1,
                         seed: Optional[int] = 555,
                         selected_cells: Optional[List[str]] = None):
-    """
-    Plot metadata on a 2D embedding.
-    
-    Parameters
-    ----------
-    anndata : AnnData
-        Annotated data object containing embedding and metadata.
-    ax : matplotlib.axes
-        Matplotlib axes object to plot on.
-    reduction_name : str
-        Name of the reduction/embedding in anndata.obsm (e.g., 'X_umap', 'X_pca').
-    variable : str
-        Variable name to plot from anndata.obs.
-    color_dictionary : dict
-        Dictionary containing color mappings for categorical variables.
-        Expected format: {variable_name: {category: color}}.
-    receptor : str
-        Name of the receptor being analyzed (used in plot title).
-    remove_nan : bool, default=True
-        Whether to remove NaN values from categorical data.
-    show_label : bool, default=True
-        Whether to show category labels on the plot.
-    show_legend : bool, default=False
-        Whether to display legend.
-    cmap : str or matplotlib.cm, default=cm.viridis
-        Colormap for continuous variables.
-    dot_size : int, default=10
-        Size of scatter plot points.
-    text_size : int, default=10
-        Size of label text.
-    alpha : float or int, default=1
-        Transparency of points (0-1).
-    seed : int, default=555
-        Random seed for color generation.
-    selected_cells : List[str], optional
-        Subset of cell names to plot.
-        
-    Returns
-    -------
-    matplotlib.axes
-        The modified axes object.
-    """
-    # Basic validation
-    _validate_basic_inputs(anndata, reduction_name, variable)
-    
     GEX_cell_names = anndata.obs_names.copy(deep=True)
     GEX_cell_names = list(GEX_cell_names)
     GEX_dr_cell = {k: pd.DataFrame(anndata.obsm[k].copy(
@@ -151,11 +48,6 @@ def plot_metadata_given_ax(anndata,
     data_mat = data_mat.loc[embedding.index.to_list()]
 
     var_data = data_mat.copy().loc[:, variable].dropna().to_list()
-    if len(var_data) == 0:
-        # Handle case where all data is NaN
-        ax.text(0.5, 0.5, 'No valid data', ha='center', va='center', transform=ax.transAxes)
-        return ax
-        
     if isinstance(var_data[0], str):
         if (remove_nan) & (data_mat[variable].isnull().sum() > 0):
             var_data = data_mat.copy().loc[:, variable].dropna().to_list()
@@ -172,8 +64,13 @@ def plot_metadata_given_ax(anndata,
         categories = set(var_data)
         try:
             color_dict = color_dictionary[variable]
-        except (KeyError, TypeError):
-            color = _generate_random_colors(len(categories), seed)
+        except BaseException:
+            random.seed(seed)
+            color = list(map(
+                lambda i: "#" +
+                        "%06x" % random.randint(
+                    0, 0xFFFFFF), range(len(categories))
+            ))
             color_dict = dict(zip(categories, color))
 
         if (remove_nan) & (data_mat[variable].isnull().sum() > 0):
@@ -221,7 +118,7 @@ def plot_metadata_given_ax(anndata,
     else:
         var_data = data_mat.copy().loc[:, variable].to_list()
         o = np.argsort(var_data)
-        ax.scatter(embedding.iloc[o, 0], embedding.iloc[o, 1], c=_subset_list(
+        ax.scatter(embedding.iloc[o, 0], embedding.iloc[o, 1], c=subset_list(
             var_data, o), cmap=cmap, s=dot_size, alpha=alpha)
         ax.set_xlabel(embedding.columns[0])
         ax.set_ylabel(embedding.columns[1])
@@ -235,143 +132,30 @@ def plot_metadata_given_ax(anndata,
         plt.colorbar(scalarmappaple, ax=ax)
         return ax
 
-def vector_field_wrapper(
-    adata: Any,
-    grid: np.ndarray,
-    vectors: np.ndarray,
-    distances: np.ndarray,
-    red_name: str,
-    cell_anno: str,
-    receptor: str,
-    color_dict: Dict[str, str],  # Changed from nested dict to simple dict
-    ax: matplotlib.axes.Axes,
-    stream_density: float = 1.0,
-    zorder: int = 10,
-    grid_dist: int = 25,
-    norm_vmin: float = 0.15,
-    norm_vmax: float = 0.5,
-    stream_cmap: str = 'Greys',
-    linewidth: float = 1.2,
-    show_label: bool = True
-) -> matplotlib.axes.Axes:
-    """
-    Create a vector field plot with streamlines overlay.
-    
-    Parameters
-    ----------
-    adata : AnnData
-        Annotated data object containing embedding and metadata.
-    grid : np.ndarray
-        Grid points for the vector field of shape (n_grid_points, 2).
-    vectors : np.ndarray
-        Vector field values at grid points of shape (n_grid_points, 2).
-    distances : np.ndarray
-        Distance values for coloring streamlines of shape (n_grid_points,).
-    red_name : str
-        Name of the reduction/embedding in adata.obsm.
-    cell_anno : str
-        Cell annotation variable name from adata.obs.
-    receptor : str
-        Receptor name for labeling (used in plot title).
-    color_dict : dict
-        Color dictionary mapping cell types to colors.
-        Format: {cell_type: color_hex_string}.
-    ax : matplotlib.axes
-        Matplotlib axes object to plot on.
-    stream_density : float, default=1.0
-        Density of streamlines.
-    zorder : int, default=10
-        Z-order for streamline plotting.
-    grid_dist : int, default=25
-        Grid distance parameter (grid will be grid_dist x grid_dist).
-    norm_vmin : float, default=0.15
-        Minimum value for streamline color normalization.
-    norm_vmax : float, default=0.5
-        Maximum value for streamline color normalization.
-    stream_cmap : str, default='Greys'
-        Colormap for streamlines.
-    linewidth : float, default=1.2
-        Width of streamlines.
-    show_label : bool, default=True
-        Whether to show cell type labels.
-        
-    Returns
-    -------
-    matplotlib.axes
-        The modified axes object with vector field plot.
-        
-    Raises
-    ------
-    ValueError
-        If grid or vectors are empty.
-    """
-    # Basic validation
-    if grid.size == 0 or vectors.size == 0:
-        raise ValueError("Grid and vectors cannot be empty")
-    
-    if len(distances) != len(grid):
-        raise ValueError("Distances and grid must have same length")
-    
-    if grid_dist <= 0:
-        raise ValueError("Grid distance must be positive")
-    
-    expected_grid_size = grid_dist * grid_dist * 2
-    if grid.size != expected_grid_size:
-        warnings.warn(f"Grid size {grid.size} doesn't match expected {expected_grid_size}")
-    
-    try:
-        # Create normalization for streamline colors
-        norm = matplotlib.colors.Normalize(vmin=norm_vmin, vmax=norm_vmax, clip=True)
-        
-        # Scale distances for color mapping
-        def scale_array(X):
-            """Scale array to [0, 1] range."""
-            X = np.asarray(X)
-            if X.max() == X.min():
-                return np.ones_like(X) * 0.5  # Return middle value if constant
-            return (X - X.min()) / (X.max() - X.min())
-        
-        # Plot the underlying scatter plot with cell annotations
-        ax = plot_metadata_given_ax(
-            anndata=adata,
-            reduction_name=red_name,
-            receptor=receptor,
-            ax=ax,
-            variable=cell_anno,
-            color_dictionary=color_dict,  # Pass color_dict directly, don't wrap it
-            show_label=show_label,
-            show_legend=False  # Don't show legend to avoid clutter
-        )
-        
-        # Reshape arrays for streamplot
-        try:
-            grid_x = grid.reshape(grid_dist, grid_dist, 2)[:, :, 0]
-            grid_y = grid.reshape(grid_dist, grid_dist, 2)[:, :, 1]
-            vector_x = vectors.reshape(grid_dist, grid_dist, 2)[:, :, 0]
-            vector_y = vectors.reshape(grid_dist, grid_dist, 2)[:, :, 1]
-            scaled_distances = scale_array(distances).reshape(grid_dist, grid_dist)
-        except ValueError as e:
-            raise ValueError(f"Error reshaping arrays for streamplot: {e}")
-        
-        # Create streamplot
-        ax.streamplot(
-            grid_x, grid_y,
-            vector_x, vector_y,
-            density=stream_density,
-            color=scaled_distances,
-            cmap=stream_cmap,
-            zorder=zorder,
-            norm=norm,
-            linewidth=linewidth
-        )
-        
-        return ax
-        
-    except Exception as e:
-        warnings.warn(f"Error in vector_field_wrapper: {e}")
-        ax.text(0.5, 0.5, f'Error creating vector field: {e}', 
-                ha='center', va='center', transform=ax.transAxes)
-        return ax
+def vector_field_wrapper(adata, grid, vectors, distances, red_name, cell_anno, receptor, color_dict, ax, stream_density=1, zorder=10, grid_dist=25):
+    norm = matplotlib.colors.Normalize(vmin=0.15, vmax=0.5, clip=True)
+    scale = lambda X: [(x - min(X)) / (max(X) - min(X)) for x in X]
+    ax2 = ax
+    ax2 = plot_metadata_given_ax(
+        anndata=adata,
+        reduction_name=red_name,
+        receptor=receptor,
+        ax=ax2,
+        variable=cell_anno,
+        color_dictionary=color_dict,
+        show_label=True)
+    ax2.streamplot(
+        grid.reshape(grid_dist, grid_dist, 2)[:, :, 0],
+        grid.reshape(grid_dist, grid_dist, 2)[:, :, 1],
+        vectors.reshape(grid_dist, grid_dist, 2)[:, :, 0],
+        vectors.reshape(grid_dist, grid_dist, 2)[:, :, 1],
+        density=stream_density,
+        color=np.array(scale(distances)).reshape(grid_dist, grid_dist),
+        cmap='Greys',
+        zorder=zorder,
+        norm=norm,
+        linewidth=1.2)
+    return ax2
 
 def plot_raw_vector_field(
     emb: np.ndarray,

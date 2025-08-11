@@ -231,7 +231,9 @@ def plot_score_heatmap(
             col_cluster=cluster_cols,
             dendrogram_ratio=dendrogram_ratio,
             xticklabels=True,
-            yticklabels=True
+            yticklabels=True,
+            vmin=-max_score_limit,
+            vmax=max_score_limit
         )
         
         fig_clustermap.fig.suptitle(title, fontsize=16, y=0.98)

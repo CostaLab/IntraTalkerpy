@@ -218,15 +218,8 @@ def _apply_vector_filtering(uv: np.ndarray, mask: np.ndarray, distances: np.ndar
     try:
         uv_filtered = uv.copy()
         
-        # Scale distances to [0, 1] range
-        if distances.max() > distances.min():
-            scaled_distances = (distances - distances.min()) / (distances.max() - distances.min())
-        else:
-            scaled_distances = np.ones_like(distances)
-        
-        # Apply filtering: remove vectors that are masked or have low scaled distance
-        filter_condition = np.logical_or(~mask, scaled_distances < 0.15)
-        uv_filtered[filter_condition] = np.nan
+        scale = lambda X: [(x - min(X)) / (max(X) - min(X)) for x in X]
+        uv_filtered[np.logical_or(~mask, np.array(scale(distances)) < 0.15)] = np.nan
         
         return uv_filtered
         

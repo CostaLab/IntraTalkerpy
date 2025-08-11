@@ -13,7 +13,7 @@ def calculate_grid_arrows(
     n_grid_rows: int = 25,
     n_neighbors: int = 30,
     n_cpu: int = 1,
-    gaussian_scale: float = 0.5
+    gaussian_scale: float = 0.5 
 ) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
     """
     Calculate smoothed vector field on a regular grid from perturbation data.
@@ -59,103 +59,40 @@ def calculate_grid_arrows(
     The function uses a Gaussian kernel to weight the contribution of nearby
     cells to each grid point. The mask identifies grid points that are too
     far from any actual data points and should be excluded from visualization.
-    
-    Examples
-    --------
-    >>> grid_xy, uv, mask = calculate_grid_arrows(embedding, delta_vectors)
-    >>> # Use only valid grid points
-    >>> valid_grid = grid_xy[mask]
-    >>> valid_vectors = uv[mask]
     """
-    # Input validation
-    if embedding.shape[0] != delta_embedding.shape[0]:
-        raise ValueError("embedding and delta_embedding must have same number of points")
-    
-    if embedding.shape[1] != 2 or delta_embedding.shape[1] != 2:
-        raise ValueError("Both arrays must be 2D (n_cells x 2)")
-    
-    if not (0 < offset_frac < 0.5):
-        raise ValueError("offset_frac must be between 0 and 0.5")
-    
-    if n_grid_cols <= 0 or n_grid_rows <= 0:
-        raise ValueError("Grid dimensions must be positive")
-    
-    if n_neighbors <= 0:
-        raise ValueError("n_neighbors must be positive")
-    
-    if gaussian_scale <= 0:
-        raise ValueError("gaussian_scale must be positive")
-    
-    # Handle empty data
-    if len(embedding) == 0:
-        warnings.warn("Empty embedding array provided")
-        return np.array([]), np.array([]), np.array([])
-    
-    # Handle NaN values
-    valid_mask = ~(np.isnan(embedding).any(axis=1) | np.isnan(delta_embedding).any(axis=1))
-    if not valid_mask.any():
-        warnings.warn("All values contain NaN")
-        return np.array([]), np.array([]), np.array([])
-    
-    if not valid_mask.all():
-        n_invalid = (~valid_mask).sum()
-        warnings.warn(f"Removing {n_invalid} cells with NaN values")
-        embedding = embedding[valid_mask]
-        delta_embedding = delta_embedding[valid_mask]
-    
     try:
-        # Calculate embedding bounds
-        min_x, max_x = np.min(embedding[:, 0]), np.max(embedding[:, 0])
-        min_y, max_y = np.min(embedding[:, 1]), np.max(embedding[:, 1])
-        
-        # Check for degenerate cases
-        if min_x == max_x or min_y == max_y:
-            warnings.warn("Embedding has zero range in one dimension")
-            # Add small epsilon to prevent division by zero
-            if min_x == max_x:
-                max_x += 1e-6
-            if min_y == max_y:
-                max_y += 1e-6
-        
-        # Calculate offsets
+        min_x = min(embedding[:, 0])
+        max_x = max(embedding[:, 0])
+        min_y = min(embedding[:, 1])
+        max_y = max(embedding[:, 1])
         offset_x = (max_x - min_x) * offset_frac
         offset_y = (max_y - min_y) * offset_frac
-        
-        # Calculate grid spacing
+        # calculate number of points underneath grid points
         x_dist_between_points = (max_x - min_x) / n_grid_cols
         y_dist_between_points = (max_y - min_y) / n_grid_rows
-        minimal_distance = np.mean([x_dist_between_points, y_dist_between_points])
-        
-        # Create regular grid
+        minimal_distance = np.mean(
+            [y_dist_between_points, x_dist_between_points])  # will be used to mask certain points in the grid
+
         grid_x, grid_y = np.meshgrid(
             np.linspace(min_x + offset_x, max_x - offset_x, n_grid_cols),
             np.linspace(min_y + offset_y, max_y - offset_y, n_grid_rows)
         )
-        grid_xy = np.column_stack([grid_x.ravel(), grid_y.ravel()])
-        
-        # Find nearest neighbors for each grid point
-        nn = NearestNeighbors(n_neighbors=min(n_neighbors, len(embedding)), n_jobs=n_cpu)
+        grid_xy = np.array([np.hstack(grid_x), np.hstack(grid_y)]).T
+
+        # find neighbors of gridpoints
+        nn = NearestNeighbors(n_neighbors=n_neighbors, n_jobs=n_cpu)
         nn.fit(embedding)
         dists, neighs = nn.kneighbors(grid_xy)
-        
-        # Calculate standard deviation for Gaussian kernel
-        # Use a more robust estimate based on grid spacing
-        std = np.mean([x_dist_between_points, y_dist_between_points]) * gaussian_scale
-        
-        # Apply Gaussian kernel weighting
-        gaussian_weights = normal.pdf(dists, loc=0, scale=std)
-        total_p_mass = gaussian_weights.sum(axis=1)
-        
-        # Prevent division by zero
-        total_p_mass = np.maximum(total_p_mass, 1e-10)
-        
-        # Calculate weighted average of perturbation vectors
-        weighted_deltas = delta_embedding[neighs] * gaussian_weights[:, :, np.newaxis]
-        uv = weighted_deltas.sum(axis=1) / total_p_mass[:, np.newaxis]
-        
-        # Create mask for valid grid points
-        # Points are considered valid if they have nearby data points
-        mask = dists.min(axis=1) < minimal_distance
+
+        std = np.mean([abs(g[1] - g[0]) for g in grid_xy])
+        # isotropic gaussian kernel
+        gaussian_w = normal.pdf(loc=0, scale=gaussian_scale * std, x=dists)
+        total_p_mass = gaussian_w.sum(1)
+
+        uv = (delta_embedding[neighs] * gaussian_w[:, :, None]).sum(1) / np.maximum(1, total_p_mass)[:, None]
+
+        # mask points in the grid which don't have points of the embedding underneath them
+        mask = dists.min(1) < minimal_distance
         
         return grid_xy, uv, mask
         

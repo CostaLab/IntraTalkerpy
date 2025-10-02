@@ -149,7 +149,7 @@ def differential_pseudotime_analysis(
         vector_fields = {}
         
         for csv_file in csv_files:
-            receptor = extract_receptor_name(csv_file.stem())
+            receptor = extract_receptor_name(csv_file.stem)
             print(f"Processing receptor: {receptor}")
             
             try:

@@ -1,4 +1,5 @@
 import os
+import re
 import warnings
 from pathlib import Path
 from typing import Optional, Dict, Any, Union
@@ -15,6 +16,33 @@ from ..ut import (
     compute_differential_pseudotime,
     calculate_effect_size_from_differences
 )
+
+def extract_receptor_name(filename: str) -> str:
+    """
+    Extract receptor name from a given filename.
+    
+    The filename is expected to follow the pattern "{receptor}_delta_matrice_phate.csv".
+    
+    Parameters
+    ----------
+    filename : str
+        The input filename from which to extract the receptor name.
+        
+    Returns
+    -------
+    str
+        The extracted receptor name.
+        
+    Raises
+    ------
+    ValueError
+        If the filename does not match the expected pattern.
+    """
+    match = re.match(r'^(.+)_delta_matrice_phate$', filename)
+    if match:
+        return match.group(1)
+    else:
+        raise ValueError(f"Filename does not match expected pattern: {filename}")
 
 def differential_pseudotime_analysis(
     adata: AnnData,
@@ -121,7 +149,7 @@ def differential_pseudotime_analysis(
         vector_fields = {}
         
         for csv_file in csv_files:
-            receptor = csv_file.stem.split("_")[0]
+            receptor = extract_receptor_name(csv_file.stem())
             print(f"Processing receptor: {receptor}")
             
             try:

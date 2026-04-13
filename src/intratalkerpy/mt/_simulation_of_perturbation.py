@@ -39,26 +39,20 @@ def simulation_of_perturbation(gem, simulation_input, coef_matrix, n_propagation
         If input matrices have incompatible shapes.
         If n_propagation is negative.   
     """
-    # Input validation
     _validate_inputs(gem, simulation_input, coef_matrix, n_propagation)
     
-    # Core simulation algorithm (exactly like original)
     delta_input = simulation_input - gem
     delta_simulated = delta_input.copy()
     
     for i in range(n_propagation):
-        # Propagate deltas through coefficient matrix
         delta_simulated = delta_simulated.dot(coef_matrix)
         
-        # Reset original perturbation sites
         delta_simulated[delta_input != 0] = delta_input
         
-        # Ensure non-negative gene expression values
         gem_tmp = gem + delta_simulated
         gem_tmp[gem_tmp < 0] = 0
         delta_simulated = gem_tmp - gem
     
-    # Final simulated gene expression matrix
     gem_simulated = gem + delta_simulated
     
     return gem_simulated
@@ -66,11 +60,10 @@ def simulation_of_perturbation(gem, simulation_input, coef_matrix, n_propagation
 
 def _validate_inputs(gem, simulation_input, coef_matrix, n_propagation):
     """Validate all input parameters."""
-    # Check n_propagation
+    
     if not isinstance(n_propagation, int) or n_propagation < 0:
         raise ValueError(f"n_propagation must be a non-negative integer, got {n_propagation}")
     
-    # Check shapes (using the original matrices directly)
     if gem.shape != simulation_input.shape:
         raise ValueError(
             f"gem and simulation_input must have the same shape. "

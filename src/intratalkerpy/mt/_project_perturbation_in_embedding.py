@@ -97,10 +97,8 @@ def project_perturbation_in_embedding(
     improves neighbor sampling for better API consistency.
     """
     try:
-        # Input validation
         _validate_projection_inputs(anndata, original_matrix, perturbed_matrix, reduction_name)
         
-        # Extract cell names and embeddings
         cell_names = anndata.obs_names.copy()
         embeddings_dict = {
             k: pd.DataFrame(anndata.obsm[k].copy(), index=cell_names) 

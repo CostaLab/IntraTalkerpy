@@ -9,7 +9,6 @@ import pandas as pd
 import scanpy as sc
 from anndata import AnnData
 
-# Import utility functions from our package
 from ..ut import (
     compute_pseudotime_gradient,
     calculate_grid_arrows,
@@ -104,7 +103,6 @@ def differential_pseudotime_analysis(
     ValueError
         If input parameters are invalid.
     """
-    # Input validation
     folder_path = Path(folder_path)
     save_path = Path(save_path)
     
@@ -130,14 +128,11 @@ def differential_pseudotime_analysis(
         raise ValueError("n_neigh must be positive")
     
     try:
-        # Extract data
         X_emb = adata.obsm[red_namem]
         pseudotime = adata.obs[pseudo_name].values
         
-        # Compute pseudotime gradient vectors
         gradient_vectors = compute_pseudotime_gradient(X_emb, pseudotime, n_neigh=n_neigh)
         
-        # Find and process CSV files
         csv_files = [f for f in folder_path.glob("*.csv")]
         
         if not csv_files:
@@ -153,16 +148,13 @@ def differential_pseudotime_analysis(
             print(f"Processing receptor: {receptor}")
             
             try:
-                # Load receptor perturbation data
                 delta_embedding = pd.read_csv(csv_file, index_col=0)
                 delta_X = delta_embedding.values
                 
-                # Validate data dimensions
                 if delta_X.shape[0] != X_emb.shape[0]:
                     warnings.warn(f"Dimension mismatch for {receptor}: {delta_X.shape[0]} vs {X_emb.shape[0]}")
                     continue
                 
-                # Calculate vector field
                 grid_xy, uv, mask = calculate_grid_arrows(
                     embedding=X_emb,
                     delta_embedding=delta_X,
@@ -173,14 +165,11 @@ def differential_pseudotime_analysis(
                     n_cpu=n_cpu
                 )
                 
-                # Process vector field
                 distances = np.sqrt((uv ** 2).sum(1))
                 distances = np.nan_to_num(distances)
                 
-                # Apply distance-based filtering
                 uv_filtered = _apply_vector_filtering(uv, mask, distances)
                 
-                # Store vector field data
                 vector_fields[receptor] = {
                     'grid_points': grid_xy,
                     'vectors': uv_filtered,
@@ -188,15 +177,12 @@ def differential_pseudotime_analysis(
                     'original_vectors': delta_X,
                     'mask': mask
                 }
-                
-                # Compute differential pseudotime
+
                 delta_T = compute_differential_pseudotime(X_emb, grid_xy, uv_filtered, gradient_vectors)
                 
-                # Store results in adata
                 pseudotime_field = f'pseudotime_{receptor}'
                 adata.obs[pseudotime_field] = adata.obs[pseudo_name] + delta_T
-                
-                # Calculate scores for all cells and by cell type
+
                 scores, p_vals = _calculate_receptor_scores(
                     adata, receptor, pseudo_name, cell_anno
                 )
@@ -209,11 +195,9 @@ def differential_pseudotime_analysis(
                 warnings.warn(f"Error processing {receptor}: {e}")
                 continue
         
-        # Store results
         adata.uns["receptor_scores"] = log_odds_ratios
         adata.uns["vector_fields"] = vector_fields
         
-        # Save results
         save_path.mkdir(parents=True, exist_ok=True)
         output_file = save_path / "heart_data_fibroblasts12_im_dpt_pseudotime.h5ad"
         adata.write(output_file)
@@ -288,12 +272,10 @@ def _calculate_receptor_scores(
         scores = {}
         p_vals = {}
         
-        # Calculate scores for all cells
         all_score, all_pval = calculate_effect_size_from_differences(pseudotime_diff)
         scores["all_cluster"] = all_score
         p_vals["all_cluster"] = all_pval
         
-        # Calculate scores by cell type
         for cell_type in adata.obs[cell_anno].unique():
             if pd.isna(cell_type):
                 continue

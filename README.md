@@ -23,4 +23,3 @@ result = tf.IntraTalker_analysis(...)
 perturbation.mt.simulation_of_perturbation(...)
 ```
 
-The existing Sphinx documentation is kept in `docs/` and now includes separate API pages for transcription factor and perturbation functionality.

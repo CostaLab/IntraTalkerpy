@@ -201,12 +201,7 @@
 <li class="toctree-l1"><a class="reference internal" href="support.html">Support</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="api.html">API</a><input aria-label="Toggle navigation of API" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="tf_api.html">Transcription Factor API</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="perturbation_api.html">Perturbation API</a><input aria-label="Toggle navigation of Perturbation API" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="generated/intratalkerpy.perturbation.mt.html">intratalkerpy.perturbation.mt</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/intratalkerpy.perturbation.ut.html">intratalkerpy.perturbation.ut</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/intratalkerpy.perturbation.pl.html">intratalkerpy.perturbation.pl</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="perturbation_api.html">Perturbation API</a></li>
 </ul>
 </li>
 </ul>
@@ -252,7 +247,7 @@
 <p>IntraTalkerPy combines transcription factor analysis and gene expression perturbation analysis for single-cell data.</p>
 <p>The transcription factor module estimates transcription factor activities using decoupleR. Using the DoRothEA regulon version from decoupleR and post-translational interactions from the Omnipath database[2,3,4], connections are made between transcription factors and ligands and receptors.</p>
 <p>The results can be combined with ligand-receptor interactions and then analyzed using CrossTalkeR (<a class="reference external" href="https://github.com/CostaLab/CrossTalkeR/">https://github.com/CostaLab/CrossTalkeR/</a>) [5].</p>
-<p>The original R version can be found here: (<a class="reference external" href="https://github.com/CostaLab/LR2TF/">https://github.com/CostaLab/LR2TF/</a>)</p>
+<p>The original R version can be found here: (<a class="reference external" href="https://github.com/CostaLab/IntraTalker/">https://github.com/CostaLab/IntraTalker/</a>)</p>
 <p>The perturbation module provides methods, utilities, and plotting functions for receptor-related gene expression perturbation workflows.</p>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
@@ -260,11 +255,17 @@
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="support.html">Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tf_api.html">Transcription Factor API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_api.html">Transcription Factor API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_api.html#module-intratalkerpy.tf.IntraTalker_analysis">Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_api.html#module-intratalkerpy.tf.get_significant_TFs">Significant TFs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_api.html#module-intratalkerpy.tf.utils">Utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_api.html#module-intratalkerpy.tf.tfobject">TF Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_api.html#module-intratalkerpy.tf.get_condition_significant">Condition Significance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_api.html#module-intratalkerpy.tf.generate_intracellular_network">Network Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_api.html#module-intratalkerpy.tf.plot">Plotting</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="perturbation_api.html">Perturbation API</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="generated/intratalkerpy.perturbation.mt.html">intratalkerpy.perturbation.mt</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/intratalkerpy.perturbation.ut.html">intratalkerpy.perturbation.ut</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/intratalkerpy.perturbation.pl.html">intratalkerpy.perturbation.pl</a></li>
 <li class="toctree-l3"><a class="reference internal" href="perturbation_api.html#module-intratalkerpy.perturbation.mt">Methods</a></li>
 <li class="toctree-l3"><a class="reference internal" href="perturbation_api.html#module-intratalkerpy.perturbation.ut">Utilities</a></li>
 <li class="toctree-l3"><a class="reference internal" href="perturbation_api.html#module-intratalkerpy.perturbation.pl">Plotting</a></li>

@@ -12,7 +12,7 @@ The transcription factor module estimates transcription factor activities using 
 
 The results can be combined with ligand-receptor interactions and then analyzed using CrossTalkeR (https://github.com/CostaLab/CrossTalkeR/) [5].
 
-The original R version can be found here: (https://github.com/CostaLab/LR2TF/)
+The original R version can be found here: (https://github.com/CostaLab/IntraTalker/)
 
 The perturbation module provides methods, utilities, and plotting functions for receptor-related gene expression perturbation workflows.
 

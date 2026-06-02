@@ -174,7 +174,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
       </label>
     </div>
@@ -201,12 +201,7 @@
 <li class="toctree-l1"><a class="reference internal" href="support.html">Support</a></li>
 <li class="toctree-l1 current has-children"><a class="reference internal" href="api.html">API</a><input aria-label="Toggle navigation of API" checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Transcription Factor API</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="perturbation_api.html">Perturbation API</a><input aria-label="Toggle navigation of Perturbation API" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="generated/intratalkerpy.perturbation.mt.html">intratalkerpy.perturbation.mt</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/intratalkerpy.perturbation.ut.html">intratalkerpy.perturbation.ut</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/intratalkerpy.perturbation.pl.html">intratalkerpy.perturbation.pl</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="perturbation_api.html">Perturbation API</a></li>
 </ul>
 </li>
 </ul>
@@ -242,7 +237,7 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
           </label>
         </div>
@@ -253,7 +248,668 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">intratalkerpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">tf</span>
 </pre></div>
 </div>
-<span class="target" id="module-intratalkerpy.tf"></span></section>
+<p>The transcription factor package is split into concrete submodules:</p>
+<section id="module-intratalkerpy.tf.IntraTalker_analysis">
+<span id="analysis"></span><h2>Analysis<a class="headerlink" href="#module-intratalkerpy.tf.IntraTalker_analysis" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.tf.IntraTalker_analysis.IntraTalker_analysis">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.tf.IntraTalker_analysis.</span></span><span class="sig-name descname"><span class="pre">IntraTalker_analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">anndataobject</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tf_activities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arguments_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intratalkerpy.tf.IntraTalker_analysis.IntraTalker_analysis" title="Link to this definition">¶</a></dt>
+<dd><section id="description">
+<h3>Description:<a class="headerlink" href="#description" title="Link to this heading">¶</a></h3>
+<p>Main function that runs the IntraTalker Analysis
+Performs intracellular network anaysis based on conditions and clusters using decoupleR TF activity results and scRNA-seq data.</p>
+</section>
+<section id="parameters">
+<h3>Parameters:<a class="headerlink" href="#parameters" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>anndataobject<span class="classifier">AnnData </span></dt><dd><p>Input Anndata Object as h5ad file.</p>
+</dd>
+<dt>tf_activities<span class="classifier">csv | pandas.DataFrame</span></dt><dd><p>Matrix with TF activities for each cell in the scRNA-seq data; Input as either csv or DataFrame.</p>
+</dd>
+<dt>arguments_list<span class="classifier">list</span></dt><dd><p>Named list with custom options for the analysis. See validate_input_arguments in utils for further clarification.</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h3>Returns:<a class="headerlink" href="#returns" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>tf<span class="classifier">TFObj</span></dt><dd><dl class="simple">
+<dt>Object containing tf_activities_condition,</dt><dd><p>tf_activities_cluster,
+average_gene_expression,
+regulon,
+CTR_input_condition,
+CTR_input_cluster,
+intracellular_network_condition,
+intracellular_network_cluster.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+<section id="module-intratalkerpy.tf.get_significant_TFs">
+<span id="significant-tfs"></span><h2>Significant TFs<a class="headerlink" href="#module-intratalkerpy.tf.get_significant_TFs" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.tf.get_significant_TFs.get_significant_tfs">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.tf.get_significant_TFs.</span></span><span class="sig-name descname"><span class="pre">get_significant_tfs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tf_activities_sub</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tf_condition_significant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">celltype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">meanchange</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition_comparison</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intratalkerpy.tf.get_significant_TFs.get_significant_tfs" title="Link to this definition">¶</a></dt>
+<dd><section id="id1">
+<h3>Description:<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<p>Analysis transcription factor activities for significant transcription factors.</p>
+</section>
+<section id="id2">
+<h3>Parameters:<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>tf_activities_sub<span class="classifier">AnnData</span></dt><dd><p>Input Anndata Object with TF activities as X matrix.</p>
+</dd>
+<dt>condition<span class="classifier">str </span></dt><dd><p>Experiment condition (e.g. disease, knockout …).</p>
+</dd>
+<dt>out_path<span class="classifier">str </span></dt><dd><p>Output path to save results.</p>
+</dd>
+<dt>tf_condition_significant<span class="classifier">pandas.DataFrame</span></dt><dd><p>Condition comparison results.</p>
+</dd>
+<dt>celltype<span class="classifier">str</span></dt><dd><p>Variable that accesses celltype meta data in anndata object.</p>
+</dd>
+<dt>pval<span class="classifier">float</span></dt><dd><p>P-value to filter results.</p>
+</dd>
+<dt>meanchange<span class="classifier">float</span></dt><dd><p>Meanchange value to filter results.</p>
+</dd>
+<dt>plot<span class="classifier">bool </span></dt><dd><p>Boolean variable to decide if code plots heatmaps or not.</p>
+</dd>
+<dt>condition_comparison<span class="classifier">bool</span></dt><dd><p>Comparision between multiple conditions or single condition.</p>
+</dd>
+</dl>
+</section>
+<section id="id3">
+<h3>Returns:<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>res<span class="classifier">dict[str, pandas.DataFrame]</span></dt><dd><p>A data frame with transcription factor activity scores per cell type.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+<section id="module-intratalkerpy.tf.utils">
+<span id="utilities"></span><h2>Utilities<a class="headerlink" href="#module-intratalkerpy.tf.utils" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.tf.utils.AverageExpression">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.tf.utils.</span></span><span class="sig-name descname"><span class="pre">AverageExpression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sub_object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_iterable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">celltype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outpath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intratalkerpy.tf.utils.AverageExpression" title="Link to this definition">¶</a></dt>
+<dd><section id="id4">
+<h3>Description:<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
+<p>Calculates the average gene expression of each gene per cell type for each condition.</p>
+</section>
+<section id="id5">
+<h3>Parameters:<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>sub_object<span class="classifier">AnnData</span></dt><dd><p>AnnData object subset to one condition.</p>
+</dd>
+<dt>name_iterable<span class="classifier">str</span></dt><dd><p>formatted name of the condition.</p>
+</dd>
+<dt>celltype<span class="classifier">str</span></dt><dd><p>Celltype annotation.</p>
+</dd>
+<dt>outpath<span class="classifier">str</span></dt><dd><p>Output path to save results.</p>
+</dd>
+</dl>
+</section>
+<section id="id6">
+<h3>Returns:<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>avg_df<span class="classifier">pandas.DataFrame</span></dt><dd><p>Average gene expression of each gene per cell type.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.tf.utils.add_entry">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.tf.utils.</span></span><span class="sig-name descname"><span class="pre">add_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gene_A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gene_B</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_gene_A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_gene_B</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MeanLR</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intratalkerpy.tf.utils.add_entry" title="Link to this definition">¶</a></dt>
+<dd><section id="id7">
+<h3>Description:<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
+<p>Adds entry to a dataframe in the CrossTalkeR input format.</p>
+</section>
+<section id="id8">
+<h3>Parameters:<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>source<span class="classifier">pandas.Series</span></dt><dd><p>source cell type</p>
+</dd>
+<dt>target<span class="classifier">pandas.Series</span></dt><dd><p>target cell type</p>
+</dd>
+</dl>
+<p>gene_A : pandas.Series</p>
+<p>gene_B : pandas.Series</p>
+<p>type_gene_A : pandas.Series</p>
+<p>type_gene_B : pandas.Series</p>
+<dl class="simple">
+<dt>MeanLR<span class="classifier">pandas.Series</span></dt><dd><p>Is the same as tf score/t value.</p>
+</dd>
+</dl>
+</section>
+<section id="id9">
+<h3>Returns:<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>df<span class="classifier">dict[str, pandas.Series]</span></dt><dd><p>Entry in CrossTalkeR input dataframe.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.tf.utils.add_node_type">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.tf.utils.</span></span><span class="sig-name descname"><span class="pre">add_node_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intratalkerpy.tf.utils.add_node_type" title="Link to this definition">¶</a></dt>
+<dd><section id="id10">
+<h3>Description:<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h3>
+<p>Adds gene type to the name of the gene.</p>
+</section>
+<section id="id11">
+<h3>Parameters:<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>df<span class="classifier">pandas.DataFrame</span></dt><dd><p>Dataframe with all interactions.</p>
+</dd>
+</dl>
+</section>
+<section id="id12">
+<h3>Returns:<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>df<span class="classifier">pandas.DataFrame</span></dt><dd><p>Dataframe with node type added to gene type.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.tf.utils.combine_LR_and_TF">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.tf.utils.</span></span><span class="sig-name descname"><span class="pre">combine_LR_and_TF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tf_table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">LR_prediction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_nodetype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intratalkerpy.tf.utils.combine_LR_and_TF" title="Link to this definition">¶</a></dt>
+<dd><section id="id13">
+<h3>Description:<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h3>
+<p>Combining Ligand-Receptor interaction prediction with Transcription Factor interaction predictions</p>
+</section>
+<section id="id14">
+<h3>Parameters:<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>tf_table<span class="classifier">pandas.DataFrame</span></dt><dd><p>Table with TF interactions.</p>
+</dd>
+<dt>LR_prediction<span class="classifier">pandas.DataFrame</span></dt><dd><p>Path to or dataframe with ligand-receptor interaction prediction.</p>
+</dd>
+<dt>out_path: str</dt><dd><p>Output path to save results.</p>
+</dd>
+<dt>condition: str</dt><dd><p>Sample condition of data. Used for the filename, so preferably replace special symbols with an underscore.</p>
+</dd>
+</dl>
+</section>
+<section id="id15">
+<h3>Returns:<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>complete_interactions<span class="classifier">pandas.DataFrame</span></dt><dd><p>Dataframe of with source, target, gene_A, gene_B, type_gene_A, type_gene_B, MeanLR columns for CrossTalkeR input.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.tf.utils.combine_LR_and_TF_complexes">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.tf.utils.</span></span><span class="sig-name descname"><span class="pre">combine_LR_and_TF_complexes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tf_table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">LR_prediction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_nodetype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intratalkerpy.tf.utils.combine_LR_and_TF_complexes" title="Link to this definition">¶</a></dt>
+<dd><section id="id16">
+<h3>Description:<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h3>
+<p>Combining Ligand-Receptor interaction prediction with Transcription Factor interaction predictions</p>
+</section>
+<section id="id17">
+<h3>Parameters:<a class="headerlink" href="#id17" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>tf_table<span class="classifier">pandas.DataFrame</span></dt><dd><p>Table with TF interactions.</p>
+</dd>
+<dt>LR_prediction: pandas.DataFrame</dt><dd><p>Path to or dataframe with ligand-receptor interaction prediction.</p>
+</dd>
+<dt>out_path: str</dt><dd><p>Output path to save results.</p>
+</dd>
+<dt>condition: str</dt><dd><p>Sample condition of data. Used for the filename, so preferably replace special symbols with an underscore.</p>
+</dd>
+</dl>
+</section>
+<section id="id18">
+<h3>Returns:<a class="headerlink" href="#id18" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>complete_interactions<span class="classifier">pandas.DataFrame</span></dt><dd><p>Dataframe of  with source, target, gene_A, gene_B, type_gene_A, type_gene_B, MeanLR columns for CrossTalkeR input.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.tf.utils.create_unfiltered_tf_scores">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.tf.utils.</span></span><span class="sig-name descname"><span class="pre">create_unfiltered_tf_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tf_scores_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">celltype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intratalkerpy.tf.utils.create_unfiltered_tf_scores" title="Link to this definition">¶</a></dt>
+<dd><section id="id19">
+<h3>Description:<a class="headerlink" href="#id19" title="Link to this heading">¶</a></h3>
+<p>Creates a csv containing the summarized unfiltered tf scores from the decoupler TF activity dataframe.</p>
+</section>
+<section id="id20">
+<h3>Parameters:<a class="headerlink" href="#id20" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>tf_scores_df<span class="classifier">pandas.DataFrame</span></dt><dd><p>Dataframe with TF activity scores.</p>
+</dd>
+<dt>condition<span class="classifier">str</span></dt><dd><p>Condition annotation.</p>
+</dd>
+<dt>celltype<span class="classifier">str</span></dt><dd><p>Celltype anntotation.</p>
+</dd>
+<dt>out_path<span class="classifier">str</span></dt><dd><p>Output path to save results.</p>
+</dd>
+</dl>
+</section>
+<section id="id21">
+<h3>Returns:<a class="headerlink" href="#id21" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>summarized_tf_scores_df<span class="classifier">pandas.DataFrame</span></dt><dd><p>Dataframe with TF score per celltype for all TFs.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.tf.utils.eval_meanchange_tag">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.tf.utils.</span></span><span class="sig-name descname"><span class="pre">eval_meanchange_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">meanchange</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intratalkerpy.tf.utils.eval_meanchange_tag" title="Link to this definition">¶</a></dt>
+<dd><section id="id22">
+<h3>Description:<a class="headerlink" href="#id22" title="Link to this heading">¶</a></h3>
+<p>Creates significance tags based on the meanchange.</p>
+</section>
+<section id="id23">
+<h3>Parameters:<a class="headerlink" href="#id23" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>meanchange: float</dt><dd><p>Meanchange to be evaluated.</p>
+</dd>
+</dl>
+</section>
+<section id="id24">
+<h3>Returns:<a class="headerlink" href="#id24" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>txt<span class="classifier">str</span></dt><dd><p>Significance tags for TF scores based on their meanchange.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.tf.utils.eval_pval">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.tf.utils.</span></span><span class="sig-name descname"><span class="pre">eval_pval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p_val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intratalkerpy.tf.utils.eval_pval" title="Link to this definition">¶</a></dt>
+<dd><section id="id25">
+<h3>Description:<a class="headerlink" href="#id25" title="Link to this heading">¶</a></h3>
+<p>Creates significance tags based on the p-value.</p>
+</section>
+<section id="id26">
+<h3>Parameters:<a class="headerlink" href="#id26" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>p_val<span class="classifier">float</span></dt><dd><p>P-value to be evaluated.</p>
+</dd>
+</dl>
+</section>
+<section id="id27">
+<h3>Returns:<a class="headerlink" href="#id27" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>txt<span class="classifier">str</span></dt><dd><p>Significance tags for TF scores based on their p-value.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.tf.utils.load_csv">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.tf.utils.</span></span><span class="sig-name descname"><span class="pre">load_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intratalkerpy.tf.utils.load_csv" title="Link to this definition">¶</a></dt>
+<dd><section id="id28">
+<h3>Description:<a class="headerlink" href="#id28" title="Link to this heading">¶</a></h3>
+<p>Loads a CSV file from the package’s data folder.</p>
+</section>
+<section id="id29">
+<h3>Parameters:<a class="headerlink" href="#id29" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>filename<span class="classifier">str</span></dt><dd><p>Path to the file.</p>
+</dd>
+</dl>
+</section>
+<section id="id30">
+<h3>Returns:<a class="headerlink" href="#id30" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>f<span class="classifier">csv</span></dt><dd><p>Loaded CSV.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.tf.utils.map_t_value">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.tf.utils.</span></span><span class="sig-name descname"><span class="pre">map_t_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tf_scores_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anndataobject_markers</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intratalkerpy.tf.utils.map_t_value" title="Link to this definition">¶</a></dt>
+<dd><section id="id31">
+<h3>Description:<a class="headerlink" href="#id31" title="Link to this heading">¶</a></h3>
+<p>Merges the significant gene output from the dc.rank_sources_groups function with the t value/tf score from the filtered and summarized decoupler tf activity dataframe.</p>
+</section>
+<section id="id32">
+<h3>Parameters:<a class="headerlink" href="#id32" title="Link to this heading">¶</a></h3>
+<p>tf_scores_df : pandas.DataFrame</p>
+<p>anndataobject_markers : pandas.DataFrame</p>
+</section>
+<section id="id33">
+<h3>Returns:<a class="headerlink" href="#id33" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>t_value_df<span class="classifier">pandas.DataFrame</span></dt><dd><p>Dataframe with gene, cell type, significance tag and t-value.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.tf.utils.save_variable_tf_score">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.tf.utils.</span></span><span class="sig-name descname"><span class="pre">save_variable_tf_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filtered_summarized_tf_scores_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intratalkerpy.tf.utils.save_variable_tf_score" title="Link to this definition">¶</a></dt>
+<dd><section id="id34">
+<h3>Description:<a class="headerlink" href="#id34" title="Link to this heading">¶</a></h3>
+<p>This function saves the transcription factor activity scores per cell type into a csv table.</p>
+</section>
+<section id="id35">
+<h3>Parameters:<a class="headerlink" href="#id35" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>filtered_summarized_tf_scores_df<span class="classifier">pandas.DataFrame</span></dt><dd><p>Data frame with transcription factor activity scores per cell type.</p>
+</dd>
+<dt>condition<span class="classifier">str</span></dt><dd><p>Sample condition for file naming(e.g. control, disease …)</p>
+</dd>
+<dt>out_path<span class="classifier">str</span></dt><dd><p>Output path to save results.</p>
+</dd>
+</dl>
+</section>
+<section id="id36">
+<h3>Returns:<a class="headerlink" href="#id36" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>filtered_summarized_tf_scores_df_var<span class="classifier">pandas.DataFrame</span></dt><dd><p>Dataframe with TF scores and their variance over cell types for filtered genes.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.tf.utils.validate_input_arguments">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.tf.utils.</span></span><span class="sig-name descname"><span class="pre">validate_input_arguments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arguments_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intratalkerpy.tf.utils.validate_input_arguments" title="Link to this definition">¶</a></dt>
+<dd><p>Description:
+————-()
+Checks arguments passed by User for validity.</p>
+<section id="id37">
+<h3>Parameters:<a class="headerlink" href="#id37" title="Link to this heading">¶</a></h3>
+<p>arguments_list : list(str, float, bool)</p>
+<blockquote>
+<div><p>List of user defined arguments. They include:</p>
+</div></blockquote>
+<dl class="simple">
+<dt>out_path<span class="classifier">str</span></dt><dd><p>Output path to save results.</p>
+</dd>
+<dt>celltype<span class="classifier">str</span></dt><dd><p>Metadata field containing cell type annotations.</p>
+</dd>
+<dt>condition<span class="classifier">str</span></dt><dd><p>Metadata field containing condition annotations.</p>
+</dd>
+<dt>organism<span class="classifier">str</span></dt><dd><p>“human” or “mouse”.</p>
+</dd>
+<dt>meanchange<span class="classifier">float</span></dt><dd><p>Cutoff value for meanchange.</p>
+</dd>
+<dt>pval<span class="classifier">float </span></dt><dd><p>Cutoff value for p-value.</p>
+</dd>
+<dt>num_cell_filter<span class="classifier">int</span></dt><dd><p>Minimum number of cells in each cell type.</p>
+</dd>
+<dt>reg<span class="classifier">str | pandas.DataFrame</span></dt><dd><p>Path to regulon csv or direct input as pandas.DataFrame. Must include source, target and weight columns.</p>
+</dd>
+<dt>plot<span class="classifier">bool</span></dt><dd><p>Whether to generate plots or not.</p>
+</dd>
+<dt>decoupler_matrix_format<span class="classifier">str</span></dt><dd><p>“R” or “Python”, since csvs generated by the R version of decoupler need to be transposed.</p>
+</dd>
+</dl>
+</section>
+<section id="id38">
+<h3>Returns:<a class="headerlink" href="#id38" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>arguments_list<span class="classifier">list</span></dt><dd><p>Validated list of arguments.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+<section id="module-intratalkerpy.tf.tfobject">
+<span id="tf-object"></span><h2>TF Object<a class="headerlink" href="#module-intratalkerpy.tf.tfobject" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.tf.tfobject.make_TFOBj">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.tf.tfobject.</span></span><span class="sig-name descname"><span class="pre">make_TFOBj</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tf_activities_condition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tf_activities_cluster</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">average_gene_expression</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regulon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">CTR_input_condition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">CTR_input_cluster</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intracellular_network_condition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intracellular_network_cluster</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intratalkerpy.tf.tfobject.make_TFOBj" title="Link to this definition">¶</a></dt>
+<dd><section id="id39">
+<h3>Description:<a class="headerlink" href="#id39" title="Link to this heading">¶</a></h3>
+<p>Saves the IntraTalker Analysis results in an object.</p>
+</section>
+<section id="id40">
+<h3>Parameters:<a class="headerlink" href="#id40" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>tf_activities_condition<span class="classifier">list</span></dt><dd><p>List of tf activities dataframes from compared condition analysis per condition.</p>
+</dd>
+<dt>tf_activities_cluster<span class="classifier">list</span></dt><dd><p>List of tf activities dataframes from cluster analysis per condition.</p>
+</dd>
+<dt>average_gene_expression<span class="classifier">list</span></dt><dd><p>List of average gene expression dataframes per condition.</p>
+</dd>
+<dt>regulon<span class="classifier">DataFrame </span></dt><dd><p>Regulon with source and target genes.</p>
+</dd>
+<dt>CTR_input_condition<span class="classifier">list</span></dt><dd><p>List of CrossTalkeR input dataframes from compared condition analysis per condition.</p>
+</dd>
+<dt>CTR_input_cluster<span class="classifier">list</span></dt><dd><p>List of CrossTalkeR input dataframes from cluster analysis per condition.</p>
+</dd>
+<dt>intracellular_network_condition<span class="classifier">list</span></dt><dd><p>List of intracellular network dataframes from compared condition analysis per condition.</p>
+</dd>
+<dt>intracellular_network_cluster<span class="classifier">list</span></dt><dd><p>List of intracellular network dataframes from cluster analysis per condition.</p>
+</dd>
+</dl>
+</section>
+<section id="id41">
+<h3>Returns:<a class="headerlink" href="#id41" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>tf<span class="classifier">TFObj</span></dt><dd><p>Object with IntraTalker Analysis results.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+<section id="module-intratalkerpy.tf.get_condition_significant">
+<span id="condition-significance"></span><h2>Condition Significance<a class="headerlink" href="#module-intratalkerpy.tf.get_condition_significant" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.tf.get_condition_significant.condition_comparison_significant">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.tf.get_condition_significant.</span></span><span class="sig-name descname"><span class="pre">condition_comparison_significant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tf_activities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">celltype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comparison_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_cell_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intratalkerpy.tf.get_condition_significant.condition_comparison_significant" title="Link to this definition">¶</a></dt>
+<dd><section id="id42">
+<h3>Description:<a class="headerlink" href="#id42" title="Link to this heading">¶</a></h3>
+<p>Creates a dataframe with all significant TFs for a pairwise comparison of two conditions given in the condition list.</p>
+</section>
+<section id="id43">
+<h3>Parameters:<a class="headerlink" href="#id43" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>tf_activities<span class="classifier">AnnData</span></dt><dd><p>TF activities anndata object.</p>
+</dd>
+<dt>out_path<span class="classifier">str</span></dt><dd><p>Output path to save results.</p>
+</dd>
+<dt>comparison_list<span class="classifier">list</span></dt><dd><p>List of wished comparisons.</p>
+</dd>
+<dt>num_cell_filter<span class="classifier">int</span></dt><dd><p>Minimum number of cells in each cell type.</p>
+</dd>
+</dl>
+</section>
+<section id="id44">
+<h3>Returns:<a class="headerlink" href="#id44" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>vs_df_dic<span class="classifier">dict[str, pandas.DataFrame] </span></dt><dd><p>Dictionary with one dataframe per comparison containing all marker TFs found in condition comparison analysis with respective condition, reference, tf, scores, meanchange, pvals, pvals_adj, CellType, FDR, r and significance tag.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+<section id="module-intratalkerpy.tf.generate_intracellular_network">
+<span id="network-generation"></span><h2>Network Generation<a class="headerlink" href="#module-intratalkerpy.tf.generate_intracellular_network" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.tf.generate_intracellular_network.generate_CrossTalkeR_input">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.tf.generate_intracellular_network.</span></span><span class="sig-name descname"><span class="pre">generate_CrossTalkeR_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tf_activities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gene_expression</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regulon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organism</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'human'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intratalkerpy.tf.generate_intracellular_network.generate_CrossTalkeR_input" title="Link to this definition">¶</a></dt>
+<dd><section id="id45">
+<h3>Description:<a class="headerlink" href="#id45" title="Link to this heading">¶</a></h3>
+<p>Generates CrossTalkeR input from significant tf table.</p>
+<p>This function loads the transcription factor activity table/data frame
+for multiple cell types, and generates the CrossTalkeR input table.
+The returned input table contains receptor-transcription factor and
+transcription factor-ligand interactions based on the OmniPath database and the DoRothEA regulon.</p>
+</section>
+<section id="id46">
+<h3>Parameters:<a class="headerlink" href="#id46" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>tf_activities<span class="classifier">pandas.DataFrame</span></dt><dd><p>Data Frame with transcription factor activities by cell type.</p>
+</dd>
+<dt>gene_expression :pandas. DataFrame</dt><dd><p>Table with average gene expression levels.</p>
+</dd>
+<dt>regulon<span class="classifier">pandas.DataFrame</span></dt><dd><p>Regulon with source and target genes.</p>
+</dd>
+<dt>organism<span class="classifier">str</span></dt><dd><p>Organism for which the data is being processed.</p>
+</dd>
+</dl>
+</section>
+<section id="id47">
+<h3>Returns:<a class="headerlink" href="#id47" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>output_df<span class="classifier">pandas.DataFrame</span></dt><dd><p>A data frame with CrossTalkeR input</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.tf.generate_intracellular_network.generate_intracellular_network">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.tf.generate_intracellular_network.</span></span><span class="sig-name descname"><span class="pre">generate_intracellular_network</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tf_activities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gene_expression</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regulon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organism</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'human'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intratalkerpy.tf.generate_intracellular_network.generate_intracellular_network" title="Link to this definition">¶</a></dt>
+<dd><section id="id48">
+<h3>Description:<a class="headerlink" href="#id48" title="Link to this heading">¶</a></h3>
+<p>Generate connections in intracellular network.</p>
+<p>This function loads the transcription factor activity table/data frame
+for multiple cell types, and generates a table containing all detected intracellular connections.</p>
+</section>
+<section id="id49">
+<h3>Parameters:<a class="headerlink" href="#id49" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>tf_activities<span class="classifier">pandas.DataFrame</span></dt><dd><p>Data Frame with transcription factor activities by cell type.</p>
+</dd>
+<dt>gene_expression<span class="classifier">pandas.DataFrame</span></dt><dd><p>Table with average gene expression levels.</p>
+</dd>
+<dt>regulon<span class="classifier">pandas.DataFrame</span></dt><dd><p>Regulon with source and target genes.</p>
+</dd>
+<dt>organism<span class="classifier">str</span></dt><dd><p>Organism for which the data is being processed.</p>
+</dd>
+</dl>
+</section>
+<section id="id50">
+<h3>Returns:<a class="headerlink" href="#id50" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>recept_regulon<span class="classifier">pandas.DataFrame</span></dt><dd><p>A data frame with intracellular network.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+<section id="module-intratalkerpy.tf.plot">
+<span id="plotting"></span><h2>Plotting<a class="headerlink" href="#module-intratalkerpy.tf.plot" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.tf.plot.h_clust">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.tf.plot.</span></span><span class="sig-name descname"><span class="pre">h_clust</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intratalkerpy.tf.plot.h_clust" title="Link to this definition">¶</a></dt>
+<dd><section id="id51">
+<h3>Description:<a class="headerlink" href="#id51" title="Link to this heading">¶</a></h3>
+<p>Hierarchichal clustering of TF scores.</p>
+</section>
+<section id="id52">
+<h3>Parameters:<a class="headerlink" href="#id52" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>data<span class="classifier">pandas.DataFrame </span></dt><dd><p>Dataframe with TF scores.</p>
+</dd>
+</dl>
+</section>
+<section id="id53">
+<h3>Returns:<a class="headerlink" href="#id53" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>linkage_matrix<span class="classifier"></span></dt><dd><p>Hierarchically clustered TF scores.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.tf.plot.plot_condition_tf_activities">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.tf.plot.</span></span><span class="sig-name descname"><span class="pre">plot_condition_tf_activities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tf_activity_tables</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">which</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'both'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intratalkerpy.tf.plot.plot_condition_tf_activities" title="Link to this definition">¶</a></dt>
+<dd><section id="id54">
+<h3>Description:<a class="headerlink" href="#id54" title="Link to this heading">¶</a></h3>
+<p>Generates cluster and condition heatmap with r effect size only for significant genes.
+Plots heatmap of significant TFs and their activity scores from the compared condition analysis.</p>
+</section>
+<section id="id55">
+<h3>Parameters:<a class="headerlink" href="#id55" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>tf_activity_tables: pandas.DataFrame </dt><dd><p>Dataframe with TF scores.</p>
+</dd>
+<dt>out_path: str</dt><dd><p>Output path for results.</p>
+</dd>
+<dt>which<span class="classifier">str</span></dt><dd><p>Which heatmaps to plot (“annotated”, “compressed” or “both”).</p>
+</dd>
+</dl>
+</section>
+<section id="id56">
+<h3>Returns:<a class="headerlink" href="#id56" title="Link to this heading">¶</a></h3>
+<p>None</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.tf.plot.plot_tf_activity">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.tf.plot.</span></span><span class="sig-name descname"><span class="pre">plot_tf_activity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filtered_summarized_tf_scores_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag_mapping</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">which</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'both'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intratalkerpy.tf.plot.plot_tf_activity" title="Link to this definition">¶</a></dt>
+<dd><section id="id57">
+<h3>Description:<a class="headerlink" href="#id57" title="Link to this heading">¶</a></h3>
+<p>Plots the tf activity t-values with respective genes for cluster analysis as annotated and compressed heatmaps and saves them as separate PDFs.</p>
+</section>
+<section id="id58">
+<h3>Parameters:<a class="headerlink" href="#id58" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>filtered_summarized_tf_scores_df<span class="classifier">pandas.DataFrame</span></dt><dd><p>DataFrame with TF scores.</p>
+</dd>
+<dt>tag_mapping<span class="classifier">pandas.DataFrame</span></dt><dd><p>Significance tag annotation DataFrame of the same size as the tf score DataFrame.</p>
+</dd>
+<dt>condition<span class="classifier">str</span></dt><dd><p>Sample condition for file naming(e.g. control, disease …)</p>
+</dd>
+<dt>out_path<span class="classifier">str</span></dt><dd><p>Output path to save results.</p>
+</dd>
+<dt>which<span class="classifier">str</span></dt><dd><p>Which heatmaps to plot (“annotated”, “compressed” or “both”).</p>
+</dd>
+</dl>
+</section>
+<section id="id59">
+<h3>Returns:<a class="headerlink" href="#id59" title="Link to this heading">¶</a></h3>
+<p>None</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.tf.plot.plot_top_variable_tfs">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.tf.plot.</span></span><span class="sig-name descname"><span class="pre">plot_top_variable_tfs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filtered_summarized_tf_scores_df_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intratalkerpy.tf.plot.plot_top_variable_tfs" title="Link to this definition">¶</a></dt>
+<dd><section id="id60">
+<h3>Description:<a class="headerlink" href="#id60" title="Link to this heading">¶</a></h3>
+<p>Plots the top 20 variable TFs as a heatmap and saves it as a PDF.</p>
+</section>
+<section id="id61">
+<h3>Parameters:<a class="headerlink" href="#id61" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>filtered_summarized_tf_scores_df<span class="classifier">pandas.DataFrame</span></dt><dd><p>DataFrame with TF scores.</p>
+</dd>
+<dt>condition<span class="classifier">str</span></dt><dd><p>Sample condition for file naming(e.g. control, disease …)</p>
+</dd>
+<dt>out_path<span class="classifier">str</span></dt><dd><p>Output path to save results.</p>
+</dd>
+</dl>
+</section>
+<section id="id62">
+<h3>Returns:<a class="headerlink" href="#id62" title="Link to this heading">¶</a></h3>
+<p>None</p>
+</section>
+</dd></dl>
+
+</section>
+</section>
 
         </article>
       </div>
@@ -298,8 +954,69 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Transcription Factor API</a><ul>
+<li><a class="reference internal" href="#module-intratalkerpy.tf.IntraTalker_analysis">Analysis</a><ul>
+<li><a class="reference internal" href="#intratalkerpy.tf.IntraTalker_analysis.IntraTalker_analysis"><code class="docutils literal notranslate"><span class="pre">IntraTalker_analysis()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-intratalkerpy.tf.get_significant_TFs">Significant TFs</a><ul>
+<li><a class="reference internal" href="#intratalkerpy.tf.get_significant_TFs.get_significant_tfs"><code class="docutils literal notranslate"><span class="pre">get_significant_tfs()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-intratalkerpy.tf.utils">Utilities</a><ul>
+<li><a class="reference internal" href="#intratalkerpy.tf.utils.AverageExpression"><code class="docutils literal notranslate"><span class="pre">AverageExpression()</span></code></a></li>
+<li><a class="reference internal" href="#intratalkerpy.tf.utils.add_entry"><code class="docutils literal notranslate"><span class="pre">add_entry()</span></code></a></li>
+<li><a class="reference internal" href="#intratalkerpy.tf.utils.add_node_type"><code class="docutils literal notranslate"><span class="pre">add_node_type()</span></code></a></li>
+<li><a class="reference internal" href="#intratalkerpy.tf.utils.combine_LR_and_TF"><code class="docutils literal notranslate"><span class="pre">combine_LR_and_TF()</span></code></a></li>
+<li><a class="reference internal" href="#intratalkerpy.tf.utils.combine_LR_and_TF_complexes"><code class="docutils literal notranslate"><span class="pre">combine_LR_and_TF_complexes()</span></code></a></li>
+<li><a class="reference internal" href="#intratalkerpy.tf.utils.create_unfiltered_tf_scores"><code class="docutils literal notranslate"><span class="pre">create_unfiltered_tf_scores()</span></code></a></li>
+<li><a class="reference internal" href="#intratalkerpy.tf.utils.eval_meanchange_tag"><code class="docutils literal notranslate"><span class="pre">eval_meanchange_tag()</span></code></a></li>
+<li><a class="reference internal" href="#intratalkerpy.tf.utils.eval_pval"><code class="docutils literal notranslate"><span class="pre">eval_pval()</span></code></a></li>
+<li><a class="reference internal" href="#intratalkerpy.tf.utils.load_csv"><code class="docutils literal notranslate"><span class="pre">load_csv()</span></code></a></li>
+<li><a class="reference internal" href="#intratalkerpy.tf.utils.map_t_value"><code class="docutils literal notranslate"><span class="pre">map_t_value()</span></code></a></li>
+<li><a class="reference internal" href="#intratalkerpy.tf.utils.save_variable_tf_score"><code class="docutils literal notranslate"><span class="pre">save_variable_tf_score()</span></code></a></li>
+<li><a class="reference internal" href="#intratalkerpy.tf.utils.validate_input_arguments"><code class="docutils literal notranslate"><span class="pre">validate_input_arguments()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-intratalkerpy.tf.tfobject">TF Object</a><ul>
+<li><a class="reference internal" href="#intratalkerpy.tf.tfobject.make_TFOBj"><code class="docutils literal notranslate"><span class="pre">make_TFOBj()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-intratalkerpy.tf.get_condition_significant">Condition Significance</a><ul>
+<li><a class="reference internal" href="#intratalkerpy.tf.get_condition_significant.condition_comparison_significant"><code class="docutils literal notranslate"><span class="pre">condition_comparison_significant()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-intratalkerpy.tf.generate_intracellular_network">Network Generation</a><ul>
+<li><a class="reference internal" href="#intratalkerpy.tf.generate_intracellular_network.generate_CrossTalkeR_input"><code class="docutils literal notranslate"><span class="pre">generate_CrossTalkeR_input()</span></code></a></li>
+<li><a class="reference internal" href="#intratalkerpy.tf.generate_intracellular_network.generate_intracellular_network"><code class="docutils literal notranslate"><span class="pre">generate_intracellular_network()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-intratalkerpy.tf.plot">Plotting</a><ul>
+<li><a class="reference internal" href="#intratalkerpy.tf.plot.h_clust"><code class="docutils literal notranslate"><span class="pre">h_clust()</span></code></a></li>
+<li><a class="reference internal" href="#intratalkerpy.tf.plot.plot_condition_tf_activities"><code class="docutils literal notranslate"><span class="pre">plot_condition_tf_activities()</span></code></a></li>
+<li><a class="reference internal" href="#intratalkerpy.tf.plot.plot_tf_activity"><code class="docutils literal notranslate"><span class="pre">plot_tf_activity()</span></code></a></li>
+<li><a class="reference internal" href="#intratalkerpy.tf.plot.plot_top_variable_tfs"><code class="docutils literal notranslate"><span class="pre">plot_top_variable_tfs()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>

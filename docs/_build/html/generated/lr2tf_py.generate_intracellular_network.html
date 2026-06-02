@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html  lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+      <title>lr2tf_py.generate_intracellular_network</title>
+    
+          <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/theme.css " type="text/css" />
+          <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="../_static/theme-vendors.js"></script> -->
+      <script src="../_static/theme.js" defer></script>
+    
+      <link rel="shortcut icon" href="../../_static/favicon.png"/>
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <link rel="next" title="lr2tf_py.condition_comparison_significant" href="lr2tf_py.condition_comparison_significant.html" />
+  <link rel="prev" title="lr2tf_py.generate_CrossTalkeR_input" href="lr2tf_py.generate_CrossTalkeR_input.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="../index.html" class="home-link">
+    
+      <img class="logo" src="../../_static/favicon.png" alt="logo"/>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="../search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#intratalker-documentation">Contents:</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../install.html" class="reference internal ">Installation</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../support.html" class="reference internal ">Support</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../api.html" class="reference internal ">API</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+    
+      <li><a href="../api.html">API</a> &raquo;</li>
+    
+    <li>lr2tf_py.generate_intracellular_network</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="prev">
+    <a href="lr2tf_py.generate_CrossTalkeR_input.html"
+       title="previous chapter">← lr2tf_py.generate_CrossTalkeR_input</a>
+  </li>
+  <li class="next">
+    <a href="lr2tf_py.condition_comparison_significant.html"
+       title="next chapter">lr2tf_py.condition_comparison_significant →</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <section id="lr2tf-py-generate-intracellular-network">
+<h1>lr2tf_py.generate_intracellular_network<a class="headerlink" href="#lr2tf-py-generate-intracellular-network" title="Link to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="lr2tf_py.generate_intracellular_network">
+<span class="sig-prename descclassname"><span class="pre">lr2tf_py.</span></span><span class="sig-name descname"><span class="pre">generate_intracellular_network</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tf_activities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gene_expression</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regulon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organism</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'human'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lr2tf_py.generate_intracellular_network" title="Link to this definition">¶</a></dt>
+<dd><section id="description">
+<h2>Description:<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
+<p>Generate connections in intracellular network.</p>
+<p>This function loads the transcription factor activity table/data frame
+for multiple cell types, and generates a table containing all detected intracellular connections.</p>
+</section>
+<section id="parameters">
+<h2>Parameters:<a class="headerlink" href="#parameters" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>tf_activities<span class="classifier">pandas.DataFrame</span></dt><dd><p>Data Frame with transcription factor activities by cell type.</p>
+</dd>
+<dt>gene_expression<span class="classifier">pandas.DataFrame</span></dt><dd><p>Table with average gene expression levels.</p>
+</dd>
+<dt>regulon<span class="classifier">pandas.DataFrame</span></dt><dd><p>Regulon with source and target genes.</p>
+</dd>
+<dt>organism<span class="classifier">str</span></dt><dd><p>Organism for which the data is being processed.</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h2>Returns:<a class="headerlink" href="#returns" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>recept_regulon<span class="classifier">pandas.DataFrame</span></dt><dd><p>A data frame with intracellular network.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="lr2tf_py.generate_CrossTalkeR_input.html"
+       title="previous chapter">← lr2tf_py.generate_CrossTalkeR_input</a>
+  </li>
+  <li class="next">
+    <a href="lr2tf_py.condition_comparison_significant.html"
+       title="next chapter">lr2tf_py.condition_comparison_significant →</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+      &#169; Copyright 2025, Larissa Hermanns.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.9.1.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>

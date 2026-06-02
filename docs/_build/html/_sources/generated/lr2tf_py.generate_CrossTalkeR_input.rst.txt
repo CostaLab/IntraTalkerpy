@@ -1,0 +1,6 @@
+﻿lr2tf\_py.generate\_CrossTalkeR\_input
+======================================
+
+.. currentmodule:: lr2tf_py
+
+.. autofunction:: generate_CrossTalkeR_input

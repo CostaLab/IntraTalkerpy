@@ -1,0 +1,6 @@
+﻿lr2tf\_py.generate\_intracellular\_network
+==========================================
+
+.. currentmodule:: lr2tf_py
+
+.. autofunction:: generate_intracellular_network

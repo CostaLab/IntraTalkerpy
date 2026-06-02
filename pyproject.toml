@@ -1,21 +1,28 @@
 [project]
 name = "intratalkerpy"
-version = "0.1.0"
-description = "A Python package for receptor analysis and visualization in single-cell data"
+version = "0.3.0"
+description = "A Python package for transcription factor and perturbation analysis in single-cell data"
 authors = [
+    {name = "Larissa Hermanns", email = "larissa.hermanns@rwth-aachen.de"},
     {name = "Vanessa Kloeker", email = "vanessa.kloeker@gmail.com"}
 ]
+license = {text = "MIT"}
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.10,<4.0"
 dependencies = [
-    "numpy>=1.21.0",
-    "pandas>=1.3.0",
-    "matplotlib>=3.5.0",
-    "seaborn>=0.11.0",
-    "scipy>=1.7.0",
-    "scikit-learn>=1.0.0",
-    "scanpy>=1.8.0",
-    "anndata>=0.8.0",
+    "numpy (>=1.21.0)",
+    "anndata (>=0.11.4,<0.12.0)",
+    "seaborn (>=0.13.2,<0.14.0)",
+    "statistics (>=1.0.3.5,<2.0.0.0)",
+    "decoupler (==1.8.0)",
+    "statsmodels (>=0.14.4,<0.15.0)",
+    "scanpy (>=1.11.1,<2.0.0)",
+    "pandas (>=2.2.3,<3.0.0)",
+    "matplotlib (>=3.5.0)",
+    "scipy (>=1.7.0)",
+    "scikit-learn (>=1.0.0)",
+    "adjustText (>=1.0.0)",
+    "deltacorrpy @ git+https://github.com/vckraemer/deltacorrpy.git"
 ]
 
 [project.optional-dependencies]
@@ -30,10 +37,17 @@ dev = [
     "flake8>=3.8",
     "mypy>=0.800",
 ]
+docs = [
+    "sphinx>=9.0",
+    "furo>=2025.7.19",
+]
 
 [tool.poetry]
 packages = [{include = "intratalkerpy", from = "src"}]
-
+include = [
+    "src/intratalkerpy/tf/data/*.csv",
+    "src/intratalkerpy/tf/data/*.h5ad"
+]
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

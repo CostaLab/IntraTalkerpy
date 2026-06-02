@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html  lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+      <title>lr2tf_py.combine_LR_and_TF</title>
+    
+          <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/theme.css " type="text/css" />
+          <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="../_static/theme-vendors.js"></script> -->
+      <script src="../_static/theme.js" defer></script>
+    
+      <link rel="shortcut icon" href="../../_static/favicon.png"/>
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <link rel="next" title="lr2tf_py.combine_LR_and_TF_complexes" href="lr2tf_py.combine_LR_and_TF_complexes.html" />
+  <link rel="prev" title="lr2tf_py.IntraTalker_analysis" href="lr2tf_py.IntraTalker_analysis.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="../index.html" class="home-link">
+    
+      <img class="logo" src="../../_static/favicon.png" alt="logo"/>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="../search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#intratalker-documentation">Contents:</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../install.html" class="reference internal ">Installation</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../support.html" class="reference internal ">Support</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../api.html" class="reference internal ">API</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+    
+      <li><a href="../api.html">API</a> &raquo;</li>
+    
+    <li>lr2tf_py.combine_LR_and_TF</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="prev">
+    <a href="lr2tf_py.IntraTalker_analysis.html"
+       title="previous chapter">← lr2tf_py.IntraTalker_analysis</a>
+  </li>
+  <li class="next">
+    <a href="lr2tf_py.combine_LR_and_TF_complexes.html"
+       title="next chapter">lr2tf_py.combine_LR_and_TF_complexes →</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <section id="lr2tf-py-combine-lr-and-tf">
+<h1>lr2tf_py.combine_LR_and_TF<a class="headerlink" href="#lr2tf-py-combine-lr-and-tf" title="Link to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="lr2tf_py.combine_LR_and_TF">
+<span class="sig-prename descclassname"><span class="pre">lr2tf_py.</span></span><span class="sig-name descname"><span class="pre">combine_LR_and_TF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tf_table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">LR_prediction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_nodetype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lr2tf_py.combine_LR_and_TF" title="Link to this definition">¶</a></dt>
+<dd><section id="description">
+<h2>Description:<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
+<p>Combining Ligand-Receptor interaction prediction with Transcription Factor interaction predictions</p>
+</section>
+<section id="parameters">
+<h2>Parameters:<a class="headerlink" href="#parameters" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>tf_table<span class="classifier">pandas.DataFrame</span></dt><dd><p>Table with TF interactions.</p>
+</dd>
+<dt>LR_prediction<span class="classifier">pandas.DataFrame</span></dt><dd><p>Path to or dataframe with ligand-receptor interaction prediction.</p>
+</dd>
+<dt>out_path: str</dt><dd><p>Output path to save results.</p>
+</dd>
+<dt>condition: str</dt><dd><p>Sample condition of data. Used for the filename, so preferably replace special symbols with an underscore.</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h2>Returns:<a class="headerlink" href="#returns" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>complete_interactions<span class="classifier">pandas.DataFrame</span></dt><dd><p>Dataframe of with source, target, gene_A, gene_B, type_gene_A, type_gene_B, MeanLR columns for CrossTalkeR input.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="lr2tf_py.IntraTalker_analysis.html"
+       title="previous chapter">← lr2tf_py.IntraTalker_analysis</a>
+  </li>
+  <li class="next">
+    <a href="lr2tf_py.combine_LR_and_TF_complexes.html"
+       title="next chapter">lr2tf_py.combine_LR_and_TF_complexes →</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+      &#169; Copyright 2025, Larissa Hermanns.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.9.1.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>

@@ -1,0 +1,6 @@
+﻿lr2tf\_py.get\_significant\_tfs
+===============================
+
+.. currentmodule:: lr2tf_py
+
+.. autofunction:: get_significant_tfs

@@ -1,0 +1,1253 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="prev" title="Transcription Factor API" href="tf_api.html">
+        <link rel="prefetch" href="_static/favicon.png" as="image">
+
+    <link rel="shortcut icon" href="_static/favicon.png"><!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+        <title>Perturbation API - IntraTalkerPy 0.3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=72e2a5e6" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">IntraTalkerPy 0.3.0 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="_static/favicon.png" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">IntraTalkerPy 0.3.0 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support.html">Support</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="api.html">API</a><input aria-label="Toggle navigation of API" checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tf_api.html">Transcription Factor API</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Perturbation API</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="_sources/perturbation_api.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="perturbation-api">
+<h1>Perturbation API<a class="headerlink" href="#perturbation-api" title="Link to this heading">¶</a></h1>
+<p>Import the perturbation module:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">intratalkerpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">perturbation</span>
+</pre></div>
+</div>
+<p>The perturbation module keeps its method, utility, and plotting namespaces:</p>
+<section id="module-intratalkerpy.perturbation.mt">
+<span id="methods"></span><h2>Methods<a class="headerlink" href="#module-intratalkerpy.perturbation.mt" title="Link to this heading">¶</a></h2>
+<p>IntraTalkerPy Methods Module (mt)</p>
+<p>This module provides analysis methods for receptor-ligand interaction studies
+in single-cell data, including differential pseudotime analysis, perturbation
+simulation, and embedding projection methods.</p>
+<dl class="simple">
+<dt>Functions:</dt><dd><dl class="simple">
+<dt>Analysis Methods:</dt><dd><ul class="simple">
+<li><p>differential_pseudotime_analysis: Analyze receptor effects on pseudotime trajectories</p></li>
+</ul>
+</dd>
+<dt>Simulation Methods:</dt><dd><ul class="simple">
+<li><p>simulation_of_perturbation: Simulate gene expression perturbations through propagation</p></li>
+<li><p>project_perturbation_in_embedding: Project perturbations into embedding space</p></li>
+<li><p>permute_rows_nsign: Helper function for random matrix permutation</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.perturbation.mt.differential_pseudotime_analysis">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.perturbation.mt.</span></span><span class="sig-name descname"><span class="pre">differential_pseudotime_analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AnnData</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">red_namem</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_anno</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pseudo_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset_frac</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.005</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_neigh</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_cpu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">AnnData</span></span></span><a class="headerlink" href="#intratalkerpy.perturbation.mt.differential_pseudotime_analysis" title="Link to this definition">¶</a></dt>
+<dd><p>Perform differential pseudotime analysis for receptor-ligand interactions.</p>
+<p>This function analyzes how receptor-ligand interactions affect pseudotime
+trajectories by computing vector fields and differential pseudotime changes
+for each receptor from CSV files containing perturbation data.</p>
+<section id="parameters">
+<h3>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>adata<span class="classifier">AnnData</span></dt><dd><p>Annotated data object containing single-cell data.</p>
+</dd>
+<dt>folder_path<span class="classifier">str or Path</span></dt><dd><p>Path to folder containing CSV files with receptor perturbation data.
+Each CSV file should be named “{receptor}_*.csv”.</p>
+</dd>
+<dt>save_path<span class="classifier">str or Path</span></dt><dd><p>Path where the output AnnData object will be saved.</p>
+</dd>
+<dt>red_namem<span class="classifier">str</span></dt><dd><p>Key in adata.obsm containing the embedding coordinates (e.g., ‘X_umap’).</p>
+</dd>
+<dt>cell_anno<span class="classifier">str</span></dt><dd><p>Key in adata.obs containing cell type annotations.</p>
+</dd>
+<dt>pseudo_name<span class="classifier">str</span></dt><dd><p>Key in adata.obs containing pseudotime values.</p>
+</dd>
+<dt>grid_size<span class="classifier">int, default=25</span></dt><dd><p>Size of the grid for vector field calculation (both rows and columns).</p>
+</dd>
+<dt>offset_frac<span class="classifier">float, default=0.005</span></dt><dd><p>Fraction of embedding range to use as offset from boundaries.</p>
+</dd>
+<dt>n_neigh<span class="classifier">int, default=10</span></dt><dd><p>Number of nearest neighbors for gradient computation.</p>
+</dd>
+<dt>n_cpu<span class="classifier">int, default=1</span></dt><dd><p>Number of CPU cores to use for parallel processing.</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h3>Returns<a class="headerlink" href="#returns" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>AnnData</dt><dd><p>Updated AnnData object with:
+- New columns in .obs: ‘pseudotime_{receptor}’ for each receptor
+- .uns[‘receptor_scores’]: Dictionary with scores and p-values
+- .uns[‘vector_fields’]: Dictionary with vector field data</p>
+</dd>
+</dl>
+</section>
+<section id="raises">
+<h3>Raises<a class="headerlink" href="#raises" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>FileNotFoundError</dt><dd><p>If folder_path doesn’t exist or contains no CSV files.</p>
+</dd>
+<dt>KeyError</dt><dd><p>If required keys are missing from adata.</p>
+</dd>
+<dt>ValueError</dt><dd><p>If input parameters are invalid.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.perturbation.mt.permute_rows_nsign">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.perturbation.mt.</span></span><span class="sig-name descname"><span class="pre">permute_rows_nsign</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#intratalkerpy.perturbation.mt.permute_rows_nsign" title="Link to this definition">¶</a></dt>
+<dd><p>Permute entries in place and randomly flip the sign for each row
+of a matrix independently.</p>
+<p>Adapted from CellOracle.</p>
+<section id="id1">
+<h3>Parameters<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>A:</dt><dd><p>2-D array whose rows are shuffled in place.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.perturbation.mt.project_perturbation_in_embedding">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.perturbation.mt.</span></span><span class="sig-name descname"><span class="pre">project_perturbation_in_embedding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">anndata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AnnData</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perturbed_matrix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">original_matrix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_corr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_cpu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#intratalkerpy.perturbation.mt.project_perturbation_in_embedding" title="Link to this definition">¶</a></dt>
+<dd><p>Project a perturbation simulation result onto a low-dimensional embedding.</p>
+<p>Based on CellOracle / Velocyto code.</p>
+<section id="id2">
+<h3>Parameters<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>anndata:</dt><dd><p>AnnData object containing the embedding in <code class="docutils literal notranslate"><span class="pre">obsm</span></code>.</p>
+</dd>
+<dt>perturbed_matrix:</dt><dd><p>Gene expression DataFrame of the perturbed state (cells x genes).</p>
+</dd>
+<dt>reduction_name:</dt><dd><p>Key in <code class="docutils literal notranslate"><span class="pre">anndata.obsm</span></code> to use as the embedding (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;X_umap&quot;</span></code>).</p>
+</dd>
+<dt>original_matrix:</dt><dd><p>Gene expression DataFrame of the unperturbed state (cells x genes).
+Defaults to <code class="docutils literal notranslate"><span class="pre">anndata.to_df()</span></code> when <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+<dt>sigma_corr:</dt><dd><p>Kernel width for the transition probability calculation. Default <code class="docutils literal notranslate"><span class="pre">0.05</span></code>.</p>
+</dd>
+<dt>n_cpu:</dt><dd><p>Number of threads / CPUs to use. Default <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id3">
+<h3>Returns<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>np.ndarray</dt><dd><p>Delta embedding vectors for each cell (cells x embedding dimensions).</p>
+</dd>
+</dl>
+</section>
+<section id="id4">
+<h3>Raises<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">reduction_name</span></code> is not found in <code class="docutils literal notranslate"><span class="pre">anndata.obsm</span></code>.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.perturbation.mt.simulation_of_perturbation">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.perturbation.mt.</span></span><span class="sig-name descname"><span class="pre">simulation_of_perturbation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simulation_input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coef_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_propagation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intratalkerpy.perturbation.mt.simulation_of_perturbation" title="Link to this definition">¶</a></dt>
+<dd><p>Simulate gene expression perturbations through iterative propagation.</p>
+<p>This function simulates the effect of gene expression perturbations by
+iteratively propagating changes through a coefficient matrix representing
+gene-gene interactions. The simulation ensures non-negative gene expression
+values throughout the process.</p>
+<section id="id5">
+<h3>Parameters<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>gem<span class="classifier">array-like</span></dt><dd><p>Original gene expression matrix with shape (n_cells, n_genes).</p>
+</dd>
+<dt>simulation_input<span class="classifier">array-like</span></dt><dd><p>Target gene expression matrix after perturbation with shape (n_cells, n_genes).
+Must have the same shape as <cite>gem</cite>.</p>
+</dd>
+<dt>coef_matrix<span class="classifier">array-like</span></dt><dd><p>Coefficient matrix representing gene-gene interactions with shape (n_genes, n_genes).
+Used for propagating perturbation effects across genes.</p>
+</dd>
+<dt>n_propagation<span class="classifier">int</span></dt><dd><p>Number of propagation iterations to perform. Must be non-negative.</p>
+</dd>
+</dl>
+</section>
+<section id="id6">
+<h3>Returns<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>array-like</dt><dd><p>Simulated gene expression matrix after perturbation propagation.
+Same type and shape as input <cite>gem</cite>.</p>
+</dd>
+</dl>
+</section>
+<section id="id7">
+<h3>Raises<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If input matrices have incompatible shapes.
+If n_propagation is negative.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+<section id="module-intratalkerpy.perturbation.ut">
+<span id="utilities"></span><h2>Utilities<a class="headerlink" href="#module-intratalkerpy.perturbation.ut" title="Link to this heading">¶</a></h2>
+<p>IntraTalkerPy Utilities Module (ut)</p>
+<p>This module provides utility functions for data processing and analysis,
+including grid-based vector field calculations, statistical ranking functions,
+pseudotime gradient computation, and differential pseudotime analysis.</p>
+<dl class="simple">
+<dt>Functions:</dt><dd><dl class="simple">
+<dt>Grid Calculations:</dt><dd><ul class="simple">
+<li><p>calculate_grid_arrows: Calculate smoothed vector field on regular grid</p></li>
+<li><p>validate_grid_parameters: Validate parameters for grid calculation</p></li>
+<li><p>estimate_optimal_grid_size: Estimate optimal grid size for data</p></li>
+</ul>
+</dd>
+<dt>Statistical Rankings:</dt><dd><ul class="simple">
+<li><p>calculate_pseudotime_comparison: Comprehensive pseudotime comparison (returns dict)</p></li>
+<li><p>calculate_effect_size_from_differences: Effect size analysis (returns dict)</p></li>
+</ul>
+</dd>
+<dt>Pseudotime Analysis:</dt><dd><ul class="simple">
+<li><p>compute_pseudotime_gradient: Compute gradient vectors from pseudotime</p></li>
+<li><p>compute_differential_pseudotime: Compute differential pseudotime changes</p></li>
+<li><p>estimate_optimal_neighbors: Estimate optimal neighbor count for gradients</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.perturbation.ut.calculate_effect_size_from_differences">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.perturbation.ut.</span></span><span class="sig-name descname"><span class="pre">calculate_effect_size_from_differences</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">differences</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'wilcoxon'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confidence_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.95</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#intratalkerpy.perturbation.ut.calculate_effect_size_from_differences" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate effect size from pseudotime differences.</p>
+<p>This function calculates Cohen’s d effect size and provides statistical
+significance testing for pseudotime differences.</p>
+<section id="id8">
+<h3>Parameters<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>differences<span class="classifier">np.ndarray</span></dt><dd><p>Array of pseudotime differences (new - old).</p>
+</dd>
+<dt>test_method<span class="classifier">str, default=”wilcoxon”</span></dt><dd><p>Statistical test method: “wilcoxon”, “sign_test”, or “t_test”.</p>
+</dd>
+<dt>confidence_level<span class="classifier">float, default=0.95</span></dt><dd><p>Confidence level for confidence interval calculation.</p>
+</dd>
+</dl>
+</section>
+<section id="id9">
+<h3>Returns<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>Tuple[float, float]</dt><dd><dl class="simple">
+<dt>cohens_d<span class="classifier">float</span></dt><dd><p>Cohen’s d effect size.</p>
+</dd>
+<dt>p_value<span class="classifier">float</span></dt><dd><p>Statistical significance.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="id10">
+<h3>Raises<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If differences array is empty or test_method is invalid.</p>
+</dd>
+</dl>
+</section>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">differences</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cohens_d</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">calculate_effect_size_from_differences</span><span class="p">(</span><span class="n">differences</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cohen&#39;s d: </span><span class="si">{</span><span class="n">cohens_d</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P-value: </span><span class="si">{</span><span class="n">p_value</span><span class="si">:</span><span class="s2">.3e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.perturbation.ut.calculate_grid_arrows">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.perturbation.ut.</span></span><span class="sig-name descname"><span class="pre">calculate_grid_arrows</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">embedding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_embedding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset_frac</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_grid_cols</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_grid_rows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_neighbors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_cpu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gaussian_scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#intratalkerpy.perturbation.ut.calculate_grid_arrows" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate smoothed vector field on a regular grid from perturbation data.</p>
+<p>This function creates a regular grid over the embedding space and calculates
+smoothed vector field arrows by averaging nearby perturbation vectors using
+a Gaussian kernel weighting scheme.</p>
+<section id="id11">
+<h3>Parameters<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>embedding<span class="classifier">np.ndarray</span></dt><dd><p>2D embedding coordinates of shape (n_cells, 2).</p>
+</dd>
+<dt>delta_embedding<span class="classifier">np.ndarray</span></dt><dd><p>Perturbation vectors of shape (n_cells, 2).</p>
+</dd>
+<dt>offset_frac<span class="classifier">float, default=0.1</span></dt><dd><p>Fraction of the embedding range to use as offset from boundaries.
+Must be between 0 and 0.5.</p>
+</dd>
+<dt>n_grid_cols<span class="classifier">int, default=25</span></dt><dd><p>Number of grid columns (x-direction).</p>
+</dd>
+<dt>n_grid_rows<span class="classifier">int, default=25</span></dt><dd><p>Number of grid rows (y-direction).</p>
+</dd>
+<dt>n_neighbors<span class="classifier">int, default=30</span></dt><dd><p>Number of nearest neighbors to consider for each grid point.</p>
+</dd>
+<dt>n_cpu<span class="classifier">int, default=1</span></dt><dd><p>Number of CPU cores to use for nearest neighbor search.</p>
+</dd>
+<dt>gaussian_scale<span class="classifier">float, default=0.5</span></dt><dd><p>Scale parameter for the Gaussian kernel weighting.</p>
+</dd>
+</dl>
+</section>
+<section id="id12">
+<h3>Returns<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>Tuple[np.ndarray, np.ndarray, np.ndarray]</dt><dd><ul class="simple">
+<li><p>grid_xy: Grid point coordinates of shape (n_grid_points, 2)</p></li>
+<li><p>uv: Smoothed vector field of shape (n_grid_points, 2)</p></li>
+<li><p>mask: Boolean mask indicating valid grid points</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="id13">
+<h3>Raises<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If input arrays have incompatible shapes or invalid parameters.</p>
+</dd>
+</dl>
+</section>
+<section id="notes">
+<h3>Notes<a class="headerlink" href="#notes" title="Link to this heading">¶</a></h3>
+<p>The function uses a Gaussian kernel to weight the contribution of nearby
+cells to each grid point. The mask identifies grid points that are too
+far from any actual data points and should be excluded from visualization.</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.perturbation.ut.calculate_pseudotime_comparison">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.perturbation.ut.</span></span><span class="sig-name descname"><span class="pre">calculate_pseudotime_comparison</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">old_pseudotime</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_pseudotime</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pseudocount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-10</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#intratalkerpy.perturbation.ut.calculate_pseudotime_comparison" title="Link to this definition">¶</a></dt>
+<dd><p>Comprehensive comparison of old vs new pseudotime distributions.</p>
+<p>This function performs multiple statistical tests to compare two pseudotime
+distributions and provides a comprehensive summary of the differences.</p>
+<section id="id14">
+<h3>Parameters<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>old_pseudotime<span class="classifier">np.ndarray</span></dt><dd><p>Original pseudotime values.</p>
+</dd>
+<dt>new_pseudotime<span class="classifier">np.ndarray</span></dt><dd><p>Modified pseudotime values.</p>
+</dd>
+<dt>pseudocount<span class="classifier">float, default=1e-6</span></dt><dd><p>Small value added to prevent log(0) in odds ratio calculation.</p>
+</dd>
+<dt>tolerance<span class="classifier">float, default=1e-10</span></dt><dd><p>Tolerance for considering values as unchanged.</p>
+</dd>
+</dl>
+</section>
+<section id="id15">
+<h3>Returns<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>Tuple[float, float]</dt><dd><dl class="simple">
+<dt>log_odds_ratio<span class="classifier">float</span></dt><dd><p>Log odds ratio of increase vs decrease.</p>
+</dd>
+<dt>p_value<span class="classifier">float</span></dt><dd><p>Statistical significance (Wilcoxon test).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="id16">
+<h3>Raises<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If arrays have different lengths or contain invalid values.</p>
+</dd>
+</dl>
+</section>
+<section id="id17">
+<h3>Examples<a class="headerlink" href="#id17" title="Link to this heading">¶</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">old_pt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_pt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">log_odds_ratio</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">calculate_pseudotime_comparison</span><span class="p">(</span><span class="n">old_pt</span><span class="p">,</span> <span class="n">new_pt</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Log odds ratio: </span><span class="si">{</span><span class="n">log_odds_ratio</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P-value: </span><span class="si">{</span><span class="n">p_value</span><span class="si">:</span><span class="s2">.3e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.perturbation.ut.compute_differential_pseudotime">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.perturbation.ut.</span></span><span class="sig-name descname"><span class="pre">compute_differential_pseudotime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">emb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_xy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gradient_vectors</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intratalkerpy.perturbation.ut.compute_differential_pseudotime" title="Link to this definition">¶</a></dt>
+<dd><p>Compute differential pseudotime changes based on vector field analysis.</p>
+<p>This function calculates the pseudotime differential by projecting velocity
+vectors onto gradient vectors at each point in the embedding space.</p>
+<section id="id18">
+<h3>Parameters<a class="headerlink" href="#id18" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>emb<span class="classifier">array_like</span></dt><dd><p>Cell embedding coordinates with shape (n_cells, 2).</p>
+</dd>
+<dt>grid_xy<span class="classifier">array_like</span></dt><dd><p>Grid point coordinates with shape (n_grid_points, 2).</p>
+</dd>
+<dt>uv<span class="classifier">array_like</span></dt><dd><p>Velocity vectors at grid points with shape (n_grid_points, 2).</p>
+</dd>
+<dt>gradient_vectors<span class="classifier">array_like</span></dt><dd><p>Gradient vectors at cell positions with shape (n_cells, 2).</p>
+</dd>
+</dl>
+</section>
+<section id="id19">
+<h3>Returns<a class="headerlink" href="#id19" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>np.ndarray</dt><dd><p>Differential pseudotime values with shape (n_cells,).</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.perturbation.ut.compute_pseudotime_gradient">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.perturbation.ut.</span></span><span class="sig-name descname"><span class="pre">compute_pseudotime_gradient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">emb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pseudotime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_neigh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intratalkerpy.perturbation.ut.compute_pseudotime_gradient" title="Link to this definition">¶</a></dt>
+<dd><p>Compute pseudotime gradient vectors using nearest neighbor analysis.</p>
+<p>This function calculates gradient vectors that represent the direction of
+pseudotime increase in the embedding space. For each point, it uses
+least squares fitting on the nearest neighbors to estimate the local
+gradient direction.</p>
+<section id="id20">
+<h3>Parameters<a class="headerlink" href="#id20" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>emb<span class="classifier">array_like</span></dt><dd><p>Cell embedding coordinates with shape (n_cells, n_dims).
+Typically 2D embeddings with shape (n_cells, 2).</p>
+</dd>
+<dt>pseudotime<span class="classifier">array_like</span></dt><dd><p>Pseudotime values for each cell with shape (n_cells,).</p>
+</dd>
+<dt>n_neigh<span class="classifier">int, default=10</span></dt><dd><p>Number of nearest neighbors to use for gradient estimation.</p>
+</dd>
+</dl>
+</section>
+<section id="id21">
+<h3>Returns<a class="headerlink" href="#id21" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>np.ndarray</dt><dd><p>Normalized gradient vectors with shape (n_cells, n_dims).
+Each vector points in the direction of steepest pseudotime increase.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.perturbation.ut.estimate_optimal_grid_size">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.perturbation.ut.</span></span><span class="sig-name descname"><span class="pre">estimate_optimal_grid_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">embedding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#intratalkerpy.perturbation.ut.estimate_optimal_grid_size" title="Link to this definition">¶</a></dt>
+<dd><p>Estimate optimal grid size based on embedding density.</p>
+<section id="id22">
+<h3>Parameters<a class="headerlink" href="#id22" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>embedding<span class="classifier">np.ndarray</span></dt><dd><p>2D embedding coordinates.</p>
+</dd>
+</dl>
+</section>
+<section id="id23">
+<h3>Returns<a class="headerlink" href="#id23" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>Tuple[int, int]</dt><dd><p>Recommended (n_grid_cols, n_grid_rows).</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.perturbation.ut.estimate_optimal_neighbors">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.perturbation.ut.</span></span><span class="sig-name descname"><span class="pre">estimate_optimal_neighbors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">emb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pseudotime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_neighbors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intratalkerpy.perturbation.ut.estimate_optimal_neighbors" title="Link to this definition">¶</a></dt>
+<dd><p>Estimate optimal number of neighbors for gradient computation.</p>
+<section id="id24">
+<h3>Parameters<a class="headerlink" href="#id24" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>emb<span class="classifier">np.ndarray</span></dt><dd><p>Embedding coordinates.</p>
+</dd>
+<dt>pseudotime<span class="classifier">np.ndarray</span></dt><dd><p>Pseudotime values.</p>
+</dd>
+<dt>max_neighbors<span class="classifier">int, default=50</span></dt><dd><p>Maximum number of neighbors to consider.</p>
+</dd>
+</dl>
+</section>
+<section id="id25">
+<h3>Returns<a class="headerlink" href="#id25" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>int</dt><dd><p>Estimated optimal number of neighbors.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.perturbation.ut.validate_grid_parameters">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.perturbation.ut.</span></span><span class="sig-name descname"><span class="pre">validate_grid_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_grid_cols</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_grid_rows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset_frac</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_neighbors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#intratalkerpy.perturbation.ut.validate_grid_parameters" title="Link to this definition">¶</a></dt>
+<dd><p>Validate parameters for grid calculation.</p>
+<section id="id26">
+<h3>Parameters<a class="headerlink" href="#id26" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>n_grid_cols<span class="classifier">int</span></dt><dd><p>Number of grid columns.</p>
+</dd>
+<dt>n_grid_rows<span class="classifier">int</span></dt><dd><p>Number of grid rows.</p>
+</dd>
+<dt>offset_frac<span class="classifier">float</span></dt><dd><p>Offset fraction.</p>
+</dd>
+<dt>n_neighbors<span class="classifier">int</span></dt><dd><p>Number of neighbors.</p>
+</dd>
+</dl>
+</section>
+<section id="id27">
+<h3>Raises<a class="headerlink" href="#id27" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If any parameter is invalid.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+<section id="module-intratalkerpy.perturbation.pl">
+<span id="plotting"></span><h2>Plotting<a class="headerlink" href="#module-intratalkerpy.perturbation.pl" title="Link to this heading">¶</a></h2>
+<p>IntraTalkerPy Plotting Module (pl)</p>
+<p>This module provides comprehensive plotting functions for receptor analysis,
+including barplots, heatmaps, pseudotime analysis, and vector field visualization.</p>
+<p>The module contains the following main plotting functions:</p>
+<dl class="simple">
+<dt>Score Visualization:</dt><dd><ul class="simple">
+<li><p>plot_score_barplots: Create barplots of receptor scores across cell types</p></li>
+<li><p>plot_score_heatmap: Generate clustered heatmaps of receptor scores</p></li>
+</ul>
+</dd>
+<dt>Pseudotime Analysis:</dt><dd><ul class="simple">
+<li><p>plot_differential_pseudotime: Plot pseudotime differences on embeddings</p></li>
+<li><p>plot_pseudotime_distributions: Compare pseudotime distributions</p></li>
+</ul>
+</dd>
+<dt>Vector Field Analysis:</dt><dd><ul class="simple">
+<li><p>plot_metadata_given_ax: Plot metadata on 2D embeddings</p></li>
+<li><p>vector_field_wrapper: Create streamline vector field plots</p></li>
+<li><p>plot_raw_vector_field: Plot raw perturbation vector fields</p></li>
+<li><p>plot_smoothed_vector_field: Plot smoothed perturbation vector fields</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.perturbation.pl.plot_differential_pseudotime">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.perturbation.pl.</span></span><span class="sig-name descname"><span class="pre">plot_differential_pseudotime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">emb</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pseudotime_diff</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Axes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">receptor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_bins</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">256</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colorbar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colorbar_label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Pseudotime</span> <span class="pre">Difference'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edgecolors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'none'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Axes</span></span></span><a class="headerlink" href="#intratalkerpy.perturbation.pl.plot_differential_pseudotime" title="Link to this definition">¶</a></dt>
+<dd><p>Plot differential pseudotime values on a 2D embedding.</p>
+<section id="id28">
+<h3>Parameters<a class="headerlink" href="#id28" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>emb<span class="classifier">np.ndarray</span></dt><dd><p>2D embedding coordinates of shape (n_cells, 2).</p>
+</dd>
+<dt>pseudotime_diff<span class="classifier">np.ndarray</span></dt><dd><p>Pseudotime difference values for each cell.</p>
+</dd>
+<dt>ax<span class="classifier">plt.Axes</span></dt><dd><p>Matplotlib axes object to plot on.</p>
+</dd>
+<dt>receptor<span class="classifier">str</span></dt><dd><p>Name of the receptor being analyzed.</p>
+</dd>
+<dt>colors<span class="classifier">List[str], optional</span></dt><dd><p>Custom colors for the colormap. Default uses blue-white-red.</p>
+</dd>
+<dt>n_bins<span class="classifier">int, default=256</span></dt><dd><p>Number of bins for the colormap.</p>
+</dd>
+<dt>point_size<span class="classifier">float, default=15</span></dt><dd><p>Size of scatter plot points.</p>
+</dd>
+<dt>title<span class="classifier">str, optional</span></dt><dd><p>Custom title for the plot. If None, uses default format.</p>
+</dd>
+<dt>colorbar<span class="classifier">bool, default=True</span></dt><dd><p>Whether to add a colorbar.</p>
+</dd>
+<dt>colorbar_label<span class="classifier">str, default=”Pseudotime Difference”</span></dt><dd><p>Label for the colorbar.</p>
+</dd>
+<dt>alpha<span class="classifier">float, default=1.0</span></dt><dd><p>Transparency of points (0-1).</p>
+</dd>
+<dt>edgecolors<span class="classifier">str, default=’none’</span></dt><dd><p>Edge colors for scatter points.</p>
+</dd>
+</dl>
+</section>
+<section id="id29">
+<h3>Returns<a class="headerlink" href="#id29" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>plt.Axes</dt><dd><p>The modified axes object.</p>
+</dd>
+</dl>
+</section>
+<section id="id30">
+<h3>Raises<a class="headerlink" href="#id30" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If input arrays have incompatible shapes or invalid values.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.perturbation.pl.plot_metadata_given_ax">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.perturbation.pl.</span></span><span class="sig-name descname"><span class="pre">plot_metadata_given_ax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">anndata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">&lt;module</span> <span class="pre">'matplotlib.axes'</span> <span class="pre">from</span> <span class="pre">'C:\\Users\\Vanessa\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\axes\\__init__.py'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_dictionary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">receptor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_nan</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_legend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span> <span class="pre">|</span> <span class="pre">&lt;module</span> <span class="pre">'matplotlib.cm'</span> <span class="pre">from</span> <span class="pre">'C:\\Users\\Vanessa\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\matplotlib\\cm.py'&gt;</span> <span class="pre">|</span> <span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">&lt;matplotlib.colors.ListedColormap</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dot_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">555</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selected_cells</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intratalkerpy.perturbation.pl.plot_metadata_given_ax" title="Link to this definition">¶</a></dt>
+<dd><p>Plot metadata on a 2D embedding. Based on the CellOracle implementation.</p>
+<section id="id31">
+<h3>Parameters<a class="headerlink" href="#id31" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>anndata<span class="classifier">AnnData</span></dt><dd><p>Annotated data object containing embedding and metadata.</p>
+</dd>
+<dt>ax<span class="classifier">matplotlib.axes</span></dt><dd><p>Matplotlib axes object to plot on.</p>
+</dd>
+<dt>reduction_name<span class="classifier">str</span></dt><dd><p>Name of the reduction/embedding in anndata.obsm (e.g., ‘X_umap’, ‘X_pca’).</p>
+</dd>
+<dt>variable<span class="classifier">str</span></dt><dd><p>Variable name to plot from anndata.obs.</p>
+</dd>
+<dt>color_dictionary<span class="classifier">dict</span></dt><dd><p>Dictionary containing color mappings for categorical variables.
+Expected format: {variable_name: {category: color}}.</p>
+</dd>
+<dt>receptor<span class="classifier">str</span></dt><dd><p>Name of the receptor being analyzed (used in plot title).</p>
+</dd>
+<dt>remove_nan<span class="classifier">bool, default=True</span></dt><dd><p>Whether to remove NaN values from categorical data.</p>
+</dd>
+<dt>show_label<span class="classifier">bool, default=True</span></dt><dd><p>Whether to show category labels on the plot.</p>
+</dd>
+<dt>show_legend<span class="classifier">bool, default=False</span></dt><dd><p>Whether to display legend.</p>
+</dd>
+<dt>cmap<span class="classifier">str or matplotlib.cm, default=cm.viridis</span></dt><dd><p>Colormap for continuous variables.</p>
+</dd>
+<dt>dot_size<span class="classifier">int, default=10</span></dt><dd><p>Size of scatter plot points.</p>
+</dd>
+<dt>text_size<span class="classifier">int, default=10</span></dt><dd><p>Size of label text.</p>
+</dd>
+<dt>alpha<span class="classifier">float or int, default=1</span></dt><dd><p>Transparency of points (0-1).</p>
+</dd>
+<dt>seed<span class="classifier">int, default=555</span></dt><dd><p>Random seed for color generation.</p>
+</dd>
+<dt>selected_cells<span class="classifier">List[str], optional</span></dt><dd><p>Subset of cell names to plot.</p>
+</dd>
+</dl>
+</section>
+<section id="id32">
+<h3>Returns<a class="headerlink" href="#id32" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>matplotlib.axes</dt><dd><p>The modified axes object.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.perturbation.pl.plot_pseudotime_distributions">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.perturbation.pl.</span></span><span class="sig-name descname"><span class="pre">plot_pseudotime_distributions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orig_pseudotime</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">receptor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_anno</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">(6,</span> <span class="pre">4)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aspect</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palette</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title_template</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_plot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">300</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">FacetGrid</span></span></span><a class="headerlink" href="#intratalkerpy.perturbation.pl.plot_pseudotime_distributions" title="Link to this definition">¶</a></dt>
+<dd><p>Plot and compare distributions of original and receptor-specific pseudotime.</p>
+<section id="id33">
+<h3>Parameters<a class="headerlink" href="#id33" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>adata<span class="classifier">AnnData</span></dt><dd><p>Annotated data object containing pseudotime information.</p>
+</dd>
+<dt>orig_pseudotime<span class="classifier">str</span></dt><dd><p>Column name for original pseudotime in adata.obs.</p>
+</dd>
+<dt>receptor<span class="classifier">str</span></dt><dd><p>Name of the receptor being analyzed.</p>
+</dd>
+<dt>cell_anno<span class="classifier">str</span></dt><dd><p>Column name for cell annotations in adata.obs.</p>
+</dd>
+<dt>result_path<span class="classifier">str</span></dt><dd><p>Path where the plot will be saved.</p>
+</dd>
+<dt>figsize<span class="classifier">Tuple[float, float], default=(6, 4)</span></dt><dd><p>Figure size as (width, height) in inches.</p>
+</dd>
+<dt>aspect<span class="classifier">float, default=1.5</span></dt><dd><p>Aspect ratio of each facet.</p>
+</dd>
+<dt>height<span class="classifier">float, default=3</span></dt><dd><p>Height of each facet in inches.</p>
+</dd>
+<dt>alpha<span class="classifier">float, default=0.5</span></dt><dd><p>Transparency of density plots (0-1).</p>
+</dd>
+<dt>palette<span class="classifier">str, optional</span></dt><dd><p>Color palette for the plots.</p>
+</dd>
+<dt>save_format<span class="classifier">str, default=”pdf”</span></dt><dd><p>File format for saving the plot.</p>
+</dd>
+<dt>title_template<span class="classifier">str, optional</span></dt><dd><p>Custom title template. If None, uses default.</p>
+</dd>
+<dt>show_plot<span class="classifier">bool, default=True</span></dt><dd><p>Whether to display the plot.</p>
+</dd>
+<dt>dpi<span class="classifier">int, default=300</span></dt><dd><p>Resolution for saved figure.</p>
+</dd>
+</dl>
+</section>
+<section id="id34">
+<h3>Returns<a class="headerlink" href="#id34" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>sns.FacetGrid</dt><dd><p>The seaborn FacetGrid object.</p>
+</dd>
+</dl>
+</section>
+<section id="id35">
+<h3>Raises<a class="headerlink" href="#id35" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If required columns are missing from adata.obs.</p>
+</dd>
+<dt>KeyError</dt><dd><p>If specified columns don’t exist in the data.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.perturbation.pl.plot_raw_vector_field">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.perturbation.pl.</span></span><span class="sig-name descname"><span class="pre">plot_raw_vector_field</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">emb</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_vec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">(8,</span> <span class="pre">6)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector_color</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'red'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector_alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector_scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Raw</span> <span class="pre">Perturbation</span> <span class="pre">Vector</span> <span class="pre">Field'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_plot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">300</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#intratalkerpy.perturbation.pl.plot_raw_vector_field" title="Link to this definition">¶</a></dt>
+<dd><p>Plot raw vector field showing perturbation vectors.</p>
+<section id="id36">
+<h3>Parameters<a class="headerlink" href="#id36" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>emb<span class="classifier">np.ndarray</span></dt><dd><p>2D embedding coordinates of shape (n_cells, 2).</p>
+</dd>
+<dt>delta_vec<span class="classifier">np.ndarray</span></dt><dd><p>Perturbation vectors of shape (n_cells, 2).</p>
+</dd>
+<dt>figsize<span class="classifier">Tuple[float, float], default=(8, 6)</span></dt><dd><p>Figure size as (width, height) in inches.</p>
+</dd>
+<dt>point_size<span class="classifier">float, default=5</span></dt><dd><p>Size of cell points.</p>
+</dd>
+<dt>point_alpha<span class="classifier">float, default=0.5</span></dt><dd><p>Transparency of cell points.</p>
+</dd>
+<dt>vector_color<span class="classifier">str, default=”red”</span></dt><dd><p>Color of vector arrows.</p>
+</dd>
+<dt>vector_alpha<span class="classifier">float, default=0.7</span></dt><dd><p>Transparency of vector arrows.</p>
+</dd>
+<dt>vector_scale<span class="classifier">float, default=1</span></dt><dd><p>Scale factor for vector arrows.</p>
+</dd>
+<dt>title<span class="classifier">str, default=”Raw Perturbation Vector Field”</span></dt><dd><p>Title for the plot.</p>
+</dd>
+<dt>save_path<span class="classifier">str, optional</span></dt><dd><p>Path to save the figure.</p>
+</dd>
+<dt>show_plot<span class="classifier">bool, default=True</span></dt><dd><p>Whether to display the plot.</p>
+</dd>
+<dt>dpi<span class="classifier">int, default=300</span></dt><dd><p>Resolution for saved figure.</p>
+</dd>
+</dl>
+</section>
+<section id="id37">
+<h3>Returns<a class="headerlink" href="#id37" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>plt.Figure</dt><dd><p>The matplotlib figure object.</p>
+</dd>
+</dl>
+</section>
+<section id="id38">
+<h3>Raises<a class="headerlink" href="#id38" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If input arrays have incompatible shapes.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.perturbation.pl.plot_score_barplots">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.perturbation.pl.</span></span><span class="sig-name descname"><span class="pre">plot_score_barplots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">receptor_scores</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cohens_d_threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig_width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig_height</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_limits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palette</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Blues_r'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_cell_types</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'pdf'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#intratalkerpy.perturbation.pl.plot_score_barplots" title="Link to this definition">¶</a></dt>
+<dd><p>Plot barplots of receptor scores for different cell types.</p>
+<section id="id39">
+<h3>Parameters<a class="headerlink" href="#id39" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>receptor_scores<span class="classifier">Dict[str, Dict[str, Any]]</span></dt><dd><p>Dictionary containing receptor scores and p-values.
+Expected structure: {receptor: {“scores”: {cell_type: score}, “p_vals”: {cell_type: pval}}}</p>
+</dd>
+<dt>result_path<span class="classifier">str</span></dt><dd><p>Path where the plot will be saved.</p>
+</dd>
+<dt>cohens_d_threshold<span class="classifier">float, default=0.5</span></dt><dd><p>Minimum absolute Cohen’s d value to include in the plot.</p>
+</dd>
+<dt>fig_width<span class="classifier">float, default=15</span></dt><dd><p>Width of the figure in inches.</p>
+</dd>
+<dt>fig_height<span class="classifier">float, default=6</span></dt><dd><p>Height of the figure in inches.</p>
+</dd>
+<dt>top_n<span class="classifier">int, default=10</span></dt><dd><p>Number of top receptors to show per cell type.</p>
+</dd>
+<dt>x_limits<span class="classifier">Tuple[float, float], optional</span></dt><dd><p>Custom x-axis limits. If None, uses (-3, 3).</p>
+</dd>
+<dt>palette<span class="classifier">str, default=”Blues_r”</span></dt><dd><p>Color palette for the barplots.</p>
+</dd>
+<dt>exclude_cell_types<span class="classifier">list, optional</span></dt><dd><p>List of cell types to exclude from plotting.</p>
+</dd>
+<dt>save_format<span class="classifier">str, default=”pdf”</span></dt><dd><p>File format for saving the plot.</p>
+</dd>
+</dl>
+</section>
+<section id="id40">
+<h3>Returns<a class="headerlink" href="#id40" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>plt.Figure</dt><dd><p>The matplotlib figure object.</p>
+</dd>
+</dl>
+</section>
+<section id="id41">
+<h3>Raises<a class="headerlink" href="#id41" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If input data is invalid or empty.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.perturbation.pl.plot_score_heatmap">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.perturbation.pl.</span></span><span class="sig-name descname"><span class="pre">plot_score_heatmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">receptor_scores</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_score_limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">(12,</span> <span class="pre">8)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'coolwarm'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">significance_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'score'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score_thresholds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">(0.2,</span> <span class="pre">0.5,</span> <span class="pre">0.8)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval_thresholds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">(0.05,</span> <span class="pre">0.01,</span> <span class="pre">0.001)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_rows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_cols</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dendrogram_ratio</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">(0.2,</span> <span class="pre">0.2)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linewidths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_csv</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_cell_types</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ClusterGrid</span></span></span><a class="headerlink" href="#intratalkerpy.perturbation.pl.plot_score_heatmap" title="Link to this definition">¶</a></dt>
+<dd><p>Create a clustered heatmap of receptor scores across cell types.</p>
+<section id="id42">
+<h3>Parameters<a class="headerlink" href="#id42" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>receptor_scores<span class="classifier">Dict[str, Dict[str, Any]]</span></dt><dd><p>Dictionary containing receptor scores and p-values.
+Expected structure: {receptor: {“scores”: {cell_type: score}, “p_vals”: {cell_type: pval}}}</p>
+</dd>
+<dt>result_path<span class="classifier">str</span></dt><dd><p>Path where the plot and CSV will be saved.</p>
+</dd>
+<dt>max_score_limit<span class="classifier">float, default=3.0</span></dt><dd><p>Maximum absolute value for score clipping.</p>
+</dd>
+<dt>figsize<span class="classifier">Tuple[float, float], default=(12, 8)</span></dt><dd><p>Figure size as (width, height) in inches.</p>
+</dd>
+<dt>cmap<span class="classifier">str, default=”coolwarm”</span></dt><dd><p>Colormap for the heatmap.</p>
+</dd>
+<dt>significance_method<span class="classifier">str, default=”score”</span></dt><dd><p>Method for significance annotation: “score” (based on Cohen’s d) or “pval” (based on p-values).</p>
+</dd>
+<dt>score_thresholds<span class="classifier">Tuple[float, float, float], default=(0.2, 0.5, 0.8)</span></dt><dd><p>Thresholds for one-, two-, and three-star significance based on absolute Cohen’s d values.</p>
+</dd>
+<dt>pval_thresholds<span class="classifier">Tuple[float, float, float], default=(0.05, 0.01, 0.001)</span></dt><dd><p>Thresholds for one-, two-, and three-star significance based on p-values (from high to low).</p>
+</dd>
+<dt>cluster_rows<span class="classifier">bool, default=True</span></dt><dd><p>Whether to cluster rows (receptors).</p>
+</dd>
+<dt>cluster_cols<span class="classifier">bool, default=True</span></dt><dd><p>Whether to cluster columns (cell types).</p>
+</dd>
+<dt>dendrogram_ratio<span class="classifier">Tuple[float, float], default=(0.2, 0.2)</span></dt><dd><p>Ratio of dendrogram size to main plot.</p>
+</dd>
+<dt>linewidths<span class="classifier">float, default=0.5</span></dt><dd><p>Width of lines separating heatmap cells.</p>
+</dd>
+<dt>save_csv<span class="classifier">bool, default=True</span></dt><dd><p>Whether to save the data as CSV.</p>
+</dd>
+<dt>save_format<span class="classifier">str, default=”pdf”</span></dt><dd><p>File format for saving the plot.</p>
+</dd>
+<dt>exclude_cell_types<span class="classifier">list, optional</span></dt><dd><p>List of cell types to exclude from the heatmap.</p>
+</dd>
+<dt>title<span class="classifier">str, optional</span></dt><dd><p>Custom title for the plot. If None, uses default title.</p>
+</dd>
+</dl>
+</section>
+<section id="id43">
+<h3>Returns<a class="headerlink" href="#id43" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>sns.matrix.ClusterGrid</dt><dd><p>The seaborn ClusterGrid object.</p>
+</dd>
+</dl>
+</section>
+<section id="id44">
+<h3>Raises<a class="headerlink" href="#id44" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If input data is invalid or empty.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.perturbation.pl.plot_smoothed_vector_field">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.perturbation.pl.</span></span><span class="sig-name descname"><span class="pre">plot_smoothed_vector_field</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">emb</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_vec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">(8,</span> <span class="pre">6)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector_color</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'red'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector_alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector_scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Smoothed</span> <span class="pre">Perturbation</span> <span class="pre">Vector</span> <span class="pre">Field'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_plot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">300</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#intratalkerpy.perturbation.pl.plot_smoothed_vector_field" title="Link to this definition">¶</a></dt>
+<dd><p>Plot smoothed vector field showing perturbation vectors.</p>
+<section id="id45">
+<h3>Parameters<a class="headerlink" href="#id45" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>emb<span class="classifier">np.ndarray</span></dt><dd><p>2D embedding coordinates of shape (n_cells, 2).</p>
+</dd>
+<dt>delta_vec<span class="classifier">np.ndarray</span></dt><dd><p>Smoothed perturbation vectors of shape (n_cells, 2).</p>
+</dd>
+<dt>figsize<span class="classifier">Tuple[float, float], default=(8, 6)</span></dt><dd><p>Figure size as (width, height) in inches.</p>
+</dd>
+<dt>point_size<span class="classifier">float, default=5</span></dt><dd><p>Size of cell points.</p>
+</dd>
+<dt>point_alpha<span class="classifier">float, default=0.5</span></dt><dd><p>Transparency of cell points.</p>
+</dd>
+<dt>vector_color<span class="classifier">str, default=”red”</span></dt><dd><p>Color of vector arrows.</p>
+</dd>
+<dt>vector_alpha<span class="classifier">float, default=0.7</span></dt><dd><p>Transparency of vector arrows.</p>
+</dd>
+<dt>vector_scale<span class="classifier">float, default=1</span></dt><dd><p>Scale factor for vector arrows.</p>
+</dd>
+<dt>title<span class="classifier">str, default=”Smoothed Perturbation Vector Field”</span></dt><dd><p>Title for the plot.</p>
+</dd>
+<dt>save_path<span class="classifier">str, optional</span></dt><dd><p>Path to save the figure.</p>
+</dd>
+<dt>show_plot<span class="classifier">bool, default=True</span></dt><dd><p>Whether to display the plot.</p>
+</dd>
+<dt>dpi<span class="classifier">int, default=300</span></dt><dd><p>Resolution for saved figure.</p>
+</dd>
+</dl>
+</section>
+<section id="id46">
+<h3>Returns<a class="headerlink" href="#id46" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>plt.Figure</dt><dd><p>The matplotlib figure object.</p>
+</dd>
+</dl>
+</section>
+<section id="id47">
+<h3>Raises<a class="headerlink" href="#id47" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If input arrays have incompatible shapes.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intratalkerpy.perturbation.pl.vector_field_wrapper">
+<span class="sig-prename descclassname"><span class="pre">intratalkerpy.perturbation.pl.</span></span><span class="sig-name descname"><span class="pre">vector_field_wrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vectors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distances</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">red_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_anno</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">receptor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream_density</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zorder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_dist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">25</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intratalkerpy.perturbation.pl.vector_field_wrapper" title="Link to this definition">¶</a></dt>
+<dd><p>Create a vector field plot with streamlines overlay.</p>
+<section id="id48">
+<h3>Parameters<a class="headerlink" href="#id48" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>adata<span class="classifier">AnnData</span></dt><dd><p>Annotated data object containing embedding and metadata.</p>
+</dd>
+<dt>grid<span class="classifier">np.ndarray</span></dt><dd><p>Grid points for the vector field of shape (n_grid_points, 2).</p>
+</dd>
+<dt>vectors<span class="classifier">np.ndarray</span></dt><dd><p>Vector field values at grid points of shape (n_grid_points, 2).</p>
+</dd>
+<dt>distances<span class="classifier">np.ndarray</span></dt><dd><p>Distance values for coloring streamlines of shape (n_grid_points,).</p>
+</dd>
+<dt>red_name<span class="classifier">str</span></dt><dd><p>Name of the reduction/embedding in adata.obsm.</p>
+</dd>
+<dt>cell_anno<span class="classifier">str</span></dt><dd><p>Cell annotation variable name from adata.obs.</p>
+</dd>
+<dt>receptor<span class="classifier">str</span></dt><dd><p>Receptor name for labeling (used in plot title).</p>
+</dd>
+<dt>color_dict<span class="classifier">dict</span></dt><dd><p>Color dictionary mapping cell types to colors.
+Format: {variable_name: {cell_type: color_hex_string}}.</p>
+</dd>
+<dt>ax<span class="classifier">matplotlib.axes</span></dt><dd><p>Matplotlib axes object to plot on.</p>
+</dd>
+<dt>stream_density<span class="classifier">int, default=1</span></dt><dd><p>Density of streamlines.</p>
+</dd>
+<dt>zorder<span class="classifier">int, default=10</span></dt><dd><p>Z-order for streamline plotting.</p>
+</dd>
+<dt>grid_dist<span class="classifier">int, default=25</span></dt><dd><p>Grid distance parameter (grid will be grid_dist x grid_dist).</p>
+</dd>
+</dl>
+</section>
+<section id="id49">
+<h3>Returns<a class="headerlink" href="#id49" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>matplotlib.axes</dt><dd><p>The modified axes object with vector field plot.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          <a class="prev-page" href="tf_api.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Transcription Factor API</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Larissa Hermanns
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Perturbation API</a><ul>
+<li><a class="reference internal" href="#module-intratalkerpy.perturbation.mt">Methods</a><ul>
+<li><a class="reference internal" href="#intratalkerpy.perturbation.mt.differential_pseudotime_analysis"><code class="docutils literal notranslate"><span class="pre">differential_pseudotime_analysis()</span></code></a></li>
+<li><a class="reference internal" href="#intratalkerpy.perturbation.mt.permute_rows_nsign"><code class="docutils literal notranslate"><span class="pre">permute_rows_nsign()</span></code></a></li>
+<li><a class="reference internal" href="#intratalkerpy.perturbation.mt.project_perturbation_in_embedding"><code class="docutils literal notranslate"><span class="pre">project_perturbation_in_embedding()</span></code></a></li>
+<li><a class="reference internal" href="#intratalkerpy.perturbation.mt.simulation_of_perturbation"><code class="docutils literal notranslate"><span class="pre">simulation_of_perturbation()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-intratalkerpy.perturbation.ut">Utilities</a><ul>
+<li><a class="reference internal" href="#intratalkerpy.perturbation.ut.calculate_effect_size_from_differences"><code class="docutils literal notranslate"><span class="pre">calculate_effect_size_from_differences()</span></code></a></li>
+<li><a class="reference internal" href="#intratalkerpy.perturbation.ut.calculate_grid_arrows"><code class="docutils literal notranslate"><span class="pre">calculate_grid_arrows()</span></code></a></li>
+<li><a class="reference internal" href="#intratalkerpy.perturbation.ut.calculate_pseudotime_comparison"><code class="docutils literal notranslate"><span class="pre">calculate_pseudotime_comparison()</span></code></a></li>
+<li><a class="reference internal" href="#intratalkerpy.perturbation.ut.compute_differential_pseudotime"><code class="docutils literal notranslate"><span class="pre">compute_differential_pseudotime()</span></code></a></li>
+<li><a class="reference internal" href="#intratalkerpy.perturbation.ut.compute_pseudotime_gradient"><code class="docutils literal notranslate"><span class="pre">compute_pseudotime_gradient()</span></code></a></li>
+<li><a class="reference internal" href="#intratalkerpy.perturbation.ut.estimate_optimal_grid_size"><code class="docutils literal notranslate"><span class="pre">estimate_optimal_grid_size()</span></code></a></li>
+<li><a class="reference internal" href="#intratalkerpy.perturbation.ut.estimate_optimal_neighbors"><code class="docutils literal notranslate"><span class="pre">estimate_optimal_neighbors()</span></code></a></li>
+<li><a class="reference internal" href="#intratalkerpy.perturbation.ut.validate_grid_parameters"><code class="docutils literal notranslate"><span class="pre">validate_grid_parameters()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-intratalkerpy.perturbation.pl">Plotting</a><ul>
+<li><a class="reference internal" href="#intratalkerpy.perturbation.pl.plot_differential_pseudotime"><code class="docutils literal notranslate"><span class="pre">plot_differential_pseudotime()</span></code></a></li>
+<li><a class="reference internal" href="#intratalkerpy.perturbation.pl.plot_metadata_given_ax"><code class="docutils literal notranslate"><span class="pre">plot_metadata_given_ax()</span></code></a></li>
+<li><a class="reference internal" href="#intratalkerpy.perturbation.pl.plot_pseudotime_distributions"><code class="docutils literal notranslate"><span class="pre">plot_pseudotime_distributions()</span></code></a></li>
+<li><a class="reference internal" href="#intratalkerpy.perturbation.pl.plot_raw_vector_field"><code class="docutils literal notranslate"><span class="pre">plot_raw_vector_field()</span></code></a></li>
+<li><a class="reference internal" href="#intratalkerpy.perturbation.pl.plot_score_barplots"><code class="docutils literal notranslate"><span class="pre">plot_score_barplots()</span></code></a></li>
+<li><a class="reference internal" href="#intratalkerpy.perturbation.pl.plot_score_heatmap"><code class="docutils literal notranslate"><span class="pre">plot_score_heatmap()</span></code></a></li>
+<li><a class="reference internal" href="#intratalkerpy.perturbation.pl.plot_smoothed_vector_field"><code class="docutils literal notranslate"><span class="pre">plot_smoothed_vector_field()</span></code></a></li>
+<li><a class="reference internal" href="#intratalkerpy.perturbation.pl.vector_field_wrapper"><code class="docutils literal notranslate"><span class="pre">vector_field_wrapper()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=e259d695"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/scripts/furo.js?v=46bd48cc"></script>
+    </body>
+</html>

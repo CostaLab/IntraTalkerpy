@@ -1,0 +1,6 @@
+﻿lr2tf\_py.condition\_comparison\_significant
+============================================
+
+.. currentmodule:: lr2tf_py
+
+.. autofunction:: condition_comparison_significant

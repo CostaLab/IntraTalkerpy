@@ -1,0 +1,6 @@
+﻿lr2tf\_py.IntraTalker\_analysis
+===============================
+
+.. currentmodule:: lr2tf_py
+
+.. autofunction:: IntraTalker_analysis

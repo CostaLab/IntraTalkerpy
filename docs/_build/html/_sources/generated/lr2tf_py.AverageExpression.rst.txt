@@ -1,0 +1,6 @@
+﻿lr2tf\_py.AverageExpression
+===========================
+
+.. currentmodule:: lr2tf_py
+
+.. autofunction:: AverageExpression

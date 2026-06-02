@@ -1,0 +1,6 @@
+﻿lr2tf\_py.plot\_tf\_activity
+============================
+
+.. currentmodule:: lr2tf_py
+
+.. autofunction:: plot_tf_activity

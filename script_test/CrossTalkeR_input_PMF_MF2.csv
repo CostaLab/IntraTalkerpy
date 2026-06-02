@@ -1,0 +1,351 @@
+source,target,gene_A,gene_B,type_gene_A,type_gene_B,MeanLR
+Fibroblast,Fibroblast,ITGB1,KLF1,Receptor,Transcription Factor,0.17919175326824188
+MSC,MSC,ITGB1,HSF1,Receptor,Transcription Factor,0.3438037931919098
+MSC,MSC,ITGA11_ITGB1,HSF1,Receptor,Transcription Factor,0.3438037931919098
+MSC,MSC,ITGAV_ITGB1,HSF1,Receptor,Transcription Factor,0.3438037931919098
+Megakaryocyte,Megakaryocyte,ITGB1,GATA1,Receptor,Transcription Factor,0.39587515592575073
+Megakaryocyte,Megakaryocyte,TNFRSF14,GATA1,Receptor,Transcription Factor,0.39587515592575073
+Megakaryocyte,Megakaryocyte,ITGB1,NRF1,Receptor,Transcription Factor,0.524225115776062
+Megakaryocyte,Megakaryocyte,ITGB1,CREB3,Receptor,Transcription Factor,0.6987894773483276
+Megakaryocyte,Megakaryocyte,ITGB1,SP1,Receptor,Transcription Factor,0.05598171427845955
+Megakaryocyte,Megakaryocyte,ITGB1,CEBPD,Receptor,Transcription Factor,0.42070168256759644
+Megakaryocyte,Megakaryocyte,ITGB1,FOSB,Receptor,Transcription Factor,0.23932358622550964
+Megakaryocyte,Megakaryocyte,ITGB1,SRF,Receptor,Transcription Factor,0.4489198923110962
+Megakaryocyte,Megakaryocyte,MYLK,TBP,Receptor,Transcription Factor,0.3624027669429779
+Megakaryocyte,Megakaryocyte,ITGB1,HIF1A,Receptor,Transcription Factor,0.2234976887702942
+Megakaryocyte,Megakaryocyte,ITGB1,MAX,Receptor,Transcription Factor,0.38253653049468994
+Megakaryocyte,Megakaryocyte,ITGB1,SMAD1,Receptor,Transcription Factor,0.6399086713790894
+Megakaryocyte,Megakaryocyte,TNFRSF14,SMAD1,Receptor,Transcription Factor,0.6399086713790894
+Megakaryocyte,Megakaryocyte,ITGB1,ZHX1,Receptor,Transcription Factor,0.08767412602901459
+Megakaryocyte,Megakaryocyte,ITGB1,TAL1,Receptor,Transcription Factor,0.13124848902225494
+Megakaryocyte,Megakaryocyte,ITGB1,STAT4,Receptor,Transcription Factor,0.1574045717716217
+Megakaryocyte,Megakaryocyte,GATA1,PF4,Transcription Factor,Ligand,0.39587515592575073
+Megakaryocyte,Megakaryocyte,REL,CCL5,Transcription Factor,Ligand,1.2312133312225342
+Megakaryocyte,Megakaryocyte,REL,CXCL3,Transcription Factor,Ligand,1.2312133312225342
+Megakaryocyte,Megakaryocyte,KLF13,CCL5,Transcription Factor,Ligand,1.0001462697982788
+Megakaryocyte,Megakaryocyte,JUND,CCL5,Transcription Factor,Ligand,0.836419939994812
+Megakaryocyte,Megakaryocyte,JUND,TGFB1,Transcription Factor,Ligand,0.836419939994812
+Megakaryocyte,Megakaryocyte,USF2,CALR,Transcription Factor,Ligand,0.8073346614837646
+Megakaryocyte,Megakaryocyte,USF2,PF4,Transcription Factor,Ligand,0.8073346614837646
+Megakaryocyte,Megakaryocyte,USF2,TGFB1,Transcription Factor,Ligand,0.8073346614837646
+Megakaryocyte,Megakaryocyte,BACH1,CD99,Transcription Factor,Ligand,0.2364419847726822
+Megakaryocyte,Megakaryocyte,SP1,CCL5,Transcription Factor,Ligand,0.05598171427845955
+Megakaryocyte,Megakaryocyte,SP1,CD99,Transcription Factor,Ligand,0.05598171427845955
+Megakaryocyte,Megakaryocyte,SP1,MIF,Transcription Factor,Ligand,0.05598171427845955
+Megakaryocyte,Megakaryocyte,SP1,SPARC,Transcription Factor,Ligand,0.05598171427845955
+Megakaryocyte,Megakaryocyte,SP1,TGFB1,Transcription Factor,Ligand,0.05598171427845955
+Megakaryocyte,Megakaryocyte,CEBPD,CCL5,Transcription Factor,Ligand,0.42070168256759644
+Megakaryocyte,Megakaryocyte,FOSB,CCL5,Transcription Factor,Ligand,0.23932358622550964
+Megakaryocyte,Megakaryocyte,FOSB,TGFB1,Transcription Factor,Ligand,0.23932358622550964
+Megakaryocyte,Megakaryocyte,VDR,CALR,Transcription Factor,Ligand,0.9757382869720459
+Megakaryocyte,Megakaryocyte,VDR,LGALS9,Transcription Factor,Ligand,0.9757382869720459
+Megakaryocyte,Megakaryocyte,VDR,TGFB1,Transcription Factor,Ligand,0.9757382869720459
+Megakaryocyte,Megakaryocyte,SRF,MYL9,Transcription Factor,Ligand,0.4489198923110962
+Megakaryocyte,Megakaryocyte,TBP,PPBP,Transcription Factor,Ligand,0.3624027669429779
+Megakaryocyte,Megakaryocyte,FLI1,PF4,Transcription Factor,Ligand,0.23430755734443665
+Megakaryocyte,Megakaryocyte,HIF1A,CCL5,Transcription Factor,Ligand,0.2234976887702942
+Megakaryocyte,Megakaryocyte,HIF1A,LGALS1,Transcription Factor,Ligand,0.2234976887702942
+Megakaryocyte,Megakaryocyte,HIF1A,MIF,Transcription Factor,Ligand,0.2234976887702942
+Megakaryocyte,Megakaryocyte,ZNF584,PPBP,Transcription Factor,Ligand,0.652735710144043
+Megakaryocyte,Megakaryocyte,IRF1,CCL5,Transcription Factor,Ligand,0.2603859603404999
+Megakaryocyte,Megakaryocyte,ATF3,CCL5,Transcription Factor,Ligand,0.19007855653762817
+Megakaryocyte,Megakaryocyte,TAL1,CALR,Transcription Factor,Ligand,0.13124848902225494
+Megakaryocyte,Megakaryocyte,TAL1,DLK1,Transcription Factor,Ligand,0.13124848902225494
+Megakaryocyte,Megakaryocyte,TAL1,HLA-B,Transcription Factor,Ligand,0.13124848902225494
+Megakaryocyte,Megakaryocyte,TAL1,SPARC,Transcription Factor,Ligand,0.13124848902225494
+Megakaryocyte,Megakaryocyte,NFAT5,LTB,Transcription Factor,Ligand,0.7707604765892029
+Neural,Neural,IRF1,HLA-A,Transcription Factor,Ligand,1.0173949003219604
+Neural,Neural,KLF1,GDF15,Transcription Factor,Ligand,1.1432222127914429
+Neural,Neural,CREB3,GDF15,Transcription Factor,Ligand,0.976889967918396
+Neural,Neural,CREB3,LGALS3,Transcription Factor,Ligand,0.976889967918396
+Neural,Neural,HIVEP2,HLA-A,Transcription Factor,Ligand,0.4212245047092438
+Neural,Neural,USF2,GDF15,Transcription Factor,Ligand,0.572445273399353
+Neural,Neural,IRF9,GDF15,Transcription Factor,Ligand,1.2239830493927002
+Neural,Neural,CEBPD,GDF15,Transcription Factor,Ligand,0.6493338942527771
+Neural,Neural,ZNF318,GDF15,Transcription Factor,Ligand,0.7135095596313477
+Neural,Neural,NEUROD1,GDF15,Transcription Factor,Ligand,0.7806833386421204
+Neural,Neural,NFE2L1,GDF15,Transcription Factor,Ligand,0.9672031998634338
+Neural,Neural,IRF2,GDF15,Transcription Factor,Ligand,0.9726575016975403
+Neural,Neural,KLF13,GDF15,Transcription Factor,Ligand,0.5981506705284119
+Neural,Neural,VDR,GDF15,Transcription Factor,Ligand,0.1774681955575943
+Neural,Neural,ZNF589,GDF15,Transcription Factor,Ligand,0.5066879391670227
+Neural,Neural,ATF7,GDF15,Transcription Factor,Ligand,0.8185568451881409
+Neural,Neural,E2F5,GDF15,Transcription Factor,Ligand,0.7880908250808716
+Neural,Neural,NFE2L2,GDF15,Transcription Factor,Ligand,0.85446697473526
+Neural,Neural,ZNF584,GDF15,Transcription Factor,Ligand,0.5772032737731934
+Neural,Neural,GFI1B,GDF15,Transcription Factor,Ligand,0.8940600156784058
+Neural,Neural,SOX6,GDF15,Transcription Factor,Ligand,0.8483619689941406
+Neural,Neural,ZEB2,GDF15,Transcription Factor,Ligand,0.8827444314956665
+Neural,Neural,ZBTB33,GDF15,Transcription Factor,Ligand,0.04217234253883362
+Neural,Neural,NFE2,GDF15,Transcription Factor,Ligand,1.0045372247695923
+Neural,Neural,FOXK2,GDF15,Transcription Factor,Ligand,0.9452475309371948
+Neural,Neural,HHEX,GDF15,Transcription Factor,Ligand,0.6350575089454651
+Neural,Neural,TBP,GDF15,Transcription Factor,Ligand,0.3354603350162506
+Neural,Neural,ZNF83,GDF15,Transcription Factor,Ligand,0.6571753621101379
+Neural,Neural,MYCN,HLA-A,Transcription Factor,Ligand,0.5217500329017639
+Neural,Neural,FOXJ2,GDF15,Transcription Factor,Ligand,0.5290734767913818
+Neural,Neural,ZNF24,GDF15,Transcription Factor,Ligand,0.5323629975318909
+Neural,Neural,SOX13,GDF15,Transcription Factor,Ligand,0.35822537541389465
+Neural,Neural,ADNP,GDF15,Transcription Factor,Ligand,0.5951774716377258
+Neural,Neural,HBP1,GDF15,Transcription Factor,Ligand,0.6203089952468872
+Neural,Neural,ATF1,GDF15,Transcription Factor,Ligand,0.794879138469696
+Neural,Neural,HINFP,GDF15,Transcription Factor,Ligand,0.42892971634864807
+Neural,Neural,SMAD1,GDF15,Transcription Factor,Ligand,0.1331595629453659
+Neural,Neural,SP1,GDF15,Transcription Factor,Ligand,0.011436720378696918
+Neural,Neural,SREBF1,GDF15,Transcription Factor,Ligand,0.3601880371570587
+Neural,Neural,BHLHE40,GDF15,Transcription Factor,Ligand,0.4943910539150238
+Neural,Neural,GATA2,GDF15,Transcription Factor,Ligand,0.08187978714704514
+Neural,Neural,E2F1,GDF15,Transcription Factor,Ligand,0.05422236770391464
+Neural,Neural,HNF4A,GDF15,Transcription Factor,Ligand,0.03345492109656334
+Neural,Neural,HNF4A,LGALS3,Transcription Factor,Ligand,0.03345492109656334
+Neural,Neural,B2M,TFRC,Ligand,Receptor,2.39694643231269
+Neural,MSC,HLA-A,APLP2,Ligand,Receptor,1.46313902428477
+Neural,MSC,GDF15,TGFBR2,Ligand,Receptor,0.355783424356428
+Neural,MSC,PSAP,LRP1,Ligand,Receptor,0.380873239115753
+Neural,MSC,LGALS3,ENG,Ligand,Receptor,0.588563980282477
+Neural,Megakaryocyte,CALM2,MYLK,Ligand,Receptor,0.746299057465361
+Neural,Megakaryocyte,CALM2,GP6,Ligand,Receptor,0.644471960042525
+Neural,Fibroblast,LGALS3,ENG,Ligand,Receptor,0.566507537737738
+MSC,Neural,TF,TFRC,Ligand,Receptor,0.558628198453766
+MSC,Neural,CP,SLC40A1,Ligand,Receptor,0.949366314810133
+MSC,MSC,APP,CD74,Ligand,Receptor,0.454021087520632
+MSC,MSC,APP,APLP2,Ligand,Receptor,0.237838752366679
+MSC,MSC,APP,LRP1,Ligand,Receptor,0.315036271410307
+MSC,MSC,ITGAV,THY1,Ligand,Receptor,0.359540348285834
+MSC,MSC,THBS1,CD36,Ligand,Receptor,0.374065019210289
+MSC,MSC,THBS1,LRP1,Ligand,Receptor,0.463688022032791
+MSC,MSC,THBS1,CD47,Ligand,Receptor,0.42631398978414
+MSC,MSC,COL1A1,ITGA11_ITGB1,Ligand,Receptor,0.814079679386943
+MSC,MSC,COL1A1,CD36,Ligand,Receptor,0.744310313984586
+MSC,MSC,COL1A1,DDR2,Ligand,Receptor,0.784843343943094
+MSC,MSC,FN1,ITGAV_ITGB1,Ligand,Receptor,0.521683438518243
+MSC,MSC,COL1A2,ITGA11_ITGB1,Ligand,Receptor,0.83653951039996
+MSC,MSC,COL1A2,CD36,Ligand,Receptor,0.766770144997603
+MSC,MSC,COL6A1,ITGA11_ITGB1,Ligand,Receptor,0.401893077766923
+MSC,MSC,COL6A2,ITGA11_ITGB1,Ligand,Receptor,0.687294158335901
+MSC,MSC,COL6A3,ITGA11_ITGB1,Ligand,Receptor,0.517094547425214
+MSC,MSC,HSPG2,ITGB1,Ligand,Receptor,0.413347593955102
+MSC,MSC,HSPG2,FGFR1,Ligand,Receptor,0.321964670917611
+MSC,MSC,HSPG2,LRP1,Ligand,Receptor,0.387797271577628
+MSC,MSC,APOE,LRP1,Ligand,Receptor,1.28446725301095
+MSC,MSC,LGALS1,ITGB1,Ligand,Receptor,0.884666712330661
+MSC,MSC,VCAN,ITGB1,Ligand,Receptor,0.945101759304487
+MSC,MSC,HGF,ITGB1,Ligand,Receptor,0.474067472782556
+MSC,MSC,MDK,LRP1,Ligand,Receptor,0.808727483348217
+MSC,MSC,CALR,ITGAV,Ligand,Receptor,0.515114172910739
+MSC,MSC,CALR,LRP1,Ligand,Receptor,0.560284168725812
+MSC,MSC,CXCL12,ITGB1,Ligand,Receptor,1.28541850797896
+MSC,MSC,CXCL12,ITGAV,Ligand,Receptor,1.21469818978641
+MSC,MSC,PGF,NRP2,Ligand,Receptor,0.411345654180253
+MSC,MSC,LUM,ITGB1,Ligand,Receptor,0.707106103823432
+MSC,MSC,COL16A1,ITGA11_ITGB1,Ligand,Receptor,0.383209045377387
+MSC,MSC,LGALS3BP,ITGB1,Ligand,Receptor,0.461355074238313
+MSC,MSC,CLEC11A,ITGB1,Ligand,Receptor,0.384546590168629
+MSC,MSC,CLEC11A,ITGA11,Ligand,Receptor,0.293738670573387
+MSC,MSC,COL11A1,ITGA11_ITGB1,Ligand,Receptor,0.332820763164615
+MSC,MSC,COL3A1,ITGA11_ITGB1,Ligand,Receptor,0.685533699584997
+MSC,MSC,COL5A1,ITGA11_ITGB1,Ligand,Receptor,0.348239001417104
+MSC,MSC,COL5A2,ITGA11_ITGB1,Ligand,Receptor,0.354941136900106
+MSC,MSC,COL5A3,ITGA11_ITGB1,Ligand,Receptor,0.368172057522082
+MSC,MSC,TIMP1,CD63,Ligand,Receptor,1.32974466341912
+MSC,MSC,TFPI,LRP1,Ligand,Receptor,0.470464996135804
+MSC,MSC,TIMP2,ITGB1,Ligand,Receptor,0.326024876737352
+MSC,MSC,COL3A1,DDR2,Ligand,Receptor,0.656297364141148
+MSC,MSC,PSAP,LRP1,Ligand,Receptor,0.398029447019561
+MSC,MSC,HLA-B,CANX,Ligand,Receptor,1.48029881169128
+MSC,MSC,SERPING1,LRP1,Ligand,Receptor,0.69902913130274
+MSC,MSC,SLPI,PLSCR1,Ligand,Receptor,0.420968572159509
+MSC,MSC,HSP90B1,LRP1,Ligand,Receptor,0.46124937231854
+MSC,MSC,SPARC,FGFR1,Ligand,Receptor,0.510879215871532
+MSC,MSC,SPARC,ENG,Ligand,Receptor,0.618386878110497
+MSC,MSC,MAML2,NOTCH3,Ligand,Receptor,0.440270945463307
+MSC,Megakaryocyte,APP,CD74,Ligand,Receptor,0.626426393484566
+MSC,Megakaryocyte,APP,RPSA,Ligand,Receptor,0.94389520646169
+MSC,Megakaryocyte,THBS1,CD36,Ligand,Receptor,0.65712355941992
+MSC,Megakaryocyte,THBS1,CD47,Ligand,Receptor,0.455021618928027
+MSC,Megakaryocyte,COL1A1,CD36,Ligand,Receptor,1.02736885419422
+MSC,Megakaryocyte,COL1A1,GP6,Ligand,Receptor,0.730666412921493
+MSC,Megakaryocyte,COL1A2,ITGA2B,Ligand,Receptor,1.01661892984987
+MSC,Megakaryocyte,COL1A2,CD36,Ligand,Receptor,1.04982868520723
+MSC,Megakaryocyte,COL1A2,GP6,Ligand,Receptor,0.75312624393451
+MSC,Megakaryocyte,COL6A1,GP6,Ligand,Receptor,0.318479811301474
+MSC,Megakaryocyte,COL6A2,GP6,Ligand,Receptor,0.603880891870452
+MSC,Megakaryocyte,COL6A3,GP6,Ligand,Receptor,0.433681280959765
+MSC,Megakaryocyte,HSPG2,ITGB1,Ligand,Receptor,0.526569798066364
+MSC,Megakaryocyte,LGALS1,ITGB1,Ligand,Receptor,0.997888916441922
+MSC,Megakaryocyte,CCL2,ACKR1,Ligand,Receptor,0.316785938296157
+MSC,Megakaryocyte,VCAN,ITGB1,Ligand,Receptor,1.05832396341575
+MSC,Megakaryocyte,MIF,CD74_CXCR4,Ligand,Receptor,0.489279262644583
+MSC,Megakaryocyte,HGF,ITGB1,Ligand,Receptor,0.587289676893817
+MSC,Megakaryocyte,CALR,ITGA2B,Ligand,Receptor,0.720509950755573
+MSC,Megakaryocyte,GRN,TNFRSF1A,Ligand,Receptor,0.262916296821012
+MSC,Megakaryocyte,SERPINF1,PLXDC2,Ligand,Receptor,0.504807905885061
+MSC,Megakaryocyte,CXCL12,ITGB1,Ligand,Receptor,1.39864071209022
+MSC,Megakaryocyte,CXCL12,CXCR4,Ligand,Receptor,1.18180136159912
+MSC,Megakaryocyte,LUM,ITGB1,Ligand,Receptor,0.820328307934693
+MSC,Megakaryocyte,LGALS3BP,ITGB1,Ligand,Receptor,0.574577278349574
+MSC,Megakaryocyte,CLEC11A,ITGB1,Ligand,Receptor,0.49776879427989
+MSC,Megakaryocyte,LGALS1,CD69,Ligand,Receptor,0.867657236170591
+MSC,Megakaryocyte,TIMP1,CD63,Ligand,Receptor,1.41853936410214
+MSC,Megakaryocyte,TIMP2,ITGB1,Ligand,Receptor,0.439247080848613
+MSC,Megakaryocyte,GNAI2,F2R,Ligand,Receptor,0.235003615493092
+MSC,Megakaryocyte,GNAI2,CAV1,Ligand,Receptor,0.264028488869264
+MSC,Megakaryocyte,HLA-B,CANX,Ligand,Receptor,1.50634355240691
+MSC,Megakaryocyte,SLPI,PLSCR1,Ligand,Receptor,0.396293342236011
+MSC,Megakaryocyte,HMGB1,CXCR4,Ligand,Receptor,0.859563407378544
+MSC,Megakaryocyte,GNAI2,S1PR4,Ligand,Receptor,0.241922692023323
+MSC,Megakaryocyte,MDK,NCL,Ligand,Receptor,0.673899509195351
+MSC,Megakaryocyte,SPARC,ENG,Ligand,Receptor,0.513438167899286
+MSC,Fibroblast,APP,CD74,Ligand,Receptor,0.625602139109874
+MSC,Fibroblast,APP,RPSA,Ligand,Receptor,0.81344630121665
+MSC,Fibroblast,THBS1,CD36,Ligand,Receptor,0.411942628432578
+MSC,Fibroblast,THBS1,CD47,Ligand,Receptor,0.341526824153345
+MSC,Fibroblast,COL1A1,CD36,Ligand,Receptor,0.782187923206875
+MSC,Fibroblast,COL1A2,CD36,Ligand,Receptor,0.804647754219892
+MSC,Fibroblast,HSPG2,ITGB1,Ligand,Receptor,0.320229211795686
+MSC,Fibroblast,TF,TFRC,Ligand,Receptor,0.432045318288432
+MSC,Fibroblast,LGALS1,ITGB1,Ligand,Receptor,0.791548330171244
+MSC,Fibroblast,CCL2,ACKR1,Ligand,Receptor,0.398278091170338
+MSC,Fibroblast,VCAN,ITGB1,Ligand,Receptor,0.85198337714507
+MSC,Fibroblast,HGF,ITGB1,Ligand,Receptor,0.380949090623139
+MSC,Fibroblast,CXCL12,ITGB1,Ligand,Receptor,1.19230012581954
+MSC,Fibroblast,LUM,ITGB1,Ligand,Receptor,0.613987721664015
+MSC,Fibroblast,LGALS3BP,ITGB1,Ligand,Receptor,0.368236692078896
+MSC,Fibroblast,FSTL1,DIP2A,Ligand,Receptor,0.623532091881828
+MSC,Fibroblast,TIMP1,CD63,Ligand,Receptor,0.944980217475987
+MSC,Fibroblast,SLPI,PLSCR1,Ligand,Receptor,0.471553131558024
+MSC,Fibroblast,MDK,NCL,Ligand,Receptor,0.812745854302084
+MSC,Fibroblast,SPARC,ENG,Ligand,Receptor,0.596330435565758
+MSC,Myeloid,TIMP1,CD63,Ligand,Receptor,1.13167134004962
+Megakaryocyte,Neural,B2M,TFRC,Ligand,Receptor,2.85156632706888
+Megakaryocyte,Neural,LGALS9,SLC1A5,Ligand,Receptor,0.3954732147996
+Megakaryocyte,MSC,LGALS9,LRP1,Ligand,Receptor,0.285201957211899
+Megakaryocyte,MSC,LGALS9,CD47,Ligand,Receptor,0.247827924963248
+Megakaryocyte,MSC,LGALS9,MRC2,Ligand,Receptor,0.304832121132642
+Megakaryocyte,MSC,APP,CD74,Ligand,Receptor,0.447220552590891
+Megakaryocyte,MSC,APP,LRP1,Ligand,Receptor,0.308235736480566
+Megakaryocyte,MSC,CD99,CD81,Ligand,Receptor,0.962386180795827
+Megakaryocyte,MSC,DLK1,NOTCH3,Ligand,Receptor,0.768940914957177
+Megakaryocyte,MSC,TGFB1,ITGB1,Ligand,Receptor,0.540332815657206
+Megakaryocyte,MSC,TGFB1,TGFBR3,Ligand,Receptor,0.423017436014052
+Megakaryocyte,MSC,PF4,LRP1,Ligand,Receptor,1.9941194549923
+Megakaryocyte,MSC,LGALS1,ITGB1,Ligand,Receptor,0.598794624979703
+Megakaryocyte,MSC,CALR,LRP1,Ligand,Receptor,0.390418536853536
+Megakaryocyte,MSC,TIMP1,CD63,Ligand,Receptor,1.42802532817951
+Megakaryocyte,MSC,TGFB1,ENG,Ligand,Receptor,0.556457554858681
+Megakaryocyte,MSC,F13A1,ITGB1,Ligand,Receptor,0.685490498072233
+Megakaryocyte,MSC,SERPINE2,LRP1,Ligand,Receptor,0.311327271486178
+Megakaryocyte,MSC,LRPAP1,LRP1,Ligand,Receptor,0.273630812673572
+Megakaryocyte,MSC,PSAP,LRP1,Ligand,Receptor,0.491389157866603
+Megakaryocyte,MSC,HLA-B,CANX,Ligand,Receptor,1.8319985971891
+Megakaryocyte,MSC,HSP90B1,LRP1,Ligand,Receptor,0.297532852350648
+Megakaryocyte,MSC,PDAP1,PDGFRB,Ligand,Receptor,0.357782755535686
+Megakaryocyte,MSC,SPARC,FGFR1,Ligand,Receptor,0.368522292869448
+Megakaryocyte,MSC,SPARC,ENG,Ligand,Receptor,0.476029955108414
+Megakaryocyte,Megakaryocyte,LGALS9,CD47,Ligand,Receptor,0.276535554107135
+Megakaryocyte,Megakaryocyte,APP,CD74,Ligand,Receptor,0.619625858554824
+Megakaryocyte,Megakaryocyte,APP,RPSA,Ligand,Receptor,0.937094671531949
+Megakaryocyte,Megakaryocyte,TGFB1,ITGB1,Ligand,Receptor,0.653555019768467
+Megakaryocyte,Megakaryocyte,TGFB1,CXCR4,Ligand,Receptor,0.436715669277372
+Megakaryocyte,Megakaryocyte,PPBP,ACKR1,Ligand,Receptor,1.91743726255115
+Megakaryocyte,Megakaryocyte,PF4,ACKR1,Ligand,Receptor,1.88670548572635
+Megakaryocyte,Megakaryocyte,LGALS1,ITGB1,Ligand,Receptor,0.712016829090964
+Megakaryocyte,Megakaryocyte,GZMA,F2R,Ligand,Receptor,0.309658209561448
+Megakaryocyte,Megakaryocyte,CCL5,ACKR1,Ligand,Receptor,1.34593642800033
+Megakaryocyte,Megakaryocyte,MIF,CD74_CXCR4,Ligand,Receptor,0.778368366955738
+Megakaryocyte,Megakaryocyte,MIF,TNFRSF14,Ligand,Receptor,0.564482360387348
+Megakaryocyte,Megakaryocyte,CALR,ITGA2B,Ligand,Receptor,0.550644318883298
+Megakaryocyte,Megakaryocyte,LGALS1,CD69,Ligand,Receptor,0.581785148819633
+Megakaryocyte,Megakaryocyte,GNAS,PTGDR,Ligand,Receptor,0.655701440905773
+Megakaryocyte,Megakaryocyte,TIMP1,CD63,Ligand,Receptor,1.51682002886253
+Megakaryocyte,Megakaryocyte,TGFB1,ENG,Ligand,Receptor,0.451508844647469
+Megakaryocyte,Megakaryocyte,F13A1,ITGB1,Ligand,Receptor,0.798712702183494
+Megakaryocyte,Megakaryocyte,LTB,TNFRSF1A,Ligand,Receptor,0.281800214986966
+Megakaryocyte,Megakaryocyte,HLA-B,CANX,Ligand,Receptor,1.85804333790474
+Megakaryocyte,Megakaryocyte,MYL9,CD69,Ligand,Receptor,1.08027270219111
+Megakaryocyte,Megakaryocyte,CALM1,MYLK,Ligand,Receptor,0.516007442726253
+Megakaryocyte,Megakaryocyte,CALM3,MYLK,Ligand,Receptor,1.08457502705312
+Megakaryocyte,Megakaryocyte,TGFB1,CAV1,Ligand,Receptor,0.459635487124453
+Megakaryocyte,Megakaryocyte,CALM3,GP6,Ligand,Receptor,0.982747929630288
+Megakaryocyte,Megakaryocyte,HMGB1,CXCR4,Ligand,Receptor,0.847109334676341
+Megakaryocyte,Megakaryocyte,CALM1,GP6,Ligand,Receptor,0.414180345303416
+Megakaryocyte,Megakaryocyte,LCN2,FCGR2A,Ligand,Receptor,0.662230492377346
+Megakaryocyte,Fibroblast,APP,CD74,Ligand,Receptor,0.618801604180132
+Megakaryocyte,Fibroblast,APP,RPSA,Ligand,Receptor,0.806645766286909
+Megakaryocyte,Fibroblast,B2M,TFRC,Ligand,Receptor,2.72498344690355
+Megakaryocyte,Fibroblast,TGFB1,ITGB1,Ligand,Receptor,0.447214433497789
+Megakaryocyte,Fibroblast,PPBP,ACKR1,Ligand,Receptor,1.99892941542533
+Megakaryocyte,Fibroblast,PF4,ACKR1,Ligand,Receptor,1.96819763860053
+Megakaryocyte,Fibroblast,CCL5,ACKR1,Ligand,Receptor,1.42742858087451
+Megakaryocyte,Fibroblast,CXCL3,ACKR1,Ligand,Receptor,0.232973163969523
+Megakaryocyte,Fibroblast,TIMP1,CD63,Ligand,Receptor,1.04326088223638
+Megakaryocyte,Fibroblast,TGFB1,ENG,Ligand,Receptor,0.534401112313942
+Megakaryocyte,Fibroblast,F13A1,ITGB1,Ligand,Receptor,0.592372115912817
+Megakaryocyte,Fibroblast,SPARC,ENG,Ligand,Receptor,0.453973512563675
+Megakaryocyte,Myeloid,TIMP1,CD63,Ligand,Receptor,1.22995200481002
+Fibroblast,Neural,LGALS9,SLC1A5,Ligand,Receptor,0.423726535454623
+Fibroblast,MSC,LGALS9,LRP1,Ligand,Receptor,0.313455277866923
+Fibroblast,MSC,LGALS9,CD47,Ligand,Receptor,0.276081245618271
+Fibroblast,MSC,LGALS9,MRC2,Ligand,Receptor,0.333085441787665
+Fibroblast,MSC,VWF,LRP1,Ligand,Receptor,0.397851123679524
+Fibroblast,MSC,CALR,ITGAV,Ligand,Receptor,0.446204825096258
+Fibroblast,MSC,CALR,LRP1,Ligand,Receptor,0.491374820911331
+Fibroblast,MSC,COL18A1,ITGA11_ITGB1,Ligand,Receptor,0.319245495193386
+Fibroblast,MSC,TIMP1,CD63,Ligand,Receptor,1.04220146624281
+Fibroblast,MSC,PSAP,LRP1,Ligand,Receptor,0.425281899060488
+Fibroblast,MSC,HSP90B1,LRP1,Ligand,Receptor,0.331873006967124
+Fibroblast,MSC,LGALS3,ENG,Ligand,Receptor,0.595005369891609
+Fibroblast,MSC,VWF,ITGB1,Ligand,Receptor,0.423401446056998
+Fibroblast,Megakaryocyte,LGALS9,CD47,Ligand,Receptor,0.304788874762159
+Fibroblast,Megakaryocyte,LGALS1,ITGB1,Ligand,Receptor,0.629628890642827
+Fibroblast,Megakaryocyte,MIF,CD74_CXCR4,Ligand,Receptor,0.573591499605028
+Fibroblast,Megakaryocyte,CALR,ITGA2B,Ligand,Receptor,0.651600602941092
+Fibroblast,Megakaryocyte,LGALS1,CD69,Ligand,Receptor,0.499397210371496
+Fibroblast,Megakaryocyte,GNAS,PTGDR,Ligand,Receptor,0.442023323382127
+Fibroblast,Megakaryocyte,TIMP1,CD63,Ligand,Receptor,1.13099616692583
+Fibroblast,Megakaryocyte,MYL9,CD69,Ligand,Receptor,0.358573586720251
+Fibroblast,Megakaryocyte,CALM1,MYLK,Ligand,Receptor,0.474554307563268
+Fibroblast,Megakaryocyte,CALM3,MYLK,Ligand,Receptor,0.473758548529601
+Fibroblast,Megakaryocyte,HMGB1,CXCR4,Ligand,Receptor,0.944909411145567
+Fibroblast,Megakaryocyte,CALM1,GP6,Ligand,Receptor,0.372727210140432
+Fibroblast,Megakaryocyte,VWF,ITGB1,Ligand,Receptor,0.536623650168259
+Fibroblast,Fibroblast,LGALS3,ENG,Ligand,Receptor,0.57294892734687
+Fibroblast,Fibroblast,VWF,ITGB1,Ligand,Receptor,0.330283063897581
+Myeloid,Neural,LTF,TFRC,Ligand,Receptor,1.08964411798301
+Myeloid,MSC,ITGB2,THY1,Ligand,Receptor,0.4042517676085
+Myeloid,MSC,S100A8,CD36,Ligand,Receptor,2.9054937820714
+Myeloid,MSC,S100A9,CD36,Ligand,Receptor,2.65197844875656
+Myeloid,MSC,S100A12,CD36,Ligand,Receptor,0.41829162145636
+Myeloid,MSC,CLEC11A,ITGB1,Ligand,Receptor,0.433868135577437
+Myeloid,MSC,CLEC11A,ITGA11,Ligand,Receptor,0.343060215982195
+Myeloid,MSC,LTF,LRP1,Ligand,Receptor,0.936319215128209
+Myeloid,MSC,SLPI,PLSCR1,Ligand,Receptor,0.930479200465195
+Myeloid,Megakaryocyte,ITGB2,CD226,Ligand,Receptor,0.319055719411055
+Myeloid,Megakaryocyte,S100A8,CD36,Ligand,Receptor,3.18855232228103
+Myeloid,Megakaryocyte,S100A8,CD68,Ligand,Receptor,3.04270414435713
+Myeloid,Megakaryocyte,S100A9,CD36,Ligand,Receptor,2.93503698896619
+Myeloid,Megakaryocyte,S100A9,CD68,Ligand,Receptor,2.7891888110423
+Myeloid,Megakaryocyte,MIF,CD74_CXCR4,Ligand,Receptor,0.8113806157879
+Myeloid,Megakaryocyte,MIF,TNFRSF14,Ligand,Receptor,0.59749460921951
+Myeloid,Megakaryocyte,GRN,TNFRSF1A,Ligand,Receptor,0.354071738141466
+Myeloid,Megakaryocyte,S100A12,CD36,Ligand,Receptor,0.701350161665991
+Myeloid,Megakaryocyte,TFF3,CXCR4,Ligand,Receptor,0.327267026420361
+Myeloid,Megakaryocyte,CLEC11A,ITGB1,Ligand,Receptor,0.547090339688698
+Myeloid,Megakaryocyte,GNAI2,F2R,Ligand,Receptor,0.289068415261261
+Myeloid,Megakaryocyte,GNAI2,CAV1,Ligand,Receptor,0.318093288637433
+Myeloid,Megakaryocyte,SLPI,PLSCR1,Ligand,Receptor,0.905803970541697
+Myeloid,Megakaryocyte,CALM1,MYLK,Ligand,Receptor,0.504730056088353
+Myeloid,Megakaryocyte,CALM3,MYLK,Ligand,Receptor,0.455139645134374
+Myeloid,Megakaryocyte,S100A8,CD69,Ligand,Receptor,3.00365763111131
+Myeloid,Megakaryocyte,GNAI2,S1PR4,Ligand,Receptor,0.295987491791492
+Myeloid,Megakaryocyte,CALM1,GP6,Ligand,Receptor,0.402902958665517
+Myeloid,Megakaryocyte,RETN,CAP1,Ligand,Receptor,1.61014506884873
+Myeloid,Megakaryocyte,LCN2,FCGR2A,Ligand,Receptor,1.0867729367919
+Myeloid,Fibroblast,S100A8,CD36,Ligand,Receptor,2.94337139129369
+Myeloid,Fibroblast,S100A9,CD36,Ligand,Receptor,2.68985605797885
+Myeloid,Fibroblast,S100A12,CD36,Ligand,Receptor,0.456169230678649
+Myeloid,Fibroblast,CLEC11A,ITGB1,Ligand,Receptor,0.340749753418021
+Myeloid,Fibroblast,SLPI,PLSCR1,Ligand,Receptor,0.98106375986371
+Myeloid,Fibroblast,LTF,TFRC,Ligand,Receptor,0.963061237817673
+Myeloid,Myeloid,S100A8,ITGB2,Ligand,Receptor,2.9946582084015
+Myeloid,Myeloid,S100A9,ITGB2,Ligand,Receptor,2.74114287508666

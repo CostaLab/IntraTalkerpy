@@ -1,0 +1,6 @@
+﻿lr2tf\_py.plot\_condition\_tf\_activities
+=========================================
+
+.. currentmodule:: lr2tf_py
+
+.. autofunction:: plot_condition_tf_activities

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html  lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+      <title>lr2tf_py.get_significant_tfs</title>
+    
+          <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/theme.css " type="text/css" />
+          <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="../_static/theme-vendors.js"></script> -->
+      <script src="../_static/theme.js" defer></script>
+    
+      <link rel="shortcut icon" href="../../_static/favicon.png"/>
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <link rel="next" title="lr2tf_py.validate_input_arguments" href="lr2tf_py.validate_input_arguments.html" />
+  <link rel="prev" title="lr2tf_py.condition_comparison_significant" href="lr2tf_py.condition_comparison_significant.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="../index.html" class="home-link">
+    
+      <img class="logo" src="../../_static/favicon.png" alt="logo"/>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="../search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#intratalker-documentation">Contents:</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../install.html" class="reference internal ">Installation</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../support.html" class="reference internal ">Support</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../api.html" class="reference internal ">API</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+    
+      <li><a href="../api.html">API</a> &raquo;</li>
+    
+    <li>lr2tf_py.get_significant_tfs</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="prev">
+    <a href="lr2tf_py.condition_comparison_significant.html"
+       title="previous chapter">← lr2tf_py.condition_comparison_significant</a>
+  </li>
+  <li class="next">
+    <a href="lr2tf_py.validate_input_arguments.html"
+       title="next chapter">lr2tf_py.validate_input_arguments →</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <section id="lr2tf-py-get-significant-tfs">
+<h1>lr2tf_py.get_significant_tfs<a class="headerlink" href="#lr2tf-py-get-significant-tfs" title="Link to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="lr2tf_py.get_significant_tfs">
+<span class="sig-prename descclassname"><span class="pre">lr2tf_py.</span></span><span class="sig-name descname"><span class="pre">get_significant_tfs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tf_activities_sub</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tf_condition_significant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">celltype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">meanchange</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition_comparison</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lr2tf_py.get_significant_tfs" title="Link to this definition">¶</a></dt>
+<dd><section id="description">
+<h2>Description:<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
+<p>Analysis transcription factor activities for significant transcription factors.</p>
+</section>
+<section id="parameters">
+<h2>Parameters:<a class="headerlink" href="#parameters" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>tf_activities_sub<span class="classifier">AnnData</span></dt><dd><p>Input Anndata Object with TF activities as X matrix.</p>
+</dd>
+<dt>condition<span class="classifier">str </span></dt><dd><p>Experiment condition (e.g. disease, knockout …).</p>
+</dd>
+<dt>out_path<span class="classifier">str </span></dt><dd><p>Output path to save results.</p>
+</dd>
+<dt>tf_condition_significant<span class="classifier">pandas.DataFrame</span></dt><dd><p>Condition comparison results.</p>
+</dd>
+<dt>celltype<span class="classifier">str</span></dt><dd><p>Variable that accesses celltype meta data in anndata object.</p>
+</dd>
+<dt>pval<span class="classifier">float</span></dt><dd><p>P-value to filter results.</p>
+</dd>
+<dt>meanchange<span class="classifier">float</span></dt><dd><p>Meanchange value to filter results.</p>
+</dd>
+<dt>plot<span class="classifier">bool </span></dt><dd><p>Boolean variable to decide if code plots heatmaps or not.</p>
+</dd>
+<dt>condition_comparison<span class="classifier">bool</span></dt><dd><p>Comparision between multiple conditions or single condition.</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h2>Returns:<a class="headerlink" href="#returns" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>res<span class="classifier">dict[str, pandas.DataFrame]</span></dt><dd><p>A data frame with transcription factor activity scores per cell type.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="lr2tf_py.condition_comparison_significant.html"
+       title="previous chapter">← lr2tf_py.condition_comparison_significant</a>
+  </li>
+  <li class="next">
+    <a href="lr2tf_py.validate_input_arguments.html"
+       title="next chapter">lr2tf_py.validate_input_arguments →</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+      &#169; Copyright 2025, Larissa Hermanns.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.9.1.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>

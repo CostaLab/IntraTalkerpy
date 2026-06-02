@@ -1,36 +1,28 @@
-"""
-IntraTalkerPy: A Python package for receptor analysis and visualization.
+"""Merged IntraTalker package.
 
-This package provides comprehensive tools for analyzing receptor-related
-perturbations in single-cell data, including plotting utilities, computational
-tools, and analysis methods for studying receptor-ligand interactions.
+The package keeps transcription factor analysis and perturbation analysis in
+separate importable modules:
 
-Modules:
-    pl: Plotting functions for visualization (barplots, heatmaps, pseudotime, vector fields)
-    ut: Utility functions for data processing (grid calculations, rankings, pseudotime)
-    mt: Methods for analysis (differential analysis, simulations, projections)
+    import intratalkerpy.tf
+    import intratalkerpy.perturbation
 """
 
-from importlib.metadata import version
+try:
+    from importlib.metadata import PackageNotFoundError, version
+except ImportError:  # pragma: no cover - Python < 3.8 fallback
+    from importlib_metadata import PackageNotFoundError, version
 
-__version__ = version("intratalkerpy")
+try:
+    __version__ = version("intratalkerpy")
+except PackageNotFoundError:  # pragma: no cover - local source tree import
+    __version__ = "0.3.0"
 
-# Import submodules
-from . import pl  # Plotting module
-from . import ut  # Utilities module
-from . import mt  # Methods module
+__all__ = ["tf", "perturbation", "__version__"]
 
-__all__ = [
-    # Submodules
-    "pl", 
-    "ut", 
-    "mt",
-    
-    # Package metadata
-    "__version__"
-]
 
-# Package metadata
-__author__ = "Vanessa Kloeker"
-__email__ = "vanessa.kloeker@gmail.com"
-__description__ = "A Python package for receptor analysis and visualization in single-cell data"
+def __getattr__(name):
+    if name in {"tf", "perturbation"}:
+        from importlib import import_module
+
+        return import_module(f"{__name__}.{name}")
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")

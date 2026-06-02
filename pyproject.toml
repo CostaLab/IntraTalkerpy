@@ -3,8 +3,9 @@ name = "intratalkerpy"
 version = "0.3.0"
 description = "A Python package for transcription factor and perturbation analysis in single-cell data"
 authors = [
-    {name = "Larissa Hermanns", email = "larissa.hermanns@rwth-aachen.de"},
-    {name = "Vanessa Kloeker", email = "vanessa.kloeker@gmail.com"}
+    {name = "Vanessa Kloeker", email = "vanessa.kloeker@gmail.com"},
+    {name = "Larissa Hermanns", email = "larissa.hermanns@rwth-aachen.de"}
+    
 ]
 license = {text = "MIT"}
 readme = "README.md"

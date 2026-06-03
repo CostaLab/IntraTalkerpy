@@ -7,8 +7,8 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'IntraTalkerPy'
-copyright = '2025, Larissa Hermanns'
-author = 'Larissa Hermanns, Vanessa Kloeker'
+copyright = '2025, Vanessa Kloeker and Larissa Hermanns'
+author = 'Vanessa Kloeker, Larissa Hermanns'
 release = '0.3.0'
 
 # -- General configuration ---------------------------------------------------
@@ -26,10 +26,10 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = 'furo'
-html_logo = '_static/favicon.png'
-html_favicon = '_static/favicon.png'
 html_static_path = ['_static']
 html_css_files = ['custom.css']
+html_logo = '_static/IntraTalker_Logo.svg'
+html_favicon = '_static/IntraTalker_Logo.svg'
 
 import os
 import sys

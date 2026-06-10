@@ -1,0 +1,36 @@
+name: Python compatibility
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13", "3.14"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install package
+        run: |
+          python -m pip install -U pip
+          python -m pip install -e ".[dev]"
+
+      - name: Check dependency consistency
+        run: python -m pip check
+
+      - name: Print resolved versions
+        run: |
+          python -c "import sys; print(sys.version)"
+          python -c "import numpy, pandas, scipy, scanpy, decoupler; print('numpy', numpy.__version__); print('pandas', pandas.__version__); print('scipy', scipy.__version__); print('scanpy', scanpy.__version__); print('decoupler', decoupler.__version__)"
+
+      - name: Run tests
+        run: pytest

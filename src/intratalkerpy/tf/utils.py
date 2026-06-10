@@ -1,3 +1,4 @@
+import anndata as ad
 import pandas as pd
 import numpy as np
 import seaborn as sns
@@ -6,6 +7,52 @@ from statistics import variance
 import importlib.resources as pkg_resources
 from . import data 
 from .plot import plot_top_variable_tfs
+
+
+def load_tf_activities(anndataobject, tf_activities, arguments_list):
+  """
+  Load TF activity values from an explicit input or fall back to
+  anndataobject.obsm['score_ulm'] when available.
+  """
+  if isinstance(tf_activities, str):
+    if arguments_list["decoupler_matrix_format"] == None or arguments_list["decoupler_matrix_format"] == "Python":
+      tf_activities = ad.io.read_csv(tf_activities)
+      tf_activities.obs = anndataobject.obs.reindex(tf_activities.obs.index)
+      tf_activities.obsm = anndataobject.obsm
+      tf_activities.uns = anndataobject.uns
+
+    #if the R version of decoupler was used, the tf activity matrix needs to be transposed
+    elif arguments_list["decoupler_matrix_format"] == "R":
+      tf_activities = pd.read_csv(tf_activities, index_col=0)
+      tf_activities = tf_activities.T
+      tf_activities = ad.AnnData(tf_activities)
+      tf_activities.obs = anndataobject.obs.reindex(tf_activities.obs.index)
+      tf_activities.obsm = anndataobject.obsm
+      tf_activities.uns = anndataobject.uns
+
+  elif tf_activities is None:
+    if "score_ulm" in anndataobject.obsm:
+      score_ulm = anndataobject.obsm["score_ulm"]
+      tf_activities = score_ulm
+      if not isinstance(tf_activities, ad.AnnData):
+        tf_activities = ad.AnnData(tf_activities)
+        if hasattr(score_ulm, "index"):
+          tf_activities.obs_names = score_ulm.index
+        else:
+          tf_activities.obs_names = anndataobject.obs_names
+
+        if hasattr(score_ulm, "columns"):
+          tf_activities.var_names = score_ulm.columns
+
+      tf_activities.obs = anndataobject.obs.reindex(tf_activities.obs.index)
+      tf_activities.obsm = anndataobject.obsm
+      tf_activities.uns = anndataobject.uns
+    else:
+      raise NameError(
+        "Please attach a csv file with the tf activity values. (For further clarification view the 'Decoupler' section of the vignette.)"
+      )
+
+  return tf_activities
 
 
 def load_csv(filename):

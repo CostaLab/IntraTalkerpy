@@ -8,6 +8,7 @@ import numpy as np
 from statsmodels.stats.multitest import multipletests
 
 from .utils import validate_input_arguments, AverageExpression
+from .utils import load_tf_activities
 from .get_significant_TFs import get_significant_tfs
 from .generate_intracellular_network import generate_intracellular_network, generate_CrossTalkeR_input
 from .plot import plot_condition_tf_activities
@@ -60,27 +61,8 @@ def IntraTalker_analysis(anndataobject, tf_activities = None, arguments_list = N
     condition = anndataobject.obs[arguments_list["condition"]]
 
     #load tf activities(csv input)
-    if isinstance(tf_activities, str):
-         if arguments_list["decoupler_matrix_format"] == None or arguments_list["decoupler_matrix_format"] == "Python":
-            tf_activities = ad.io.read_csv(tf_activities)
-            tf_activities.obs = anndataobject.obs.reindex(tf_activities.obs.index)
-            tf_activities.obsm = anndataobject.obsm
-            tf_activities.uns = anndataobject.uns
+    tf_activities = load_tf_activities(anndataobject, tf_activities, arguments_list)
 
-        #if the R version of decoupler was used, the tf activity matrix needs to be transposed
-         elif arguments_list["decoupler_matrix_format"] == "R":
-            tf_activities = pd.read_csv(tf_activities, index_col=0)
-            tf_activities = tf_activities.T
-            tf_activities = ad.AnnData(tf_activities)
-            tf_activities.obs = anndataobject.obs.reindex(tf_activities.obs.index)
-            tf_activities.obsm = anndataobject.obsm
-            tf_activities.uns = anndataobject.uns
-
-
-    elif tf_activities is None:
-         raise NameError("Please attach a csv file with the tf activity values. (For further clarification view the 'Decoupler' section of the vignette.)")
-    
-    
     sc.pp.scale(tf_activities)
 
     #sets the stage for decision if single condition or comparison analysis is done

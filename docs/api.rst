@@ -1,7 +1,7 @@
 API
 ====
 
-The merged package exposes two separate modules:
+The package has two separate modules:
 
 .. toctree::
    :maxdepth: 2

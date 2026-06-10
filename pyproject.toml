@@ -26,10 +26,6 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-velocyto = [
-    "cython>=0.29.0",
-    "velocyto>=0.17.0",
-]
 dev = [
     "pytest>=6.0",
     "pytest-cov>=2.0",

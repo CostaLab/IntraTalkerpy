@@ -7,7 +7,7 @@ IntraTalkerPy combines two single-cell analysis workflows in one package:
 - `intratalkerpy.tf` for transcription factor activity analysis and LR-to-TF workflows.
 - `intratalkerpy.perturbation` for gene expression perturbation methods, utilities, and plotting.
 
-Install the merged package from this repository root:
+Install the package from this repository root:
 
 ```bash
 pip install .

@@ -1,4 +1,4 @@
-"""Merged IntraTalker package.
+"""IntraTalker package.
 
 The package keeps transcription factor analysis and perturbation analysis in
 separate importable modules:

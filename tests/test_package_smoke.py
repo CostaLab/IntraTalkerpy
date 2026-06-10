@@ -16,7 +16,7 @@ def test_public_modules_import_and_expose_expected_api():
 
 def test_external_dependency_functions_are_callable():
     import decoupler as dc
-    from coldelta import colDeltaCorpartial
+    from deltacorrpy import colDeltaCorpartial
 
     assert callable(dc.tl.rankby_group)
     assert callable(colDeltaCorpartial)

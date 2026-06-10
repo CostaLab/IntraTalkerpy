@@ -62,7 +62,7 @@ def project_perturbation_in_embedding(
         If ``reduction_name`` is not found in ``anndata.obsm``.
     """
     try:
-        from coldelta import colDeltaCorpartial
+        from deltacorrpy import colDeltaCorpartial
     except ImportError as exc:
         raise ImportError(
             "project_perturbation_in_embedding requires deltacorrpy. "

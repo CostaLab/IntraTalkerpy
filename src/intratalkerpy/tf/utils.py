@@ -73,7 +73,7 @@ def map_t_value(tf_scores_df, anndataobject_markers):
     '''
     Description:
     -------------
-    Merges the significant gene output from the dc.rank_sources_groups function with the t value/tf score from the filtered and summarized decoupler tf activity dataframe.
+    Merges the significant gene output from the dc.tl.rankby_group function with the t value/tf score from the filtered and summarized decoupler tf activity dataframe.
 
     Parameters:
     -----------

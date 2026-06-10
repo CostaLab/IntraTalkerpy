@@ -61,11 +61,45 @@ def condition_comparison_significant(tf_activities, out_path, celltype, conditio
                     g = g.cat.set_categories([vs1, vs2])
         
                     #finding markers for the condition comparison
-                    res_tmp = dc.rank_sources_groups(comparison_sub, groupby= condition, reference="rest", method="t-test")
+                    res_tmp_new_format = dc.tl.rankby_group(comparison_sub, groupby= condition, reference="rest", method="t-test")
+                    res_tmp = (
+                        res_tmp_new_format.rename(
+                            columns={
+                                "name": "names",
+                                "stat": "statistic",
+                                "pval": "pvals",
+                                "padj": "pvals_adj",
+                            }
+                        )
+                        .astype(
+                            {
+                                "group": str,
+                                "reference": str,
+                                "names": str,
+                            }
+                        )
+                    )
                     res_tmp.rename(columns={"group": "condition", "statistic" : "scores"}, inplace=True)
             
                     #calculating wilcoxon scores to use for r value calculation (used in heatmaps)
-                    res_heatmap = dc.rank_sources_groups(comparison_sub, groupby= condition, reference="rest", method="wilcoxon")
+                    res_heatmap_new_format = dc.tl.rankby_group(comparison_sub, groupby= condition, reference="rest", method="wilcoxon")
+                    res_heatmap = (
+                        res_heatmap_new_format.rename(
+                            columns={
+                                "name": "names",
+                                "stat": "statistic",
+                                "pval": "pvals",
+                                "padj": "pvals_adj",
+                            }
+                        )
+                        .astype(
+                            {
+                                "group": str,
+                                "reference": str,
+                                "names": str,
+                            }
+                        )
+                    )
                     res_heatmap.rename(columns={"group": "condition", "statistic" : "scores"}, inplace=True)
 
                     #subsetting into both conditions to calculate r value

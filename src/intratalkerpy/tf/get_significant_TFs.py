@@ -56,7 +56,24 @@ def get_significant_tfs(tf_activities_sub, condition, out_path, tf_condition_sig
     number_of_clusters = (len(tf_activities_sub.obs[celltype].unique()))
 
     #get marker TFs for single condition 
-    anndataobject_markers = dc.rank_sources_groups(tf_activities_sub, groupby= celltype, reference="rest", method="t-test")
+    anndataobject_markers_new_format = dc.tl.rankby_group(tf_activities_sub, groupby= celltype, reference="rest", method="t-test")
+    anndataobject_markers = (
+        anndataobject_markers_new_format.rename(
+            columns={
+                "name": "names",
+                "stat": "statistic",
+                "pval": "pvals",
+                "padj": "pvals_adj",
+            }
+        )
+        .astype(
+            {
+                "group": str,
+                "reference": str,
+                "names": str,
+            }
+        )
+    )
     anndataobject_markers.rename(columns={"names" : "gene", "group": "cluster", "statistic" : "scores"}, inplace=True)
     
     anndataobject_markers["tag"] = None

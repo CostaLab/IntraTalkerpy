@@ -14,6 +14,14 @@ def test_public_modules_import_and_expose_expected_api():
     assert hasattr(perturbation, "pl")
 
 
+def test_external_dependency_functions_are_callable():
+    import decoupler as dc
+    from coldelta import colDeltaCorpartial
+
+    assert callable(dc.tl.rankby_group)
+    assert callable(colDeltaCorpartial)
+
+
 def test_transcription_factor_reference_data_is_packaged():
     data_files = [
         "rtf_db_human.csv",

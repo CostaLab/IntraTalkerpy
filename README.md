@@ -1,12 +1,4 @@
-
-<img src="docs/_static/IntraTalker_Logo.svg" align="right" width="200" alt="Logo">
-
-
-
-
-
-IntraTalkerPy
-=============
+# IntraTalkerPy <img src="docs/_static/IntraTalker_Logo.svg" align="right" width="200" alt="Logo">
 
 IntraTalkerPy combines two single-cell analysis workflows in one package:
 

@@ -1,7 +1,6 @@
-<table>
-<tr>
-<td>
-  
+
+<img src="docs/_static/IntraTalker_Logo.svg" align="right" width="200" alt="Logo">
+
 IntraTalkerPy
 =============
 
@@ -9,16 +8,6 @@ IntraTalkerPy combines two single-cell analysis workflows in one package:
 
 - `intratalkerpy.tf` for transcription factor activity analysis and LR-to-TF workflows.
 - `intratalkerpy.perturbation` for gene expression perturbation methods, utilities, and plotting.
-
-</td>
-<td align="right">
-
-<img src="docs/_static/IntraTalker_Logo.svg" width="180"/>
-
-</td>
-</tr>
-</table>
-
 
 ## Abstract
 

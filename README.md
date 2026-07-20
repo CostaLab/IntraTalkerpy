@@ -1,6 +1,10 @@
 
 <img src="docs/_static/IntraTalker_Logo.svg" align="right" width="200" alt="Logo">
 
+
+
+
+
 IntraTalkerPy
 =============
 
